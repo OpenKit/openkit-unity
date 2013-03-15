@@ -63,11 +63,7 @@ namespace OpenKit.Native
 		}
 		
 		public OKUser getCurrentUser()
-		{
-			int x = 5;
-			
-			OKLog.Info("Test user id: " + x);
-			
+		{	
 			int okID = OKBridgeGetCurrentUserOKID();
 			OKLog.Info("!!!!!! Got user ID" + okID);
 	

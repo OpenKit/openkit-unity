@@ -1,0 +1,20 @@
+using System;
+using UnityEngine;
+
+namespace OpenKit.Native
+{
+	public class OpenKitDummyObject : IOKNativeBridge
+	{
+		public OpenKitDummyObject ()
+		{
+		}
+		
+		public void setAppKey(string appKey) {}
+		public void setEndpoint(string endpoint) {}
+		public void showLeaderboards() {}
+		public void showLoginToOpenKit() {}
+		public void submitScore(OKScore score) {}
+		public OKUser getCurrentUser() {return null;}
+	}
+}
+

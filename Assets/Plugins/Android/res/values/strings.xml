@@ -19,10 +19,6 @@
  -->
  
 <resources>
-    
-    <string name="app_name">TestUnityPlugin</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="menu_settings">Settings</string>
 
     <string name="io_openkit_title_leaderboards">Leaderboards</string>
     <string name="io_openkit_sdk_app_name">OpenKitSDK</string>

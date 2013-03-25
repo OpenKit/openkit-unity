@@ -40,21 +40,14 @@
             <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
         </activity>
 		
-		<!-- Plugin Activity -->
-		<activity
-            android:name="io.openkit.testunityplugin.MainActivity"
-            android:label="@string/app_name" >
-		</activity>
-		
+
 		<!-- Metadata tag required by facebook SDK. -->
-		<!-- Be sure to replace the ID number below in the android:value attribute wth your own Facebook App ID! -->
+		<!-- You MUST replace the Facebook application number below in the android:value attribute wth your own Facebook App ID! -->
+		<!-- For more info, see http://openkit.io/docs/unity/integration.html. The app id below is a sample. -->
 		<!-- You MUST keep the SLASH inside the quotes, e.g. android:value="\ YOUR_FB_APP_ID"   or your APP WILL CRASH! -->
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="\ 450333868362300"></meta-data>
-		
-		<!-- Facebook login activity declaration required by Facebook SDK -->
-        <activity android:name="io.openkit.facebook.LoginActivity" />
+            android:value="\ 155855667911346"></meta-data>
 		
 		
 		<!-- Declare the OpenKit activities as follows, these are required for OpenKit login and to show leaderboards -->
@@ -64,6 +57,7 @@
         <activity android:name="io.openkit.leaderboards.OKLeaderboardsActivity" />
         <activity android:name="io.openkit.leaderboards.OKScoresActivity" />
         <activity android:name="io.openkit.user.OKUserProfileActivity" />
+		<activity android:name="io.openkit.facebook.LoginActivity" />
 		
 	</application>
 

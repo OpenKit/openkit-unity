@@ -1,7 +1,8 @@
 #!/usr/bin/perl
 
-my $FacebookAppID = "450333868362300";
+
 $installPath = $ARGV[0];
+$FacebookAppID = $ARGV[1];
 $currDir = `pwd`;
 chomp $currDir;
 $python_script_path = $currDir."/Assets/Plugins/OpenKit/PostbuildScripts/OpenKitRunner.py";

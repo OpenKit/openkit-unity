@@ -1,4 +1,4 @@
 openkit-unity
 =============
 
-OpenKit Unity Plugin project 
+Please see: http://openkit.io/docs/unity/

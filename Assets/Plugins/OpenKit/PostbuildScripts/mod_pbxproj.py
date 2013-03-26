@@ -1150,6 +1150,9 @@ class XcodeProject(PBXDict):
 					('XCConfigurationList',True)]
 
 					for section in sections:	#iterate over the sections
+						if(self.sections.get(section[0]) == None):
+							continue;
+							
 						out.write('\n/* Begin %s section */'%section[0]);
 						self.sections.get(section[0]).sort(cmp=lambda x,y: cmp(x[0],y[0]))
 						#if(self.sections.get(section[0])=='PBXGroup' and ):	//add the patch to add the missing but existing files.

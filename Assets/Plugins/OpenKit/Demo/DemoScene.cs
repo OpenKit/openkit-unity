@@ -54,10 +54,11 @@ public class DemoScene : MonoBehaviour {
 			// Submit a score to a leaderboard, with a value of 2134 to leaderboard ID 4
 			// If the user is not logged in, the score will not be submitted successfully
 			
+			OKScore score = new OKScore(2134234, 6);
 			
-			OKScore score = new OKScore(2134, 4);
 			// Set the displayString to include the units of the score
-			score.displayString = "2134 points";
+			score.displayString = score.scoreValue + " points";
+			
 			// Store some metadata in the score-- this is not used by OpenKit but is stored and returned with each score
 			score.metadata = 1;
 			

@@ -13,8 +13,11 @@ namespace OpenKit
 			OKLeaderboardID = leaderboardID;
 		}
 		
-		public int scoreValue {get; set;}
+		public long scoreValue {get; set;}
 		public int OKLeaderboardID {get; set;}
+		public int metadata {get; set;}
+		public string displayString {get; set;}
+		
 		
 		//Not used for now
 		//public OKUser user {get; set;}

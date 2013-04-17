@@ -48,7 +48,7 @@ namespace OpenKit.Native
 		
 		public void submitScore(OKScore score)
 		{
-			OKAndroidPlugin.CallStatic("submitScore", score.scoreValue, score.OKLeaderboardID, score.GetCallbackGameObjectName());
+			OKAndroidPlugin.CallStatic("submitScore", score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName());
 		}
 		
 		public OKUser getCurrentUser()

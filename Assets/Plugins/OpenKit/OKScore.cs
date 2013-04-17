@@ -7,7 +7,7 @@ namespace OpenKit
 {
 	public class OKScore : MonoBehaviour
 	{
-		public OKScore (int scoreVal, int leaderboardID)
+		public OKScore (long scoreVal, int leaderboardID)
 		{
 			scoreValue = scoreVal;
 			OKLeaderboardID = leaderboardID;

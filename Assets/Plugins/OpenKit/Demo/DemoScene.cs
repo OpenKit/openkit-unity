@@ -12,6 +12,9 @@ public class DemoScene : MonoBehaviour {
 		// The app key below is taken from your OpenKit Application Key in the OpenKit dashboard.
 		OKManager.AppKey = "VwfMRAl5Gc4tirjw";
 		
+		//Set the endpoint to something other than the default
+		OKManager.Endpoint = "http://stage.openkit.io";
+		
 		// This shows sample usage of checking whether the user is logged in 
 		OKUser currentUser = OKManager.GetCurrentUser();
 		if(currentUser != null)

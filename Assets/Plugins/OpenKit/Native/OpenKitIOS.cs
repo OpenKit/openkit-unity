@@ -21,7 +21,7 @@ namespace OpenKit.Native
 		public static extern void OKBridgeShowLoginUI();
 
 		[DllImport (OK_IPHONE_DLL)]
-		public static extern void OKBridgeSubmitScore(int scoreValue, int leaderboardID, string gameObjectName);
+		public static extern void OKBridgeSubmitScore(Int64 scoreValue, int leaderboardID, int metadata, string displayString, string gameObjectName);
 		
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern int OKBridgeGetCurrentUserOKID();
@@ -59,7 +59,7 @@ namespace OpenKit.Native
 		
 		public void submitScore(OKScore score)
 		{
-			OKBridgeSubmitScore(score.scoreValue, score.OKLeaderboardID, score.GetCallbackGameObjectName());
+			OKBridgeSubmitScore(score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName());
 		}
 		
 		public OKUser getCurrentUser()

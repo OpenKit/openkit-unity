@@ -14,8 +14,7 @@ public class DemoScene : MonoBehaviour {
 		OKManager.AppKey = "VwfMRAl5Gc4tirjw";
 		
 		//Set the endpoint to something other than the default
-		//OKManager.Endpoint = "http://stage.openkit.io";
-		OKManager.Endpoint = "http://10.0.1.21:3000/";
+		OKManager.Endpoint = "http://stage.openkit.io";
 		
 		
 		// This shows sample usage of checking whether the user is logged in 

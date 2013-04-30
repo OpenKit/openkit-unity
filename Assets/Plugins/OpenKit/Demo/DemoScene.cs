@@ -66,7 +66,7 @@ public class DemoScene : MonoBehaviour {
 			
 			long scoreValue = long.Parse(scoreString);
 			
-			OKScore score = new OKScore(scoreValue, 6);
+			OKScore score = new OKScore(scoreValue, 4);
 			
 			// Set the displayString to include the units of the score
 			score.displayString = score.scoreValue + " points";

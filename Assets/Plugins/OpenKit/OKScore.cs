@@ -7,14 +7,17 @@ namespace OpenKit
 {
 	public class OKScore : MonoBehaviour
 	{
-		public OKScore (int scoreVal, int leaderboardID)
+		public OKScore (long scoreVal, int leaderboardID)
 		{
 			scoreValue = scoreVal;
 			OKLeaderboardID = leaderboardID;
 		}
 		
-		public int scoreValue {get; set;}
+		public long scoreValue {get; set;}
 		public int OKLeaderboardID {get; set;}
+		public int metadata {get; set;}
+		public string displayString {get; set;}
+		
 		
 		//Not used for now
 		//public OKUser user {get; set;}
@@ -30,6 +33,11 @@ namespace OpenKit
 			string gameObjectName = "OpenKitSubmitScoreObject."+DateTime.Now.Ticks;
 			callbackGameObjectName = gameObjectName;
 			
+			
+			// Create a new OKScore gameobject (called scoreComponent) and give it a unique name
+			// This allows us to track unique score submission requests and handle
+			// async native code
+			
 #if !UNITY_EDITOR	
 			GameObject gameObject = new GameObject(gameObjectName);
 			DontDestroyOnLoad(gameObject);
@@ -39,6 +47,8 @@ namespace OpenKit
 			
 			scoreComponent.scoreValue = scoreValue;
 			scoreComponent.OKLeaderboardID = OKLeaderboardID;
+			scoreComponent.displayString = displayString;
+			scoreComponent.metadata = metadata;
 			scoreComponent.callbackGameObjectName = gameObjectName;
 			
 			OKManager.SubmitScore(scoreComponent);

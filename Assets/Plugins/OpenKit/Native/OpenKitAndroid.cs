@@ -31,8 +31,7 @@ namespace OpenKit.Native
 		
 		public void setEndpoint(string endpoint)
 		{
-			OKLog.Error("Setting the Android endpoint is not supported yet!");
-			// OKAndroidPlugin.CallStatic("setEndpoint", endpoint);
+			OKAndroidPlugin.CallStatic("setEndpoint", endpoint);
 		}
 		
 		public void showLeaderboards()
@@ -48,7 +47,11 @@ namespace OpenKit.Native
 		
 		public void submitScore(OKScore score)
 		{
-			OKAndroidPlugin.CallStatic("submitScore", score.scoreValue, score.OKLeaderboardID, score.GetCallbackGameObjectName());
+			if(score.displayString == null) {
+				//Set the displayString to blank if it's null because you can't pass null strings to JNI functions
+				score.displayString = "";
+			}
+			OKAndroidPlugin.CallStatic("submitScore", score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName());
 		}
 		
 		public OKUser getCurrentUser()

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using OpenKit;
+using System;
 
 public class DemoScene : MonoBehaviour {
 
@@ -11,6 +12,10 @@ public class DemoScene : MonoBehaviour {
 		// This should be called at the beginning of your game. 
 		// The app key below is taken from your OpenKit Application Key in the OpenKit dashboard.
 		OKManager.AppKey = "VwfMRAl5Gc4tirjw";
+		
+		//Set the endpoint to something other than the default
+		OKManager.Endpoint = "http://stage.openkit.io";
+		
 		
 		// This shows sample usage of checking whether the user is logged in 
 		OKUser currentUser = OKManager.GetCurrentUser();
@@ -54,8 +59,23 @@ public class DemoScene : MonoBehaviour {
 			// Submit a score to a leaderboard, with a value of 2134 to leaderboard ID 4
 			// If the user is not logged in, the score will not be submitted successfully
 			
-			OKScore score = new OKScore(2134, 4);
+			string scoreString = "" + DateTime.Now.Month;
+			scoreString += DateTime.Now.Day;
+			scoreString += DateTime.Now.Hour;
+			scoreString += DateTime.Now.Minute;
+			
+			long scoreValue = long.Parse(scoreString);
+			
+			OKScore score = new OKScore(scoreValue, 4);
+			
+			// Set the displayString to include the units of the score
+			score.displayString = score.scoreValue + " points";
+			
+			// Store some metadata in the score-- this is not used by OpenKit but is stored and returned with each score
+			score.metadata = 1;
+			
 			score.submitScore(scoreSubmitHandler);
+			
 #endif
 		}
 		

@@ -35,7 +35,7 @@ namespace OpenKit
 			DontDestroyOnLoad(gameObject);
 			
 			OKAchievementScore achievementScoreComponent = gameObject.AddComponent<OKAchievementScore>();
-			achievementScoreComponent.submitScoreCallback = callback;
+			achievementScoreComponent.submitAchievementScoreCallback = callback;
 			
 			achievementScoreComponent.progress = progress;
 			achievementScoreComponent.OKAchievementID = OKAchievementID;

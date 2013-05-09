@@ -41,6 +41,11 @@ namespace OpenKit
 		{
 			OKManagerImpl.Instance.SubmitScore(score);
 		}
+		
+		public static void SubmitAchievementScore(OKAchievementScore achievementScore)
+		{
+			OKManagerImpl.Instance.SubmitAchievementScore(achievementScore);
+		}
 
 		#endregion
 		

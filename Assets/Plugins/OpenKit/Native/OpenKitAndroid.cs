@@ -54,6 +54,11 @@ namespace OpenKit.Native
 			OKAndroidPlugin.CallStatic("submitScore", score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName());
 		}
 		
+		public void submitAchievementScore(OKAchievementScore achievementScore)
+		{
+			OKAndroidPlugin.CallStatic("submitAchievementScore", achievementScore.progress, achievementScore.OKAchievementID, achievementScore.GetCallbackGameObjectName());
+		}
+		
 		public OKUser getCurrentUser()
 		{
 			int okID = OKAndroidPlugin.CallStatic<int>("getCurrentUserOKID");

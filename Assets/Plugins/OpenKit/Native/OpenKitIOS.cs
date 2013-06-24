@@ -62,6 +62,11 @@ namespace OpenKit.Native
 			OKBridgeSubmitScore(score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName());
 		}
 		
+		public void submitAchievementScore(OKAchievementScore achievementScore)
+		{
+			OpenKit.OKLog.Error("Submit achievement score is not yet implemented on iOS");
+		}
+		
 		public OKUser getCurrentUser()
 		{	
 			int okID = OKBridgeGetCurrentUserOKID();

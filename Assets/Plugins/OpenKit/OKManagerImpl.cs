@@ -96,6 +96,11 @@ namespace OpenKit
 		{
 			nativeBridge.submitScore(score);
 		}
+		
+		public void SubmitAchievementScore(OKAchievementScore achievementScore)
+		{
+			nativeBridge.submitAchievementScore(achievementScore);
+		}
 		#endregion
 		
 		

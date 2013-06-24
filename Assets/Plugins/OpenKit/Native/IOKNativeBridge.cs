@@ -9,6 +9,7 @@ namespace OpenKit.Native
 		void showLeaderboards();
 		void showLoginToOpenKit();
 		void submitScore(OKScore score);
+		void submitAchievementScore(OKAchievementScore achievementScore);
 		OKUser getCurrentUser();
 	}
 }

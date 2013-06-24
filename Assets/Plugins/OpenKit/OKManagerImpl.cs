@@ -104,6 +104,16 @@ namespace OpenKit
 		#endregion
 		
 		
+		public void AuthenticateLocalPlayerWithGameCenter()
+		{
+#if UNITY_IPHONE && !UNITY_EDITOR
+			OpenKitIOS openKit = (OpenKitIOS)nativeBridge;
+			openKit.authenticateLocalPlayerToGC();
+#else
+			return;
+#endif
+		}
+		
 		#region Overrides
 		// Called when logging object.
 		public override string ToString()

@@ -26,6 +26,10 @@ public class DemoScene : MonoBehaviour {
 			Debug.Log("Logged into OpenKit as " + currentUser.userNick);
 		else
 			Debug.Log("Not logged into OpenKit");
+		
+		
+		//Authenticate the local player with GameCenter (iOS only.. on Android this method does nothing)
+		OKManager.authenticateGameCenterLocalPlayer();
 	}
 	
 	// Update is called once per frame

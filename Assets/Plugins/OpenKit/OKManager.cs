@@ -46,6 +46,11 @@ namespace OpenKit
 		{
 			OKManagerImpl.Instance.SubmitAchievementScore(achievementScore);
 		}
+		
+		public static void authenticateGameCenterLocalPlayer()
+		{
+			OKManagerImpl.Instance.AuthenticateLocalPlayerWithGameCenter();
+		}
 
 		#endregion
 		

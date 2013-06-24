@@ -37,6 +37,9 @@ namespace OpenKit.Native
 		public static extern long OKBridgeGetCurrentUserFBID();
 		
 		[DllImport (OK_IPHONE_DLL)]
+		public static extern void OKBridgeAuthenticateLocalPlayerWithGameCenter();
+		
+		[DllImport (OK_IPHONE_DLL)]
 		public static extern long OKBridgeGetCurrentUserTwitterID();
 			
 		public OpenKitIOS() {}
@@ -59,6 +62,11 @@ namespace OpenKit.Native
 		public void showLoginToOpenKit()
 		{
 			OKBridgeShowLoginUI();
+		}
+		
+		public void authenticateLocalPlayerToGC()
+		{
+			OKBridgeAuthenticateLocalPlayerWithGameCenter();
 		}
 		
 		public void submitScore(OKScore score)

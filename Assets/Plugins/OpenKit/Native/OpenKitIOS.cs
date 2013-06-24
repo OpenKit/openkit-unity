@@ -1,5 +1,6 @@
 #if UNITY_IOS
 using System;
+using UnityEngine;
 using System.Runtime.InteropServices;
 
 namespace OpenKit.Native
@@ -63,8 +64,10 @@ namespace OpenKit.Native
 		public void submitScore(OKScore score)
 		{
 			if(string.IsNullOrEmpty(score.gameCenterLeaderboardCategory)) {
+				Debug.Log("Submitting score to OpenKit");
 				OKBridgeSubmitScore(score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName());
 			} else {
+				Debug.Log("Submitting score to OpenKit & Gamecenter");
 				OKBridgeSubmitScoreWithGameCenter(score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName(), score.gameCenterLeaderboardCategory);
 			}
 		}

@@ -15,7 +15,10 @@ public class DemoScene : MonoBehaviour {
 		
 		//Set the endpoint to something other than the default
 		OKManager.Endpoint = "http://stage.openkit.io";
-		
+	
+		//TODO remove later
+		OKManager.AppKey = "7jHqH0QcamsuvgMrlVZd";
+		OKManager.Endpoint = "http://10.0.1.18:3000";
 		
 		// This shows sample usage of checking whether the user is logged in 
 		OKUser currentUser = OKManager.GetCurrentUser();
@@ -66,13 +69,19 @@ public class DemoScene : MonoBehaviour {
 			
 			long scoreValue = long.Parse(scoreString);
 			
-			OKScore score = new OKScore(scoreValue, 4);
+			OKScore score = new OKScore(scoreValue, 84);
+			score.gameCenterLeaderboardCategory = "openkitlevel3";
 			
-			// Set the displayString to include the units of the score
+			//TODO switch back to this
+			//OKScore score = new OKScore(scoreValue, 4);
+			
+			// Set the displayString to include the units of the score	
 			score.displayString = score.scoreValue + " points";
 			
 			// Store some metadata in the score-- this is not used by OpenKit but is stored and returned with each score
 			score.metadata = 1;
+			
+			
 			
 			score.submitScore(scoreSubmitHandler);
 			

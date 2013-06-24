@@ -1,19 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Plugins/OpenKit/OKAchievementScore.cs">
-    <Files>
-      <File FileName="Assets/Plugins/OpenKit/Demo/DemoScene.cs" Line="125" Column="23" />
-      <File FileName="Assets/Plugins/OpenKit/Native/OpenKitIOS.cs" Line="69" Column="3" />
-      <File FileName="Assets/Plugins/OpenKit/OKScore.cs" Line="58" Column="41" />
-      <File FileName="Assets/Plugins/OpenKit/Native/OpenKitAndroid.cs" Line="57" Column="3" />
-      <File FileName="Assets/Plugins/OpenKit/OKAchievementScore.cs" Line="41" Column="64" />
-      <File FileName="Assets/Plugins/OpenKit/OKManager.cs" Line="43" Column="4" />
-      <File FileName="Assets/Plugins/OpenKit/OKManagerImpl.cs" Line="103" Column="4" />
-      <File FileName="Assets/Plugins/OpenKit/Native/IOKNativeBridge.cs" Line="13" Column="27" />
-      <File FileName="Assets/Plugins/OpenKit/OKLog.cs" Line="1" Column="1" />
-      <File FileName="Assets/Plugins/OpenKit/Native/OpenKitDummyObject.cs" Line="18" Column="48" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

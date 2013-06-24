@@ -19,7 +19,10 @@ namespace OpenKit.Native
 		
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeShowLoginUI();
-
+		
+		[DllImport (OK_IPHONE_DLL)]
+		public static extern void OKBridgeSubmitScoreWithGameCenter(Int64 scoreValue, int leaderboardID, int metadata, string displayString, string gameObjectName, string gamecenterLeaderboardID);
+		
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeSubmitScore(Int64 scoreValue, int leaderboardID, int metadata, string displayString, string gameObjectName);
 		
@@ -59,7 +62,11 @@ namespace OpenKit.Native
 		
 		public void submitScore(OKScore score)
 		{
-			OKBridgeSubmitScore(score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName());
+			if(string.IsNullOrEmpty(score.gameCenterLeaderboardCategory)) {
+				OKBridgeSubmitScore(score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName());
+			} else {
+				OKBridgeSubmitScoreWithGameCenter(score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName(), score.gameCenterLeaderboardCategory);
+			}
 		}
 		
 		public void submitAchievementScore(OKAchievementScore achievementScore)

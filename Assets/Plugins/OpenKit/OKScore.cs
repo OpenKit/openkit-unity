@@ -17,6 +17,7 @@ namespace OpenKit
 		public int OKLeaderboardID {get; set;}
 		public int metadata {get; set;}
 		public string displayString {get; set;}
+		public string gameCenterLeaderboardCategory {get; set;}
 		
 		
 		//Not used for now
@@ -50,6 +51,7 @@ namespace OpenKit
 			scoreComponent.displayString = displayString;
 			scoreComponent.metadata = metadata;
 			scoreComponent.callbackGameObjectName = gameObjectName;
+			scoreComponent.gameCenterLeaderboardCategory = gameCenterLeaderboardCategory;
 			
 			OKManager.SubmitScore(scoreComponent);
 #endif

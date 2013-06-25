@@ -31,7 +31,7 @@ namespace OpenKit {
 					return filename + ":" + line;
 				} 
 			}
-			return "NoFile";
+			return "";
 		}
 	}
 }

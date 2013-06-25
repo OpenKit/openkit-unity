@@ -37,8 +37,6 @@ namespace OpenKit
 			RestRequest request = new RestRequest(relativePath, Method.POST);
 			request.AddHeader("Accepts", "application/json");
 			request.AddHeader("Content-Type", "application/json");
-//			 request.RequestFormat = DataFormat.Json;
-//			 request.AddBody(requestParams);
 			request.AddParameter("application/json", JSONObjectExt.encode(requestParams), ParameterType.RequestBody);
 			return request;
 		}

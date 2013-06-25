@@ -96,7 +96,7 @@ namespace OpenKit.Native
 		public OKUser getCurrentUser()
 		{	
 			int okID = OKBridgeGetCurrentUserOKID();
-			OKLog.Info("!!!!!! Got user ID" + okID);
+			OKLog.Info("Current openkit user id: " + okID);
 	
 			if(okID == 0)
 				return null;

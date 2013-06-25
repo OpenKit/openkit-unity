@@ -49,5 +49,35 @@ namespace OpenKit
 			}
 			return j;
 		}
+
+		public static object DeJSONify(JSONObject j)
+		{
+			switch (j.type) {
+			case JSONObject.Type.STRING:
+				return j.str;
+			case JSONObject.Type.NUMBER:
+				return j.n;
+			case JSONObject.Type.OBJECT:
+				Dictionary<string, object> dict = new Dictionary<string, object>();
+				for (int i = 0; i < j.list.Count; i++) {
+					string key = (string)j.keys[i];
+					dict.Add(key,DeJSONify((JSONObject)j.list[i]));
+				}
+				return dict;
+			case JSONObject.Type.ARRAY:
+				ArrayList retList = new ArrayList();
+				foreach (JSONObject o in j.list){
+					retList.Add(DeJSONify(o));
+				}
+				return retList;
+			case JSONObject.Type.BOOL:
+				return j.b;
+			case JSONObject.Type.NULL:
+				return null;
+			default:
+				// TODO: Throw error here!
+				return null;
+			}
+		}
 	}
 }

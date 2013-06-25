@@ -106,24 +106,20 @@ public class DemoScene : MonoBehaviour {
 		
 		if(GUI.Button(new Rect(30,450,400,100), "Store dictionary"))
 		{
-			//Store a dictionary 
-			
-			ArrayList y = new ArrayList();
-			y.Add("First element.");
-			y.Add("Second!");
-			
 			Dictionary<string, object> x = new Dictionary<string, object>();
-			x.Add("prop1", "YEAAAAAAH BUDDY.");
+			x.Add("prop1", "Foo!");
 			x.Add("prop2", 99);
-			x.Add("prop3", y);
-			
-			// Cloud store. 
-			OKCloud.Set(x, "aKey", delegate(object obj, OKCloudException err)
-			{
+
+			ArrayList arr = new ArrayList();
+			arr.Add("Hello");
+			arr.Add(-99);
+			x.Add("prop3", arr);
+
+			OKCloud.Set(x, "keyDict", (OKCloudException err) =>	{
 				if (err == null) {
-					OKLog.Info("Stored object of type: " + obj.GetType().Name);
+					OKLog.Info("Stored Dictionary!");
 				} else {
-					OKLog.Info("Error during store: " + err);
+					OKLog.Info("Error storing dictionary: " + err);
 				}
 			});
 		}
@@ -131,16 +127,20 @@ public class DemoScene : MonoBehaviour {
 		
 		if(GUI.Button(new Rect(30,560,400,100), "Retrieve dictionary"))
 		{
-			//Retrieve the dictionary
-			
-			OKCloud.Get("aKey", delegate(JSONObject obj, OKCloudException err) 
+			OKCloud.Get("keyDict", (object obj, OKCloudException err) =>
 			{
+				OKLog.Info("In get dictionary handler! Obj is of class: " + obj.GetType().Name);
+				Dictionary<string,object> dict = (Dictionary<string,object>)obj;
 				if (err == null) {
-					OKLog.Info("Retrieved object of type: " + obj.GetType().Name);
-					OKLog.Info("Obj: " + obj);
-					OKLog.Info("Can I get an element of an Array? " + obj.GetField("prop3")[1]);
+					OKLog.Info("Object for property1:\nclass: " + dict["prop1"].GetType().Name + "\nvalue: " + dict["prop1"]);
+					OKLog.Info("Object for property2:\nclass: " + dict["prop2"].GetType().Name + "\nvalue: " + dict["prop2"]);
+					OKLog.Info("Object for property3:\nclass: " + dict["prop3"].GetType().Name);
+					ArrayList arr = (ArrayList)dict["prop3"];
+					OKLog.Info("Elements of array:");
+					OKLog.Info("Element 0, class: " + arr[0].GetType().Name + " value: " + arr[0]);
+					OKLog.Info("Element 1, class: " + arr[1].GetType().Name + " value: " + arr[1]);
 				} else {
-					OKLog.Info("Error during store: " + err);
+					OKLog.Info("Error fetching dictionary: " + err);
 				}
 			});
 		}

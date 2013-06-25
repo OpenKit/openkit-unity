@@ -15,7 +15,13 @@ namespace OpenKit
 			get { return OKManagerImpl.Instance.AppKey; }
 			set { OKManagerImpl.Instance.AppKey = value; }
 		}
-		
+
+		public static string SecretKey
+		{
+			get { return OKManagerImpl.Instance.SecretKey; }
+			set { OKManagerImpl.Instance.SecretKey = value;}
+		}
+
 		public static string Endpoint
 		{
 			get { return OKManagerImpl.Instance.Endpoint; }

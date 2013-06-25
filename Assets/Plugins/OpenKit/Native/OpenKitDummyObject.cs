@@ -10,6 +10,7 @@ namespace OpenKit.Native
 		}
 		
 		public void setAppKey(string appKey) {}
+		public void setSecretKey(string secretKey) {}
 		public void setEndpoint(string endpoint) {}
 		public void showLeaderboards() {}
 		public void showLoginToOpenKit() {}

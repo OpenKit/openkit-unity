@@ -65,7 +65,19 @@ namespace OpenKit
 				appKey = value;
 			}
 		}
-		
+
+		private string secretKey;
+		public string SecretKey
+		{
+			get { return secretKey; }
+			set
+			{
+				nativeBridge.setSecretKey(value);
+				secretKey = value;
+			}
+
+		}
+
 		private string endpoint;
 		public string Endpoint 
 		{ 

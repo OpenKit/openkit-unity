@@ -8,10 +8,13 @@ namespace OpenKit.Native
 	public class OpenKitIOS : IOKNativeBridge
 	{
 		public const string OK_IPHONE_DLL = "__Internal";
-		
+
 		[DllImport (OK_IPHONE_DLL)]
-        public static extern void OKBridgeSetAppKey(string appKey);
-		
+		public static extern void OKBridgeSetAppKey(string appKey);
+
+		[DllImport (OK_IPHONE_DLL)]
+		public static extern void OKBridgeSetSecretKey(string secretKey);
+
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeSetEndpoint(string endpoint);
 		
@@ -48,7 +51,12 @@ namespace OpenKit.Native
 		{
 			OKBridgeSetAppKey(appKey);
 		}
-		
+
+		public void setSecretKey(string secretKey)
+		{
+			OKBridgeSetSecretKey(secretKey);
+		}
+
 		public void setEndpoint(string endpoint)
 		{
 			OKBridgeSetEndpoint(endpoint);

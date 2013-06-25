@@ -23,7 +23,12 @@ namespace OpenKit.Native
 		public OpenKitAndroid ()
 		{
 		}
-		
+
+		public void setSecretKey(string secretKey)
+		{
+			OKAndroidPlugin.CallStatic("setSecretKey", secretKey);
+		}
+
 		public void setAppKey(string appKey)
 		{
 			OKAndroidPlugin.CallStatic("setAppKey", appKey);

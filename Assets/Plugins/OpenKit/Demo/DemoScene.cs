@@ -54,18 +54,18 @@ public class DemoScene : MonoBehaviour {
 	// the display string is used for displaying scores in the UI.
 	void SubmitSampleScore()
 	{
-		string scoreString = "" + DateTime.Now.Month;
-		scoreString += DateTime.Now.Day;
-		scoreString += DateTime.Now.Hour;
-		scoreString += DateTime.Now.Minute;
+		int lapTime = 6500;  // value in hundredths, 65 seconds.
+		int total_sec = lapTime / 100;
+		int total_min = total_sec / 60;
+		int hour = total_min / 60;
+		int min = total_min % 60;
+		int sec = total_sec % 60;
+		int hun = lapTime % 100;
 
-		long scoreValue = long.Parse(scoreString);
-
-		OKScore score = new OKScore(scoreValue, 84);
-		score.gameCenterLeaderboardCategory = "openkitlevel3";
-		score.displayString = score.scoreValue + " points";
-
-		score.metadata = 1;
+		string scoreString = "" + hour.ToString("00") + ":" + min.ToString("00") + ":" + sec.ToString("00") + "." + hun.ToString("00");
+		OKScore score = new OKScore(lapTime, 17);
+		score.displayString = scoreString + " seconds";
+		score.gameCenterLeaderboardCategory = "event_1";
 
 		score.submitScore((success, errorMessage) => {
 			if (success) {

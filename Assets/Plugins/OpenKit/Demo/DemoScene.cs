@@ -10,9 +10,9 @@ public class DemoScene : MonoBehaviour {
 	void Start()
 	{
 		// Get your app key and secret key from the OpenKit developer dashboard.
-		OKManager.AppKey = "VwfMRAl5Gc4tirjw";
-		OKManager.SecretKey = "v7iEWbTJrm1sqBeUBFll4RpRqXBIQuFlNtfA5XnS";
-		OKManager.Endpoint = "http://stage.openkit.io";
+		OKManager.AppKey = "zRn4FrBcWi6ntUmWnEwm";
+		OKManager.SecretKey = "rjqQmuDZaO6JtLuW25XPB2D6P0jplBfmuuANCKuu";
+		OKManager.Endpoint = "http://development.openkit.io";
 		
 		OKUser currentUser = OKManager.GetCurrentUser();
 		if(currentUser != null) {

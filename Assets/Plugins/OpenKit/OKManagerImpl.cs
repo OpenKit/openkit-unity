@@ -113,6 +113,11 @@ namespace OpenKit
 		{
 			nativeBridge.submitAchievementScore(achievementScore);
 		}
+		
+		public void LogoutCurrentUserFromOpenKit()
+		{
+			nativeBridge.logoutCurrentUserFromOpenKit();
+		}
 		#endregion
 		
 		

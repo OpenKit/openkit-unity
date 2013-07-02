@@ -44,6 +44,10 @@ namespace OpenKit.Native
 		
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern long OKBridgeGetCurrentUserTwitterID();
+		
+		[DllImport (OK_IPHONE_DLL)]
+		public static extern void OKBridgeLogoutCurrentUserFromOpenKit();
+	
 			
 		public OpenKitIOS() {}
 		
@@ -108,6 +112,11 @@ namespace OpenKit.Native
 				user.twitterUserID = OKBridgeGetCurrentUserTwitterID();
 				return user;
 			}
+		}
+		
+		public void logoutCurrentUserFromOpenKit()
+		{
+			OKBridgeLogoutCurrentUserFromOpenKit();
 		}
 	}
 }

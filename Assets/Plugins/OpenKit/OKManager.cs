@@ -57,6 +57,11 @@ namespace OpenKit
 		{
 			OKManagerImpl.Instance.AuthenticateLocalPlayerWithGameCenter();
 		}
+		
+		public static void LogoutCurrentUserFromOpenKit()
+		{
+			OKManagerImpl.Instance.LogoutCurrentUserFromOpenKit();
+		}
 
 		#endregion
 		

@@ -63,10 +63,12 @@ public class DemoScene : MonoBehaviour {
 		int hun = lapTime % 100;
 
 		string scoreString = "" + hour.ToString("00") + ":" + min.ToString("00") + ":" + sec.ToString("00") + "." + hun.ToString("00");
-		OKScore score = new OKScore(lapTime, 17);
+		
+		// Leaderboard ID = 27 for development.openkit.io
+		OKScore score = new OKScore(lapTime, 27);
+		score.gameCenterLeaderboardCategory = "openkitlevel3";
 		score.displayString = scoreString + " seconds";
-		score.gameCenterLeaderboardCategory = "event_1";
-
+		
 		score.submitScore((success, errorMessage) => {
 			if (success) {
 				Debug.Log("Score submitted successfully!");
@@ -184,6 +186,13 @@ public class DemoScene : MonoBehaviour {
 		if(GUILayout.Button("Retrieve Dictionary", h)) {
 			RetrieveSampleDictionary();
 		}
+		
+			
+		if(GUILayout.Button("Logout from OpenKit", h)) {
+			OKManager.LogoutCurrentUserFromOpenKit();
+			OKLog.Info("logout of OpenKit");
+		}
+
 
 		GUILayout.EndArea();
 	}

@@ -17,6 +17,7 @@ namespace OpenKit.Native
 		public void submitScore(OKScore score) {}
 		public void submitAchievementScore(OKAchievementScore achievementScore) {}
 		public OKUser getCurrentUser() {return null;}
+		public void logoutCurrentUserFromOpenKit() {}
 	}
 }
 

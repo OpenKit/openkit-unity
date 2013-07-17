@@ -44,6 +44,12 @@ namespace OpenKit.Native
 			OKAndroidPlugin.CallStatic("showLeaderboards");
 		}
 		
+		public void showLeaderboardsLandscapeOnly()
+		{
+			Debug.Log("ShowLeaderboardsLandscapeOnly not implemented yet on Android, showing leaderboards regularly");
+			OKAndroidPlugin.CallStatic("showLeaderboards");
+		}
+		
 		public void showLoginToOpenKit()
 		{
 			OKAndroidPlugin.CallStatic("showLoginUI");

@@ -9,7 +9,7 @@ public class OpenKitPostprocessBuildPlayer : MonoBehaviour {
 	// You must set your Facebook application ID below.
 	// For more info, see http://openkit.io/docs/unity/integration.html
 	// The App ID listed below is a sample
-	public static string FacebookAppID = "155855667911346";
+	public static string FacebookAppID = "450333868362300";
 	
 	[PostProcessBuild]
 	public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) {

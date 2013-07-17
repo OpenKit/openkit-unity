@@ -7,13 +7,10 @@ using System;
 public class DemoScene : MonoBehaviour {
 
 
+	// Note, in order for this to work properly, you must drag the OpenKitPrefab into
+	// your first scene.
 	void Start()
 	{
-		// Get your app key and secret key from the OpenKit developer dashboard.
-		OKManager.AppKey = "zRn4FrBcWi6ntUmWnEwm";
-		OKManager.SecretKey = "rjqQmuDZaO6JtLuW25XPB2D6P0jplBfmuuANCKuu";
-		OKManager.Endpoint = "http://development.openkit.io";
-		
 		OKUser currentUser = OKManager.GetCurrentUser();
 		if(currentUser != null) {
 			Debug.Log("Logged into OpenKit as " + currentUser.userNick);

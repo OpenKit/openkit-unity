@@ -22,6 +22,9 @@ namespace OpenKit.Native
 		public static extern void OKBridgeShowLeaderboards();
 		
 		[DllImport (OK_IPHONE_DLL)]
+		public static extern void OKBridgeShowLeaderboardsLandscapeOnly();
+		
+		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeShowLoginUI();
 		
 		[DllImport (OK_IPHONE_DLL)]
@@ -43,10 +46,15 @@ namespace OpenKit.Native
 		public static extern void OKBridgeAuthenticateLocalPlayerWithGameCenter();
 		
 		[DllImport (OK_IPHONE_DLL)]
+		public static extern void OKBridgeAuthenticateLocalPlayerWithGameCenterAndShowUIIfNecessary();
+		
+		[DllImport (OK_IPHONE_DLL)]
 		public static extern long OKBridgeGetCurrentUserTwitterID();
 		
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeLogoutCurrentUserFromOpenKit();
+		
+		
 	
 			
 		public OpenKitIOS() {}
@@ -71,6 +79,11 @@ namespace OpenKit.Native
 			OKBridgeShowLeaderboards();
 		}
 		
+		public void showLeaderboardsLandscapeOnly()
+		{
+			OKBridgeShowLeaderboardsLandscapeOnly();
+		}
+		
 		public void showLoginToOpenKit()
 		{
 			OKBridgeShowLoginUI();
@@ -79,6 +92,11 @@ namespace OpenKit.Native
 		public void authenticateLocalPlayerToGC()
 		{
 			OKBridgeAuthenticateLocalPlayerWithGameCenter();
+		}
+		
+		public void authenticateLocalPlayerToGCAndShowUIIfNecessary()
+		{
+			OKBridgeAuthenticateLocalPlayerWithGameCenterAndShowUIIfNecessary();
 		}
 		
 		public void submitScore(OKScore score)

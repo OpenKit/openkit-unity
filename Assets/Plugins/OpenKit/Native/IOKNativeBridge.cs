@@ -8,6 +8,7 @@ namespace OpenKit.Native
 		void setSecretKey(string secretKey);
 		void setEndpoint(string endpoint);
 		void showLeaderboards();
+		void showLeaderboardsLandscapeOnly();
 		void showLoginToOpenKit();
 		void submitScore(OKScore score);
 		void submitAchievementScore(OKAchievementScore achievementScore);

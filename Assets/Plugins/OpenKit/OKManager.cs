@@ -10,6 +10,11 @@ namespace OpenKit
 		/////////////////////////////////////////////////////////////////////////////////////////////////////
 		#region Public API
 		/////////////////////////////////////////////////////////////////////////////////////////////////////
+		public static event EventHandler ViewWillAppear;
+		public static event EventHandler ViewWillDisappear;
+		public static event EventHandler ViewDidAppear;
+		public static event EventHandler ViewDidDisappear;
+
 		public static string AppKey
 		{
 			get { return OKManagerImpl.Instance.AppKey; }
@@ -31,6 +36,11 @@ namespace OpenKit
 		public static void ShowLeaderboards()
 		{
 			OKManagerImpl.Instance.ShowLeaderboards();
+		}
+		
+		public static void ShowLeaderboardsLandscapeOnly()
+		{
+			OKManagerImpl.Instance.ShowLeaderboardsLandscapeOnly();
 		}
 		
 		public static void ShowLoginToOpenKit()
@@ -58,9 +68,43 @@ namespace OpenKit
 			OKManagerImpl.Instance.AuthenticateLocalPlayerWithGameCenter();
 		}
 		
+		public static void AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary()
+		{
+			OKManagerImpl.Instance.AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary();
+		}
+		
 		public static void LogoutCurrentUserFromOpenKit()
 		{
 			OKManagerImpl.Instance.LogoutCurrentUserFromOpenKit();
+		}
+
+		public static bool IsEnabled()
+		{
+			return OKManagerImpl.Instance.IsEnabled();
+		}
+
+		public static void HandleNativeEvent(object sender, OKNativeEvent ev)
+		{
+			switch (ev) {
+			case OKNativeEvent.viewWillAppear:
+				if (ViewWillAppear != null)
+					ViewWillAppear(sender, EventArgs.Empty);
+				break;
+			case OKNativeEvent.viewDidAppear:
+				if (ViewDidAppear != null)
+					ViewDidAppear(sender, EventArgs.Empty);
+				break;
+			case OKNativeEvent.viewWillDisappear:
+				if (ViewWillDisappear != null)
+					ViewWillDisappear(sender, EventArgs.Empty);
+				break;
+			case OKNativeEvent.viewDidDisappear:
+				if (ViewDidDisappear != null)
+					ViewDidDisappear(sender, EventArgs.Empty);
+				break;
+			default:
+				break;
+			}
 		}
 
 		#endregion

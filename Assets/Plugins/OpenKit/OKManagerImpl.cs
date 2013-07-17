@@ -94,6 +94,11 @@ namespace OpenKit
 			nativeBridge.showLeaderboards();
 		}
 		
+		public void ShowLeaderboardsLandscapeOnly()
+		{
+			nativeBridge.showLeaderboardsLandscapeOnly();
+		}
+		
 		public void ShowLoginToOpenKit()
 		{
 			nativeBridge.showLoginToOpenKit();
@@ -118,6 +123,11 @@ namespace OpenKit
 		{
 			nativeBridge.logoutCurrentUserFromOpenKit();
 		}
+
+		public bool IsEnabled()
+		{
+			return !(nativeBridge is OpenKitDummyObject);
+		}
 		#endregion
 		
 		
@@ -126,6 +136,16 @@ namespace OpenKit
 #if UNITY_IPHONE && !UNITY_EDITOR
 			OpenKitIOS openKit = (OpenKitIOS)nativeBridge;
 			openKit.authenticateLocalPlayerToGC();
+#else
+			return;
+#endif
+		}
+		
+		public void AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary()
+		{
+#if UNITY_IPHONE && !UNITY_EDITOR
+			OpenKitIOS openKit = (OpenKitIOS)nativeBridge;
+			openKit.authenticateLocalPlayerToGCAndShowUIIfNecessary();
 #else
 			return;
 #endif

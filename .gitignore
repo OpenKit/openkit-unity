@@ -19,3 +19,6 @@ xcodebuild
 *.apk
 .DS_Store
 OpenKitIOSBuildLogFile.txt
+
+# Appears to get compiled on each build
+OKPlugins/OpenKit/PostbuildScripts/mod_pbxproj.pyc

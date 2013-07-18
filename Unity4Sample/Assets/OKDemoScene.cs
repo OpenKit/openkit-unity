@@ -7,9 +7,7 @@ using System;
 public class OKDemoScene : MonoBehaviour {
 
 
-	// Note, in order for this to work properly, you must drag the OpenKitPrefab into
-	// your first scene.
-	void Start()
+	void Awake()
 	{
 		OKUser currentUser = OKManager.GetCurrentUser();
 		if(currentUser != null) {
@@ -20,10 +18,29 @@ public class OKDemoScene : MonoBehaviour {
 
 		// Authenticate the local player with GameCenter (iOS only).
 		OKManager.authenticateGameCenterLocalPlayer();
+
+		// Listen for native openkit view events.
+		OKManager.ViewWillAppear    += ViewWillAppear;
+		OKManager.ViewDidAppear     += ViewDidAppear;
+		OKManager.ViewWillDisappear += ViewWillDisappear;
+		OKManager.ViewDidDisappear  += ViewDidDisappear;
 	}
 
+	static void ViewWillAppear(object sender, EventArgs e) {
+		Debug.Log("OK ViewWillAppear");
+	}
 
-	void Update() {}
+	static void ViewWillDisappear(object sender, EventArgs e) {
+		Debug.Log("OK ViewWillDisappear");
+	}
+
+	static void ViewDidAppear(object sender, EventArgs e) {
+		Debug.Log("OK ViewDidAppear");
+	}
+
+	static void ViewDidDisappear(object sender, EventArgs e) {
+		Debug.Log("OK ViewDidDisappear");
+	}
 
 
 	void ShowLeaderboards()
@@ -60,12 +77,12 @@ public class OKDemoScene : MonoBehaviour {
 		int hun = lapTime % 100;
 
 		string scoreString = "" + hour.ToString("00") + ":" + min.ToString("00") + ":" + sec.ToString("00") + "." + hun.ToString("00");
-		
+
 		// Leaderboard ID = 27 for development.openkit.io
 		OKScore score = new OKScore(lapTime, 27);
 		score.gameCenterLeaderboardCategory = "openkitlevel3";
 		score.displayString = scoreString + " seconds";
-		
+
 		score.submitScore((success, errorMessage) => {
 			if (success) {
 				Debug.Log("Score submitted successfully!");
@@ -164,6 +181,10 @@ public class OKDemoScene : MonoBehaviour {
 			ShowLeaderboards();
 		}
 
+		if(GUILayout.Button("Show Leaderboards Landscape Only", h)) {
+			OKManager.ShowLeaderboardsLandscapeOnly();
+		}
+
 		if(GUILayout.Button("Show Login UI", h)) {
 			ShowLoginUI();
 		}
@@ -183,8 +204,8 @@ public class OKDemoScene : MonoBehaviour {
 		if(GUILayout.Button("Retrieve Dictionary", h)) {
 			RetrieveSampleDictionary();
 		}
-		
-			
+
+
 		if(GUILayout.Button("Logout from OpenKit", h)) {
 			OKManager.LogoutCurrentUserFromOpenKit();
 			OKLog.Info("logout of OpenKit");
@@ -193,5 +214,4 @@ public class OKDemoScene : MonoBehaviour {
 
 		GUILayout.EndArea();
 	}
-	
 }

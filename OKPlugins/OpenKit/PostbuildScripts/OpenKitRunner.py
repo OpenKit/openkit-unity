@@ -73,7 +73,7 @@ log('Added AdSupport framework.')
 project.add_file('System/Library/Frameworks/Accounts.framework', tree='SDKROOT')
 log('Added Accounts framework.')
 
-project.add_file('System/Library/Frameworks/Social.framework', tree='SDKROOT')
+project.add_file('System/Library/Frameworks/Social.framework', tree='SDKROOT', weak=True)
 log('Added Social framework.')
 
 project.add_file('System/Library/Frameworks/MobileCoreServices.framework', tree='SDKROOT')

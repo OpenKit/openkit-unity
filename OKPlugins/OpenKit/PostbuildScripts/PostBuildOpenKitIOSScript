@@ -13,7 +13,10 @@ $log_filename = "OpenKitIOSBuildLogFile.txt";
 open (LOGFILE, ">$log_filename");
 my $perl_v = $];
 my $python_v = `python --version 2>&1`;
+chomp $python_v;
 $debug_info = <<END;
+In PostBuildOpenKitIOSScript
+---------------------------
 Perl Version: $perl_v
 Python Version: $python_v
 FacebookAppID: $FacebookAppID
@@ -21,19 +24,18 @@ Install Path: $installPath
 Current Dir: $currDir
 Python Script Path: $python_script_path
 Starting python script...
---------------------------\n
+---------------------------\n
 END
 print LOGFILE $debug_info;
 close LOGFILE;
 
 # OpenKitRunner.py will add the necessary libraries to the xcode project
-`python2.6 \'$python_script_path' \'$installPath\' \'$ok_vendor_path\' \'$FacebookAppID\' \'$ok_resources_path\' `;
+`python \'$python_script_path' \'$installPath\' \'$FacebookAppID\' \'$ok_vendor_path\' \'$ok_resources_path\' `;
 
 open(LOGFILE, ">>$log_filename");
-print LOGFILE "Python script complete.\n";
-print LOGFILE "--------------------------\n\n";
+print LOGFILE "\nBack in PostBuildOpenKitIOSScript\n";
+print LOGFILE "---------------------------\n";
 close (LOGFILE);
-
 
 open(LOGFILE, ">>$log_filename");
 print LOGFILE "Adding OK calls to lifecycle delegate methods in AppController...\n";
@@ -167,7 +169,8 @@ foreach(@lines){
 }
 
 open(LOGFILE, ">>$log_filename");
-print LOGFILE "\nDone!\n";
+print LOGFILE "Done!\n";
+print LOGFILE "---------------------------\n\n\n";
 close (LOGFILE);
 
 close (SOURCEFILE);

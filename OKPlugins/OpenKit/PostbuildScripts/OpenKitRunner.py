@@ -3,35 +3,30 @@
 import sys
 import shutil
 import os.path
-
 from mod_pbxproj import XcodeProject
 
-def logToBuildLog(x):
-    f = open('OpenKitIOSBuildLogFile.txt','a')
-    f.write(x + '\n')
-    f.close()
+def log(x):
+  with open('OpenKitIOSBuildLogFile.txt','a') as f:
+    f.write(x + "\n")
 
+log('In OpenKitRunner.py\n'
+    '---------------------------')
 
-logToBuildLog('Start of OpenKit iOS Python build script \n')
+install_path      = sys.argv[1]
+fb_app_id         = sys.argv[2]
+ok_vendor_path    = sys.argv[3]
+ok_resources_path = sys.argv[4]
 
-projectPath = sys.argv[1]
+log('Install path: '      + install_path      + '\n'
+    'Facebook app ID: '   + fb_app_id         + '\n'
+    'OK Vendor Path: '    + ok_vendor_path    + '\n'
+    'OK Resources Path: ' + ok_resources_path)
 
-
-#debug print out variable paths etc
-logToBuildLog('argv1 projectPath:' + projectPath)
-logToBuildLog('argv2:' + sys.argv[2])
-logToBuildLog('argv3 fbID: ' + sys.argv[3])
-logToBuildLog('argv4 openkit resources: ' + sys.argv[4] + '\n')
-
-fb_app_id = sys.argv[3]
-
-#Open and read the Info.plist file
-plist_file_path = os.path.join(projectPath, 'Info.plist')
+plist_file_path = os.path.join(install_path, 'Info.plist')
 plist_file = open(plist_file_path, 'r')
 plist = plist_file.read()
 plist_file.close()
-
-logToBuildLog('Opened and read the plist file \n')
+log('Opened and read contents of Info.plist.')
 
 elements_to_add = '''
 <key>FacebookAppID</key>
@@ -48,104 +43,55 @@ elements_to_add = '''
 <key>CFBundleLocalizations</key>
 <array>
  <string>en</string>
-</array>                    
+</array>
 '''
 
-logToBuildLog('Created plist modifications \n')
-
-#put in the new plist additions
 plist = plist.replace('<key>', elements_to_add + '<key>', 1)
 plist_file = open(plist_file_path, 'w')
 plist_file.write(plist)
 plist_file.close()
+log('Wrote modifications to Info.plist.')
 
-logToBuildLog('Wrote modifications to the plist file \n\n')
+project = XcodeProject.Load(install_path + '/Unity-iPhone.xcodeproj/project.pbxproj')
+log('Loaded project.pbxproj.')
 
-#open the xcode project file
-project = XcodeProject.Load(projectPath + '/Unity-iPhone.xcodeproj/project.pbxproj')
-logToBuildLog('project loaded:\n \n')
-
-#add security framework
 project.add_file('System/Library/Frameworks/Security.framework', tree='SDKROOT')
+log('Added security framework.')
 
-logToBuildLog('added security framework:\n')
-
-#unity already adds the SystemConfiguration framework
-#project.add_file('System/Library/SystemConfiguration.framework', tree='SDKROOT')
-
-#add sqllite3 
 project.add_file('usr/lib/libsqlite3.0.dylib', tree='SDKROOT')
-logToBuildLog('added libsqlite3.0:\n')
+log('Added libsqlite3.0.')
 
-#Add Twitter Framework
 project.add_file('System/Library/Frameworks/Twitter.framework', tree='SDKROOT')
-logToBuildLog('added twitter framework:\n')
+log('Added twitter framework.')
 
-
-#Add QuartzCore Framework
 project.add_file('System/Library/Frameworks/QuartzCore.framework', tree='SDKROOT')
-logToBuildLog('added QuartzCore framework:\n')
+log('Added QuartzCore framework.')
 
-
-#Add AdSupport Framework
 project.add_file('System/Library/Frameworks/AdSupport.framework', tree='SDKROOT')
-logToBuildLog('added AdSupport framework:\n')
+log('Added AdSupport framework.')
 
-
-#Add Accounts Framework
 project.add_file('System/Library/Frameworks/Accounts.framework', tree='SDKROOT')
-logToBuildLog('added Accounts framework:\n')
+log('Added Accounts framework.')
 
-
-#Add Social Framework
 project.add_file('System/Library/Frameworks/Social.framework', tree='SDKROOT')
-logToBuildLog('added Social framework:\n')
+log('Added Social framework.')
 
-
-#Add MobileCoreServices Framework
 project.add_file('System/Library/Frameworks/MobileCoreServices.framework', tree='SDKROOT')
-logToBuildLog('added MobileCoreServices framework:\n\n')
+log('Added MobileCoreServices framework.')
 
+shutil.copytree(ok_vendor_path, install_path + '/OpenKit_Vendor');
+log('Copied OpenKit_Vendor directory into install path.')
 
+project.add_folder(install_path + '/OpenKit_Vendor');
+log('Added OpenKit_Vendor folder to Xcode project.')
 
-#copy over vendor folder
-shutil.copytree(sys.argv[2] , projectPath + '/OpenKit_Vendor');
-logToBuildLog('copied over OpenKit_Vendor folder:\n')
+shutil.copytree(ok_resources_path, install_path + '/OpenKitResources');
+log('Copied OpenKitResources directory into install path.')
 
+project.add_folder(install_path + '/OpenKitResources');
+log('Added OpenKitResources folder to Xcode project.')
 
-#create the vendor group in the xcode project
-#vendor_group = project.get_or_create_group('OpenKit_Vendor')
-#logToBuildLog('Created vendor group in project');
-
-#add the AFNetworkign folder to vendor group
-#project.add_folder(projectPath + '/OpenKit_Vendor/AFNetworking',parent=vendor_group)
-#logToBuildLog('Added afnetworking to vendor group')
-
-#add JSONKit to vendor group
-#project.add_folder(projectPath + '/OpenKit_Vendor/JSONKit',parent=vendor_group)
-#logToBuildLog('Added JSONKIt to vendor group')
-
-#add the Facebook framework
-#project.add_file(projectPath + '/OpenKit_Vendor/FacebookSDK.framework',tree='SDKROOT')
-#logToBuildLog('Added Facebook framework to vendor group')
-
-#add vendor folder to xcode project
-project.add_folder(projectPath + '/OpenKit_Vendor');
-logToBuildLog('Added OpenKit vendor folder to project.h:\n')
-
-#copy over resources folder folder
-resources_dir = sys.argv[4];
-shutil.copytree(resources_dir , projectPath + '/OpenKitResources');
-logToBuildLog('copied over OpenKitResources folder:')
-
-#add resources folder to xcode project
-project.add_folder(projectPath + '/OpenKitResources');
-logToBuildLog('Added OpenKitResources folder to project.h:\n')
-
-
-
-
-#save project
 project.saveFormat3_2()
-logToBuildLog('Saved project:\n')
+log('Saved project.\n'
+    '---------------------------')
 

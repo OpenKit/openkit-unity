@@ -1,2 +1,2 @@
 # Git ignores for sample projects are in Unity3Sample and Unity4Sample dirs.
-OKPlugins/OpenKit/PostbuildScripts/mod_pbxproj.pyc
+OKPlugins/OpenKit/PostbuildScripts/mod_pbxproj.pyc*

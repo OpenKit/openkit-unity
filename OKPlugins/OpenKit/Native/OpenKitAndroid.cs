@@ -39,6 +39,11 @@ namespace OpenKit.Native
 			OKAndroidPlugin.CallStatic("setEndpoint", endpoint);
 		}
 		
+		public void initializeAndroid()
+		{
+			OKAndroidPlugin.CallStatic("initialize");
+		}
+		
 		public void showLeaderboards()
 		{
 			OKAndroidPlugin.CallStatic("showLeaderboards");

@@ -1,15 +1,29 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/OKDemoScene.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Plugins/OpenKit/OKInitializer.cs">
     <Files>
       <File FileName="Assets/OKDemoScene.cs" Line="1" Column="1" />
+      <File FileName="Assets/Plugins/OpenKit/Native/OpenKitAndroid.cs" Line="43" Column="4" />
+      <File FileName="Assets/Plugins/OpenKit/Native/OpenKitIOS.cs" Line="68" Column="4" />
+      <File FileName="Assets/Plugins/OpenKit/Native/IOKNativeBridge.cs" Line="20" Column="1" />
+      <File FileName="Assets/Plugins/OpenKit/OKInitializer.cs" Line="25" Column="3" />
+      <File FileName="Assets/Plugins/OpenKit/OKManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Plugins/OpenKit/OKManagerImpl.cs" Line="38" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Assets" expanded="True" />
+          </Node>
+          <Node name="Assembly-CSharp-firstpass" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="OKDemoScene.cs" selected="True" />
+              <Node name="Plugins" expanded="True">
+                <Node name="OpenKit" expanded="True">
+                  <Node name="Native" expanded="True" />
+                  <Node name="OKInitializer.cs" selected="True" />
+                </Node>
+              </Node>
             </Node>
           </Node>
         </State>

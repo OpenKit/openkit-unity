@@ -106,6 +106,11 @@ namespace OpenKit
 				break;
 			}
 		}
+		
+		public static void InitializeAndroid()
+		{
+			OKManagerImpl.Instance.InitializeAndroid();
+		}
 
 		#endregion
 		

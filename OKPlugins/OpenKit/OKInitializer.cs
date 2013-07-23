@@ -20,6 +20,10 @@ public class OKInitializer : MonoBehaviour
 		OKManager.AppKey = appKey;
 		OKManager.SecretKey = secretKey;
 		OKManager.Endpoint = endpoint;
+		
+#if UNITY_ANDROID && !UNITY_EDITOR
+		OKManager.InitializeAndroid();
+#endif
 	}
 
 	// Forward native events to OKManager.  It will figure out what to do with them.

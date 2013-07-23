@@ -151,6 +151,16 @@ namespace OpenKit
 #endif
 		}
 		
+		
+		public void InitializeAndroid()
+		{
+#if UNITY_ANDROID && !UNITY_EDITOR
+			
+			OpenKitAndroid openKit = (OpenKitAndroid)nativeBridge;
+			openKit.initializeAndroid();
+#endif
+		}
+		
 		#region Overrides
 		// Called when logging object.
 		public override string ToString()

@@ -14,6 +14,7 @@ namespace OpenKit.Native
 		void submitAchievementScore(OKAchievementScore achievementScore);
 		void logoutCurrentUserFromOpenKit();
 		OKUser getCurrentUser();
+		void getFacebookFriendsList(OKBaseAsyncNativeFunctionCall functionCall);
 	}
 }
 

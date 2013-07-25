@@ -94,7 +94,6 @@ namespace OpenKit.Native
 		public void logoutCurrentUserFromOpenKit()
 		{
 			UnityEngine.Debug.Log("Logout of OpenKit not implented yet on Android");
-			
 		}
 	}
 }

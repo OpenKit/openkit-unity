@@ -167,6 +167,11 @@ namespace OpenKit
 		{
 			return string.Format("{0}, Endpoint: {1}", base.ToString(), Endpoint);
 		}
+		
+		public void getFacebookFriends(OKBaseAsyncNativeFunctionCall functionCall)
+		{
+			
+		}
 		#endregion
 	}
 }

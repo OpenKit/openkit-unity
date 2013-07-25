@@ -45,8 +45,10 @@ namespace OpenKit
 		{
 			RestRequest request = new RestRequest(relativePath, Method.GET);
 			request.AddHeader("Accepts", "application/json");
-			foreach(KeyValuePair<String,object> entry in requestParams) {
-				request.AddParameter(entry.Key, entry.Value);
+			if(requestParams != null) {
+				foreach(KeyValuePair<String,object> entry in requestParams) {
+					request.AddParameter(entry.Key, entry.Value);
+				} 
 			}
 			return request;
 		}

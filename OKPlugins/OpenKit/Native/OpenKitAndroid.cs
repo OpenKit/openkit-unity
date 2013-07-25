@@ -95,6 +95,11 @@ namespace OpenKit.Native
 		{
 			UnityEngine.Debug.Log("Logout of OpenKit not implented yet on Android");
 		}
+		
+		public void getFacebookFriendsList(OKBaseAsyncNativeFunctionCall functionCall)
+		{
+			UnityEngine.Debug.Log("Get FB friends not yet implemented on Android");
+		}
 	}
 }
 #endif

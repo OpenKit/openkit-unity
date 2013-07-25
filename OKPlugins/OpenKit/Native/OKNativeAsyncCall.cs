@@ -5,16 +5,17 @@ using System;
 
 namespace OpenKit
 {
-	public abstract class OKBaseAsyncNativeFunctionCall : MonoBehaviour
+	// This class can't be abstract because it inherits from MonoBehavior 
+	public class OKNativeAsyncCall : MonoBehaviour
 	{
-		public OKBaseAsyncNativeFunctionCall ()
+		public OKNativeAsyncCall ()
 		{
 		}
 		
 		private Action<bool,string> functionCallback;
 		private string callbackGameObjectName;
 		
-		public void submitScore(Action<bool,string> callback)
+		public void callFunction(Action<bool,string> callback)
 		{
 			functionCallback = callback;
 			string gameObjectName = "OpenKitBaseAsyncNativeFunctionCall."+DateTime.Now.Ticks;
@@ -30,16 +31,21 @@ namespace OpenKit
 			
 			OKBaseAsyncNativeFunctionCall createdCallBackObject = gameObject.AddComponent<OKBaseAsyncNativeFunctionCall>();
 			createdCallBackObject.functionCallback = callback;
+			createdCallBackObject.callbackGameObjectName = callbackGameObjectName;
 			
 			callNativeFunction(createdCallBackObject);
 			
 #endif
 		}
 		
-		public abstract void callNativeFunction(OKBaseAsyncNativeFunctionCall dynamicGameObject);
+		// This method should be overridden
+		public virtual void callNativeFunction(OKNativeAsyncCall dynamicGameObject) {
+			Debug.Log("OKNativeAsyncCall callNativeFunction called instead of deriving class! Make sure you override callNativeFunction!");
+		}
 		
 		public void asyncCallSucceeded(string paramString)
 		{
+			Debug.Log("asyncCallSucceeded");
 			if(functionCallback != null) {
 				functionCallback(true,paramString);
 			}
@@ -48,6 +54,8 @@ namespace OpenKit
 		
 		public void asyncCallFailed(string errorString)
 		{
+			
+			Debug.Log("asyncCallFailed");
 			if(functionCallback != null) {
 				functionCallback(false, errorString);
 			}

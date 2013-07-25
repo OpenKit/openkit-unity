@@ -54,8 +54,8 @@ namespace OpenKit.Native
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeLogoutCurrentUserFromOpenKit();
 		
-		
-	
+		[DllImport (OK_IPHONE_DLL)]
+		public static extern void OKBridgeGetFacebookFriends(string gameObjectName);
 			
 		public OpenKitIOS() {}
 		
@@ -136,6 +136,12 @@ namespace OpenKit.Native
 		{
 			OKBridgeLogoutCurrentUserFromOpenKit();
 		}
+		
+		public void getFacebookFriendsList(OKNativeAsyncCall functionCall)
+		{
+			OKBridgeGetFacebookFriends(functionCall.GetCallbackGameObjectName());
+		}
 	}
 }
 #endif
+				

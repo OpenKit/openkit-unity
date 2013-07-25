@@ -19,6 +19,7 @@ namespace OpenKit.Native
 		public OKUser getCurrentUser() {return null;}
 		public void logoutCurrentUserFromOpenKit() {}
 		public void showLeaderboardsLandscapeOnly() {}
+		public void getFacebookFriendsList(OKNativeAsyncCall functionCall) {}
 	}
 }
 

@@ -1,17 +1,14 @@
 using System;
 using OpenKit;
+using UnityEngine;
 
 namespace OpenKit
 {
-	public class OKFBFriendsRequest : OKBaseAsyncNativeFunctionCall
-	{
-		public OKFBFriendsRequest()
+	public class OKFBFriendsRequest : OKNativeAsyncCall
+	{	
+		public override void callNativeFunction(OKNativeAsyncCall dynamicObject)
 		{
-		}
-		
-		public void callNativeFunction(OKBaseAsyncNativeFunctionCall dynamicObject)
-		{
-			
+			OKManagerImpl.Instance.getFacebookFriendsList(dynamicObject);
 		}
 		
 	}
@@ -20,6 +17,12 @@ namespace OpenKit
 	{
 		public OKFacebookUtilities ()
 		{
+		}
+		
+		public static void getFacebookFriends(Action<bool,string> callback)
+		{
+			OKFBFriendsRequest request = new  OKFBFriendsRequest();
+			request.callFunction(callback);
 		}
 	}
 }

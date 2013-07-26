@@ -137,6 +137,7 @@ namespace OpenKit
 			OpenKitIOS openKit = (OpenKitIOS)nativeBridge;
 			openKit.authenticateLocalPlayerToGC();
 #else
+			Debug.Log("AuthenticateLocalPlayerWithGameCenter ONLY supported on iOS");
 			return;
 #endif
 		}
@@ -147,6 +148,7 @@ namespace OpenKit
 			OpenKitIOS openKit = (OpenKitIOS)nativeBridge;
 			openKit.authenticateLocalPlayerToGCAndShowUIIfNecessary();
 #else
+			Debug.Log("AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary ONLY supported on iOS");
 			return;
 #endif
 		}

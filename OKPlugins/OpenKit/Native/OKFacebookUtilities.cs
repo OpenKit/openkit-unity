@@ -21,7 +21,8 @@ namespace OpenKit
 		
 		public static void getFacebookFriends(Action<bool,string> callback)
 		{
-			OKFBFriendsRequest request = new  OKFBFriendsRequest();
+			GameObject gameObject = new GameObject("OpenKitGetFBFriendsTempObject");
+			OKFBFriendsRequest request = gameObject.AddComponent<OKFBFriendsRequest>();
 			request.callFunction(callback);
 		}
 	}

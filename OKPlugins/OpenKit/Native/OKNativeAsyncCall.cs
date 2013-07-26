@@ -21,15 +21,13 @@ namespace OpenKit
 			string gameObjectName = "OpenKitBaseAsyncNativeFunctionCall."+DateTime.Now.Ticks;
 			callbackGameObjectName = gameObjectName;
 			
-			
-			// Create a new OKBaseAsyncNativeFunctionCall gameobject (called functionCall) and give it a unique name
 			// This allows us to track unique calls to async native code
 			
 #if !UNITY_EDITOR	
 			GameObject gameObject = new GameObject(gameObjectName);
 			DontDestroyOnLoad(gameObject);
 			
-			OKBaseAsyncNativeFunctionCall createdCallBackObject = gameObject.AddComponent<OKBaseAsyncNativeFunctionCall>();
+			OKNativeAsyncCall createdCallBackObject = gameObject.AddComponent<OKNativeAsyncCall>();
 			createdCallBackObject.functionCallback = callback;
 			createdCallBackObject.callbackGameObjectName = callbackGameObjectName;
 			

@@ -1,3 +1,4 @@
+#if UNITY_ANDROID
 using System;
 using UnityEngine;
 using OpenKit;
@@ -110,3 +111,4 @@ namespace OpenKit.Native
 		}
 	}
 }
+#endif

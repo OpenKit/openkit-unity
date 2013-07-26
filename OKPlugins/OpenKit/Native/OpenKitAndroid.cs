@@ -1,4 +1,3 @@
-#if UNITY_ANDROID
 using System;
 using UnityEngine;
 using OpenKit;
@@ -61,7 +60,16 @@ namespace OpenKit.Native
 		}
 		
 		
-		public void submitScore(OKScore score)
+		public void submitScoreComponent(OKScoreSubmitComponent score)
+		{
+			if(score.displayString == null) {
+				//Set the displayString to blank if it's null because you can't pass null strings to JNI functions
+				score.displayString = "";
+			}
+			OKAndroidPlugin.CallStatic("submitScore", score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName());
+		}
+		
+		public void submitScore(OKScoreSubmitComponent score)
 		{
 			if(score.displayString == null) {
 				//Set the displayString to blank if it's null because you can't pass null strings to JNI functions
@@ -93,13 +101,12 @@ namespace OpenKit.Native
 		
 		public void logoutCurrentUserFromOpenKit()
 		{
-			UnityEngine.Debug.Log("Logout of OpenKit not implented yet on Android");
+			OKAndroidPlugin.CallStatic("logoutOfOpenKit");
 		}
 		
-		public void getFacebookFriendsList(OKBaseAsyncNativeFunctionCall functionCall)
+		public void getFacebookFriendsList(OKNativeAsyncCall functionCall)
 		{
 			UnityEngine.Debug.Log("Get FB friends not yet implemented on Android");
 		}
 	}
 }
-#endif

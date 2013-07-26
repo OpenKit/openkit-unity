@@ -109,9 +109,9 @@ namespace OpenKit
 			return nativeBridge.getCurrentUser();
 		}
 				
-		public void SubmitScore(OKScore score)
+		public void SubmitScore(OKScoreSubmitComponent score)
 		{
-			nativeBridge.submitScore(score);
+			nativeBridge.submitScoreComponent(score);
 		}
 		
 		public void SubmitAchievementScore(OKAchievementScore achievementScore)

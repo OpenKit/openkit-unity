@@ -53,7 +53,7 @@ namespace OpenKit
 			return OKManagerImpl.Instance.GetCurrentUser();
 		}
 				
-		public static void SubmitScore(OKScore score)
+		public static void SubmitScore(OKScoreSubmitComponent score)
 		{
 			OKManagerImpl.Instance.SubmitScore(score);
 		}

@@ -10,7 +10,7 @@ namespace OpenKit.Native
 		void showLeaderboards();
 		void showLeaderboardsLandscapeOnly();
 		void showLoginToOpenKit();
-		void submitScore(OKScore score);
+		void submitScoreComponent(OKScoreSubmitComponent score);
 		void submitAchievementScore(OKAchievementScore achievementScore);
 		void logoutCurrentUserFromOpenKit();
 		OKUser getCurrentUser();

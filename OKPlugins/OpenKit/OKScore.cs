@@ -1,11 +1,9 @@
-using UnityEngine;
-using System.Collections;
-using OpenKit;
 using System;
+using UnityEngine;
 
 namespace OpenKit
 {
-	public class OKScore : MonoBehaviour
+	public class OKScore
 	{
 		public OKScore(long scoreVal, int leaderboardID)
 		{
@@ -19,65 +17,27 @@ namespace OpenKit
 		public string displayString {get; set;}
 		public string gameCenterLeaderboardCategory {get; set;}
 		
-		
-		//Not used for now
-		//public OKUser user {get; set;}
-		//public int rank {get; set;}
-		//public int OKScoreID {get; set;}
-		
-		private Action<bool,string> submitScoreCallback;
-		private string callbackGameObjectName;
-		
 		public void submitScore(Action<bool,string> callback)
 		{
-			submitScoreCallback = callback;
+			//Create a unique name for a new game object
 			string gameObjectName = "OpenKitSubmitScoreObject."+DateTime.Now.Ticks;
-			callbackGameObjectName = gameObjectName;
 			
-			
-			// Create a new OKScore gameobject (called scoreComponent) and give it a unique name
-			// This allows us to track unique score submission requests and handle
-			// async native code
-			
-#if !UNITY_EDITOR	
 			GameObject gameObject = new GameObject(gameObjectName);
-			DontDestroyOnLoad(gameObject);
+			//Call don't destroy on load so that level changes don't destroy this gameobject
+			UnityEngine.Object.DontDestroyOnLoad(gameObject);
 			
-			OKScore scoreComponent = gameObject.AddComponent<OKScore>();
-			scoreComponent.submitScoreCallback = callback;
+			//Add an instance of a scoreComponent to the newly created gameobject, set all the score properties
+			OKScoreSubmitComponent scoreSubmitComponent = gameObject.AddComponent<OKScoreSubmitComponent>();
+			scoreSubmitComponent.submitScoreCallback = callback;
+			scoreSubmitComponent.callbackGameObjectName = gameObjectName;
 			
-			scoreComponent.scoreValue = scoreValue;
-			scoreComponent.OKLeaderboardID = OKLeaderboardID;
-			scoreComponent.displayString = displayString;
-			scoreComponent.metadata = metadata;
-			scoreComponent.callbackGameObjectName = gameObjectName;
-			scoreComponent.gameCenterLeaderboardCategory = gameCenterLeaderboardCategory;
+			scoreSubmitComponent.scoreValue = scoreValue;
+			scoreSubmitComponent.OKLeaderboardID = OKLeaderboardID;
+			scoreSubmitComponent.displayString = displayString;
+			scoreSubmitComponent.metadata = metadata;
+			scoreSubmitComponent.gameCenterLeaderboardCategory = gameCenterLeaderboardCategory;
 			
-			OKManager.SubmitScore(scoreComponent);
-#endif
-		}
-		
-		public void scoreSubmissionSucceeded()
-		{
-			if(submitScoreCallback != null)
-			{
-				submitScoreCallback(true,"");
-			}
-			GameObject.Destroy(this.gameObject);
-		}
-		
-		public void scoreSubmissionFailed(string errorString)
-		{
-			if(submitScoreCallback != null) {
-				submitScoreCallback(false, errorString);
-			}
-			
-			GameObject.Destroy(this.gameObject);
-		}
-		
-		public string GetCallbackGameObjectName()
-		{
-			return callbackGameObjectName;
+			OKManagerImpl.Instance.SubmitScore(scoreSubmitComponent);
 		}
 	}
 }

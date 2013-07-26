@@ -14,7 +14,9 @@ namespace OpenKit.Native
 		public void setEndpoint(string endpoint) {}
 		public void showLeaderboards() {}
 		public void showLoginToOpenKit() {}
-		public void submitScore(OKScore score) {}
+		public void submitScoreComponent(OKScoreSubmitComponent score) {
+			score.scoreSubmissionFailed("Can't submit scores from Unity editor, native only");
+		}
 		public void submitAchievementScore(OKAchievementScore achievementScore) {}
 		public OKUser getCurrentUser() {return null;}
 		public void logoutCurrentUserFromOpenKit() {}

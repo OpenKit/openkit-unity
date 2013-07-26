@@ -1,4 +1,3 @@
-#if UNITY_IOS
 using System;
 using UnityEngine;
 using System.Runtime.InteropServices;
@@ -99,7 +98,7 @@ namespace OpenKit.Native
 			OKBridgeAuthenticateLocalPlayerWithGameCenterAndShowUIIfNecessary();
 		}
 		
-		public void submitScore(OKScore score)
+		public void submitScoreComponent(OKScoreSubmitComponent score)
 		{
 			if(string.IsNullOrEmpty(score.gameCenterLeaderboardCategory)) {
 				Debug.Log("Submitting score to OpenKit");
@@ -143,5 +142,5 @@ namespace OpenKit.Native
 		}
 	}
 }
-#endif
+
 				

@@ -210,6 +210,10 @@ public class OKDemoScene : MonoBehaviour {
 			OKManager.LogoutCurrentUserFromOpenKit();
 			OKLog.Info("logout of OpenKit");
 		}
+		
+		if(GUILayout.Button("Get Leaderboards", h)) {
+			OKLeaderboard.getLeaderboards();
+		}
 
 
 		GUILayout.EndArea();

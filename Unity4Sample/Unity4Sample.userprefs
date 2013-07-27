@@ -1,6 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/OKDemoScene.cs">
+    <Files>
+      <File FileName="Assets/Plugins/OpenKit/OKInitializer.cs" Line="17" Column="37" />
+      <File FileName="Assets/OKDemoScene.cs" Line="214" Column="27" />
+      <File FileName="Assets/Plugins/OpenKit/OKLeaderboard.cs" Line="32" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

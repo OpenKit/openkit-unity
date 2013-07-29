@@ -212,7 +212,16 @@ public class OKDemoScene : MonoBehaviour {
 		}
 		
 		if(GUILayout.Button("Get Leaderboards", h)) {
-			OKLeaderboard.getLeaderboards();
+			//OKLeaderboard.getLeaderboards(
+			OKLeaderboard.getLeaderboards((IList leaderboards, OKException exception) => {
+				
+				if(leaderboards != null){
+					Debug.Log("Received " + leaderboards.Count + " leaderboards ");
+				} else {
+					Debug.Log("Error getting leaderboards");
+				}
+
+			});
 		}
 
 

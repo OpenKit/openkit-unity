@@ -39,6 +39,11 @@ namespace OpenKit
 			
 			OKManagerImpl.Instance.SubmitScore(scoreSubmitComponent);
 		}
+		
+		public void submitScoreOnlyToOpenKit(Action<bool,string> callback)
+		{
+			
+		}
 	}
 }
 

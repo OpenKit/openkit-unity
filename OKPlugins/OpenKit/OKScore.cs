@@ -11,11 +11,25 @@ namespace OpenKit
 			OKLeaderboardID = leaderboardID;
 		}
 		
+		public OKScore(JSONObject scoreJSON)
+		{
+			this.OKLeaderboardID = (int)scoreJSON.GetField("leaderboard_id").n;
+			this.OKScoreID = (int)scoreJSON.GetField("id").n;
+			this.scoreValue = (long)scoreJSON.GetField("value").n;
+			this.scoreRank = (int)scoreJSON.GetField("rank").n;
+			this.displayString = scoreJSON.GetField("display_string").str;
+			this.metadata = (int)scoreJSON.GetField("metadata").n;
+			this.user = new OKUser(scoreJSON.GetField("user"));
+		}
+		
 		public long scoreValue {get; set;}
 		public int OKLeaderboardID {get; set;}
 		public int metadata {get; set;}
 		public string displayString {get; set;}
 		public string gameCenterLeaderboardCategory {get; set;}
+		public int OKScoreID {get; protected set;}
+		public int scoreRank {get; set;}
+		public OKUser user {get; protected set;}
 		
 		public void submitScore(Action<bool,string> callback)
 		{

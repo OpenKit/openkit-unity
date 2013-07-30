@@ -114,7 +114,35 @@ namespace OpenKit
 			});
 		}
 		
+		public void GetUsersTopScore(Action<OKScore,OKException> requestHandler)
+		{
+			this.GetUsersTopScore(OKUser.getCurrentUser().OKUserID, requestHandler);
+		}
 		
+		private void GetUsersTopScore(int currentUserID, Action<OKScore,OKException> requestHandler)
+		{
+			Dictionary<string, object> requestParams = new Dictionary<string, object>();
+			requestParams.Add("leaderboard_id", this.OKLeaderboardID);
+			requestParams.Add("leaderboard_range","all_time");
+			requestParams.Add("user_id",currentUserID);
+			
+			OKCloudAsyncRequest.Get("/best_scores/user",requestParams, (JSONObject responseObj, OKCloudException e) => {
+				if(e == null) {
+					if(responseObj.type == JSONObject.Type.OBJECT) {
+						Debug.Log("Succesfully got top score");
+						OKScore topScore = new OKScore(responseObj);
+						requestHandler(topScore, null);
+					} else {
+						requestHandler(null, new OKException("Expected a single score JSON object but got something else"));
+					}
+					
+					//List<OKScore> 
+				} else
+				{
+					requestHandler(null, e);
+				}
+			});
+		}
 		
 		
 	}

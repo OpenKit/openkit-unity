@@ -213,7 +213,7 @@ public class OKDemoScene : MonoBehaviour {
 		
 		if(GUILayout.Button("Get Leaderboards", h)) {
 			//OKLeaderboard.getLeaderboards(
-			OKLeaderboard.GetLeaderboards((IList leaderboards, OKException exception) => {
+			OKLeaderboard.GetLeaderboards((List<OKLeaderboard> leaderboards, OKException exception) => {
 				
 				if(leaderboards != null){
 					Debug.Log("Received " + leaderboards.Count + " leaderboards ");
@@ -221,7 +221,7 @@ public class OKDemoScene : MonoBehaviour {
 					OKLeaderboard leaderboard = (OKLeaderboard)leaderboards[0];
 					
 					Debug.Log("Getting scores for leaderboard ID: " + leaderboard.OKLeaderboardID + " named: " + leaderboard.Name);
-					leaderboard.GetGlobalScores(1,(IList scores, OKException exception2) => {
+					leaderboard.GetGlobalScores(1,(List<OKScore> scores, OKException exception2) => {
 						if(exception2 == null)
 						{
 							Debug.Log("Got scores");

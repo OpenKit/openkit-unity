@@ -49,7 +49,7 @@ namespace OpenKit
 			}
 		}
 		
-		public static void GetLeaderboards(Action<IList, OKException> requestHandler)
+		public static void GetLeaderboards(Action<List<OKLeaderboard>, OKException> requestHandler)
 		{	
 			OKCloudAsyncRequest.Get("/leaderboards", null, (JSONObject responseObj, OKCloudException e) => {
 				if(e != null) {
@@ -77,7 +77,7 @@ namespace OpenKit
 			});
 		}
 		
-		public void GetGlobalScores(int pageNum, Action<IList, OKException> requestHandler)
+		public void GetGlobalScores(int pageNum, Action<List<OKScore>, OKException> requestHandler)
 		{
 			if(pageNum <= 0)
 				pageNum = 1;
@@ -87,6 +87,10 @@ namespace OpenKit
 			requestParams.Add("page_num", pageNum);
 			requestParams.Add("leaderboard_range","all_time");
 			requestParams.Add("num_per_page",NUM_SCORES_PER_PAGE);
+			
+			this.GetScores("/best_scores", requestParams, requestHandler);
+			
+			/*
 			
 			OKCloudAsyncRequest.Get("/best_scores",requestParams, (JSONObject responseObj, OKCloudException e) => {
 				if(e == null) {
@@ -105,13 +109,12 @@ namespace OpenKit
 					} else {
 						requestHandler(null, new OKException("Expected an array of scores but did not get back an Array JSON"));
 					}
-					
-					//List<OKScore> 
 				} else
 				{
 					requestHandler(null, e);
 				}
 			});
+			*/
 		}
 		
 		public void GetUsersTopScore(Action<OKScore,OKException> requestHandler)
@@ -135,13 +138,48 @@ namespace OpenKit
 					} else {
 						requestHandler(null, new OKException("Expected a single score JSON object but got something else"));
 					}
-					
-					//List<OKScore> 
 				} else
 				{
 					requestHandler(null, e);
 				}
 			});
+		}
+		
+		// Helper function for getting scores from OpenKit, internal use only
+		private void GetScores(string path, Dictionary<string, object> requestParams,Action<List<OKScore>, OKException> requestHandler)
+		{
+			OKCloudAsyncRequest.Get(path,requestParams, (JSONObject responseObj, OKCloudException e) => {
+				if(e == null) {
+					if(responseObj.type == JSONObject.Type.ARRAY) {
+						Debug.Log("Succesfully got " + responseObj.list.Count + " scores");
+						List<OKScore> scoresList = new List<OKScore>(responseObj.list.Count);
+						
+						for(int x = 0; x < responseObj.list.Count; x++)
+						{
+							OKScore score = new OKScore(responseObj[x]);
+							scoresList.Add(score);
+						}
+						
+						requestHandler(scoresList, null);
+					} else {
+						requestHandler(null, new OKException("Expected an array of scores but did not get back an Array JSON"));
+					}
+				} else
+				{
+					requestHandler(null, e);
+				}
+			});
+		}
+		
+		private void GetFacebookFriendsScores(List<long> fbfriends, Action<List<OKScore>,OKException> requestHandler)
+		{
+			Dictionary<string, object> requestParams = new Dictionary<string, object>();
+			requestParams.Add("leaderboard_id", this.OKLeaderboardID);
+			requestParams.Add("leaderboard_range","all_time");
+			requestParams.Add("fb_friends",fbfriends);
+			
+			this.GetScores("/best_scores/social", requestParams, requestHandler);
+
 		}
 		
 		

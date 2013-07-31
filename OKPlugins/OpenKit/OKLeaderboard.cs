@@ -57,7 +57,6 @@ namespace OpenKit
 					requestHandler(null, e);
 					
 				} else {
-					//Debug.Log("Got leaderboards, server response is: " + responseObj);
 					Debug.Log("Got leaderboards");
 					if (responseObj.type == JSONObject.Type.ARRAY) {
 						List<OKLeaderboard> leaderboardList = new List<OKLeaderboard>(responseObj.list.Count);
@@ -89,32 +88,6 @@ namespace OpenKit
 			requestParams.Add("num_per_page",NUM_SCORES_PER_PAGE);
 			
 			this.GetScores("/best_scores", requestParams, requestHandler);
-			
-			/*
-			
-			OKCloudAsyncRequest.Get("/best_scores",requestParams, (JSONObject responseObj, OKCloudException e) => {
-				if(e == null) {
-					if(responseObj.type == JSONObject.Type.ARRAY) {
-						Debug.Log("Succesfully got " + responseObj.list.Count + " scores");
-						
-						List<OKScore> scoresList = new List<OKScore>(responseObj.list.Count);
-						
-						for(int x = 0; x < responseObj.list.Count; x++)
-						{
-							OKScore score = new OKScore(responseObj[x]);
-							scoresList.Add(score);
-						}
-						
-						requestHandler(scoresList, null);
-					} else {
-						requestHandler(null, new OKException("Expected an array of scores but did not get back an Array JSON"));
-					}
-				} else
-				{
-					requestHandler(null, e);
-				}
-			});
-			*/
 		}
 		
 		public void GetUsersTopScore(Action<OKScore,OKException> requestHandler)
@@ -171,7 +144,18 @@ namespace OpenKit
 			});
 		}
 		
-		private void GetFacebookFriendsScores(List<long> fbfriends, Action<List<OKScore>,OKException> requestHandler)
+		public void GetFacebookFriendsScores(Action<List<OKScore>,OKException> requestHandler)
+		{
+			OKFacebookUtilities.getFacebookFriendsList((List<string> fbFriends,OKException e) => {
+				if(e == null) {
+					requestHandler(null, e);
+				} else {
+					this.GetFacebookFriendsScores(fbFriends, requestHandler);
+				}
+			});
+		}
+		
+		private void GetFacebookFriendsScores(List<string> fbfriends, Action<List<OKScore>,OKException> requestHandler)
 		{
 			Dictionary<string, object> requestParams = new Dictionary<string, object>();
 			requestParams.Add("leaderboard_id", this.OKLeaderboardID);
@@ -179,7 +163,6 @@ namespace OpenKit
 			requestParams.Add("fb_friends",fbfriends);
 			
 			this.GetScores("/best_scores/social", requestParams, requestHandler);
-
 		}
 		
 		

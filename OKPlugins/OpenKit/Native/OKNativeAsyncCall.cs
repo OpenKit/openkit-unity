@@ -32,8 +32,11 @@ namespace OpenKit
 			createdCallBackObject.callbackGameObjectName = callbackGameObjectName;
 			
 			callNativeFunction(createdCallBackObject);
-			
+#else
+			asyncCallFailed("OpenKit native calls are not supported in the Unity editor");		
 #endif
+			
+
 		}
 		
 		// This method should be overridden
@@ -53,7 +56,7 @@ namespace OpenKit
 		public void asyncCallFailed(string errorString)
 		{
 			
-			Debug.Log("asyncCallFailed");
+			Debug.Log("asyncCallFailed: " + errorString);
 			if(functionCallback != null) {
 				functionCallback(false, errorString);
 			}

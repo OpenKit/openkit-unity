@@ -148,6 +148,19 @@ public class OKDemoScene : MonoBehaviour {
 			}
 		});
 	}
+	
+	void GetSocialScores(OKLeaderboard leaderboard)
+	{
+		Debug.Log("Getting social scores");
+		
+		leaderboard.GetFacebookFriendsScores((List<OKScore> scoresList, OKException e) => {
+			if(e == null) {
+				Debug.Log("Got social scores, total of: " + scoresList.Count + " scores");
+			} else {
+				Debug.Log("Failed to get social scores");
+			}
+		});
+	}
 
 
 	static bool IsPortraitOrientation()
@@ -224,14 +237,22 @@ public class OKDemoScene : MonoBehaviour {
 					leaderboard.GetGlobalScores(1,(List<OKScore> scores, OKException exception2) => {
 						if(exception2 == null)
 						{
-							Debug.Log("Got scores");
+							Debug.Log("Got global scores in the callback");
 						}
 					});
+					
+					GetSocialScores(leaderboard);
 				} else {
 					Debug.Log("Error getting leaderboards");
 				}
-
 			});
+		}
+		
+		if(GUILayout.Button("Get social scores Friends", h)) {
+			/*OKFacebookUtilities.getFacebookFriendsFromNative((bool didSucceed, string results) => {
+				if(didSucceed)
+					Debug.Log("Facebook friends: " + results);
+			});*/
 		}
 
 

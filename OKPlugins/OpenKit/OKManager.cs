@@ -267,7 +267,7 @@ namespace OpenKit
 		public void _AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary()
 		{
 #if UNITY_IPHONE && !UNITY_EDITOR
-			((OpenKitIOS)nativeBridge).authenticateLocalPlayerToGCAndShowUIIfNecessary();
+			((OpenKitIOS)nativeBridge).AuthenticateLocalPlayerToGCAndShowUIIfNecessary();
 #else
 			Debug.Log("AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary ONLY supported on iOS");
 #endif

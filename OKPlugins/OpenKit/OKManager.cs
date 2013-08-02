@@ -2,11 +2,57 @@ using UnityEngine;
 using System;
 using System.Collections;
 using OpenKit.Native;
+using System.Threading;
 
 namespace OpenKit
 {
 	public class OKManager
 	{
+
+		private const string DEFAULT_ENDPOINT = "http://stage.openkit.io";
+
+		// Synchronization
+		private SynchronizationContext syncContext = null;
+		private static IOKNativeBridge nativeBridge = null;
+
+		/////////////////////////////////////////////////////////////////////////////////////////////////////
+		#region Singleton Implementation
+		/////////////////////////////////////////////////////////////////////////////////////////////////////
+		// Utilizing singleton pattern (Not thread safe!  That should be ok).
+		// http://msdn.microsoft.com/en-us/library/ff650316.aspx
+		private static OKManager instance;
+		public static OKManager Instance
+		{
+			get
+			{
+				if (instance == null) {
+					instance = new OKManager();
+				}
+				return instance;
+			}
+		}
+
+		public OKManager()
+		{
+#if UNITY_ANDROID && !UNITY_EDITOR
+			nativeBridge = new OpenKitAndroid();
+#elif UNITY_IPHONE && !UNITY_EDITOR
+			nativeBridge = new OpenKitIOS();
+#else
+			nativeBridge = new OpenKitDummyObject();
+#endif
+
+			syncContext = SynchronizationContext.Current;
+			if(syncContext == null)
+				OKLog.Info("SynchronizationContext.Current is null.");
+			else
+				OKLog.Info("SynchronizationContext is set.");
+
+			nativeBridge.SetEndpoint(DEFAULT_ENDPOINT);
+			_endpoint = DEFAULT_ENDPOINT;
+		}
+		#endregion
+
 		/////////////////////////////////////////////////////////////////////////////////////////////////////
 		#region Public API
 		/////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,72 +63,94 @@ namespace OpenKit
 
 		public static string AppKey
 		{
-			get { return OKManagerImpl.Instance.AppKey; }
-			set { OKManagerImpl.Instance.AppKey = value; }
+			get { return OKManager.Instance._AppKey; }
+			set { OKManager.Instance._AppKey = value; }
 		}
 
 		public static string SecretKey
 		{
-			get { return OKManagerImpl.Instance.SecretKey; }
-			set { OKManagerImpl.Instance.SecretKey = value;}
+			get { return OKManager.Instance._SecretKey; }
+			set { OKManager.Instance._SecretKey = value;}
 		}
 
 		public static string Endpoint
 		{
-			get { return OKManagerImpl.Instance.Endpoint; }
-			set { OKManagerImpl.Instance.Endpoint = value; }
+			get { return OKManager.Instance._Endpoint; }
+			set { OKManager.Instance._Endpoint = value; }
 		}
 
 		public static void ShowLeaderboards()
 		{
-			OKManagerImpl.Instance.ShowLeaderboards();
+			OKManager.Instance._ShowLeaderboards();
 		}
 
 		public static void ShowLeaderboardsLandscapeOnly()
 		{
-			OKManagerImpl.Instance.ShowLeaderboardsLandscapeOnly();
+			OKManager.Instance._ShowLeaderboardsLandscapeOnly();
 		}
 
 		public static void ShowLoginToOpenKit()
 		{
-			OKManagerImpl.Instance.ShowLoginToOpenKit();
+			OKManager.Instance._ShowLoginToOpenKit();
 		}
 
 		public static OKUser GetCurrentUser()
 		{
-			return OKManagerImpl.Instance.GetCurrentUser();
+			return OKManager.Instance._GetCurrentUser();
 		}
 
 		public static void SubmitScore(OKScoreSubmitComponent score)
 		{
-			OKManagerImpl.Instance.SubmitScore(score);
+			OKManager.Instance._SubmitScore(score);
 		}
 
 		public static void SubmitAchievementScore(OKAchievementScore achievementScore)
 		{
-			OKManagerImpl.Instance.SubmitAchievementScore(achievementScore);
+			OKManager.Instance._SubmitAchievementScore(achievementScore);
 		}
 
 		public static void authenticateGameCenterLocalPlayer()
 		{
-			OKManagerImpl.Instance.AuthenticateLocalPlayerWithGameCenter();
+			OKManager.Instance._AuthenticateLocalPlayerWithGameCenter();
 		}
 
 		public static void AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary()
 		{
-			OKManagerImpl.Instance.AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary();
+			OKManager.Instance._AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary();
 		}
 
 		public static void LogoutCurrentUserFromOpenKit()
 		{
-			OKManagerImpl.Instance.LogoutCurrentUserFromOpenKit();
+			OKManager.Instance._LogoutCurrentUserFromOpenKit();
 		}
 
 		public static bool IsEnabled()
 		{
-			return OKManagerImpl.Instance.IsEnabled();
+			return OKManager.Instance._IsEnabled();
 		}
 
+		public static void InitializeAndroid()
+		{
+			OKManager.Instance._InitializeAndroid();
+		}
+
+		public static void GetFacebookFriendsList(OKNativeAsyncCall functionCall)
+		{
+			OKManager.Instance._GetFacebookFriendsList(functionCall);
+		}
+
+		// Native events are forwarded here from OKBaseInitializer.  This makes
+		// the API consistent for using OKManager as a configuration point
+		// for OpenKit.  That is, developers can setup event handlers with:
+		//
+		//     OKManager.ViewWillAppear    += HandleViewWillAppear;
+		//
+		// And the method definition of HandleViewWillAppear will look like this:
+		//
+		//     static void HandleViewWillAppear(object sender, EventArgs e) {
+		//       // Pause gameplay.
+		//     }
+		//
 		public static void HandleNativeEvent(object sender, OKNativeEvent ev)
 		{
 			switch (ev) {
@@ -107,13 +175,126 @@ namespace OpenKit
 			}
 		}
 
-		public static void InitializeAndroid()
-		{
-			OKManagerImpl.Instance.InitializeAndroid();
-		}
-
 		#endregion
 
-		public OKManager() {}
+
+		/////////////////////////////////////////////////////////////////////////////////////////////////////
+		#region Instance
+		/////////////////////////////////////////////////////////////////////////////////////////////////////
+		private string _appKey;
+		public string _AppKey
+		{
+			get { return _appKey; }
+			set
+			{
+				nativeBridge.SetAppKey(value);
+				_appKey = value;
+			}
+		}
+
+		private string _secretKey;
+		public string _SecretKey
+		{
+			get { return _secretKey; }
+			set
+			{
+				nativeBridge.SetSecretKey(value);
+				_secretKey = value;
+			}
+
+		}
+
+		private string _endpoint;
+		public string _Endpoint
+		{
+			get { return _endpoint; }
+			set
+			{
+				nativeBridge.SetEndpoint(value);
+				_endpoint = value;
+			}
+		}
+
+		public void _ShowLeaderboards()
+		{
+			nativeBridge.ShowLeaderboards();
+		}
+
+		public void _ShowLeaderboardsLandscapeOnly()
+		{
+			nativeBridge.ShowLeaderboardsLandscapeOnly();
+		}
+
+		public void _ShowLoginToOpenKit()
+		{
+			nativeBridge.ShowLoginToOpenKit();
+		}
+
+		public OKUser _GetCurrentUser()
+		{
+			return nativeBridge.GetCurrentUser();
+		}
+
+		public void _SubmitScore(OKScoreSubmitComponent score)
+		{
+			nativeBridge.SubmitScoreComponent(score);
+		}
+
+		public void _SubmitAchievementScore(OKAchievementScore achievementScore)
+		{
+			nativeBridge.SubmitAchievementScore(achievementScore);
+		}
+
+		public void _LogoutCurrentUserFromOpenKit()
+		{
+			nativeBridge.LogoutCurrentUserFromOpenKit();
+		}
+
+		public bool _IsEnabled()
+		{
+			return !(nativeBridge is OpenKitDummyObject);
+		}
+
+		public void _AuthenticateLocalPlayerWithGameCenter()
+		{
+#if UNITY_IPHONE && !UNITY_EDITOR
+			((OpenKitIOS)nativeBridge).AuthenticateLocalPlayerToGC();
+#else
+			Debug.Log("AuthenticateLocalPlayerWithGameCenter ONLY supported on iOS");
+#endif
+		}
+
+		public void _AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary()
+		{
+#if UNITY_IPHONE && !UNITY_EDITOR
+			((OpenKitIOS)nativeBridge).authenticateLocalPlayerToGCAndShowUIIfNecessary();
+#else
+			Debug.Log("AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary ONLY supported on iOS");
+#endif
+		}
+
+		public void _InitializeAndroid()
+		{
+#if UNITY_ANDROID && !UNITY_EDITOR
+			((OpenKitAndroid)nativeBridge).InitializeAndroid();
+#endif
+		}
+
+		public void _GetFacebookFriendsList(OKNativeAsyncCall functionCall)
+		{
+			nativeBridge.GetFacebookFriendsList(functionCall);
+		}
+		#endregion
+
+
+		/////////////////////////////////////////////////////////////////////////////////////////////////////
+		#region Overrides
+		/////////////////////////////////////////////////////////////////////////////////////////////////////
+		// Called when logging object.
+		public override string ToString()
+		{
+			return string.Format("{0}, Endpoint: {1}", base.ToString(), Endpoint);
+		}
+		#endregion
 	}
 }

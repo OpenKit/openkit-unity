@@ -24,7 +24,7 @@ namespace OpenKit
 		public string userNick {get; set;}
 		public int customID { get; set;}
 
-		public static OKUser getCurrentUser()
+		public static OKUser GetCurrentUser()
 		{
 			return OKManager.GetCurrentUser();
 		}

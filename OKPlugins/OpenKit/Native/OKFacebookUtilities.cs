@@ -7,9 +7,9 @@ namespace OpenKit
 {
 	public class OKFBFriendsRequest : OKNativeAsyncCall
 	{
-		public override void callNativeFunction(OKNativeAsyncCall dynamicObject)
+		public override void CallNativeFunction(OKNativeAsyncCall dynamicObject)
 		{
-			OKManagerImpl.Instance.getFacebookFriendsList(dynamicObject);
+			OKManager.GetFacebookFriendsList(dynamicObject);
 		}
 
 	}
@@ -20,9 +20,9 @@ namespace OpenKit
 		{
 		}
 
-		public static void getFacebookFriendsList(Action<List<string>,OKException> callback)
+		public static void GetFacebookFriendsList(Action<List<string>,OKException> callback)
 		{
-			getFacebookFriendsFromNative((bool didSucceed, string result) => {
+			GetFacebookFriendsFromNative((bool didSucceed, string result) => {
 				if(didSucceed) {
 					List<string> fbFriendsList = parseListOfFBFriendsIntoArray(result);
 					callback(fbFriendsList,null);
@@ -33,7 +33,7 @@ namespace OpenKit
 		}
 
 
-		private static void getFacebookFriendsFromNative(Action<bool,string> callback)
+		private static void GetFacebookFriendsFromNative(Action<bool,string> callback)
 		{
 			GameObject gameObject = new GameObject("OpenKitGetFBFriendsTempObject");
 			OKFBFriendsRequest friendsRequest = gameObject.AddComponent<OKFBFriendsRequest>();

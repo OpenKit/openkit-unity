@@ -4,17 +4,17 @@ namespace OpenKit.Native
 {
 	public interface IOKNativeBridge
 	{
-		void setAppKey(string appKey);
-		void setSecretKey(string secretKey);
-		void setEndpoint(string endpoint);
-		void showLeaderboards();
-		void showLeaderboardsLandscapeOnly();
-		void showLoginToOpenKit();
-		void submitScoreComponent(OKScoreSubmitComponent score);
-		void submitAchievementScore(OKAchievementScore achievementScore);
-		void logoutCurrentUserFromOpenKit();
-		OKUser getCurrentUser();
-		void getFacebookFriendsList(OKNativeAsyncCall functionCall);
+		void SetAppKey(string appKey);
+		void SetSecretKey(string secretKey);
+		void SetEndpoint(string endpoint);
+		void ShowLeaderboards();
+		void ShowLeaderboardsLandscapeOnly();
+		void ShowLoginToOpenKit();
+		void SubmitScoreComponent(OKScoreSubmitComponent score);
+		void SubmitAchievementScore(OKAchievementScore achievementScore);
+		void LogoutCurrentUserFromOpenKit();
+		OKUser GetCurrentUser();
+		void GetFacebookFriendsList(OKNativeAsyncCall functionCall);
 	}
 }
 

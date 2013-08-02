@@ -92,7 +92,7 @@ namespace OpenKit
 
 		public void GetUsersTopScore(Action<OKScore,OKException> requestHandler)
 		{
-			this.GetUsersTopScore(OKUser.getCurrentUser().OKUserID, requestHandler);
+			this.GetUsersTopScore(OKUser.GetCurrentUser().OKUserID, requestHandler);
 		}
 
 		private void GetUsersTopScore(int currentUserID, Action<OKScore,OKException> requestHandler)
@@ -146,7 +146,7 @@ namespace OpenKit
 
 		public void GetFacebookFriendsScores(Action<List<OKScore>,OKException> requestHandler)
 		{
-			OKFacebookUtilities.getFacebookFriendsList((List<string> fbFriends,OKException e) => {
+			OKFacebookUtilities.GetFacebookFriendsList((List<string> fbFriends,OKException e) => {
 				if(e == null) {
 					requestHandler(null, e);
 				} else {

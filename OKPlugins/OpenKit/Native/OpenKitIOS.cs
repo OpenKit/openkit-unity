@@ -58,47 +58,47 @@ namespace OpenKit.Native
 
 		public OpenKitIOS() {}
 
-		public void setAppKey(string appKey)
+		public void SetAppKey(string appKey)
 		{
 			OKBridgeSetAppKey(appKey);
 		}
 
-		public void setSecretKey(string secretKey)
+		public void SetSecretKey(string secretKey)
 		{
 			OKBridgeSetSecretKey(secretKey);
 		}
 
-		public void setEndpoint(string endpoint)
+		public void SetEndpoint(string endpoint)
 		{
 			OKBridgeSetEndpoint(endpoint);
 		}
 
-		public void showLeaderboards()
+		public void ShowLeaderboards()
 		{
 			OKBridgeShowLeaderboards();
 		}
 
-		public void showLeaderboardsLandscapeOnly()
+		public void ShowLeaderboardsLandscapeOnly()
 		{
 			OKBridgeShowLeaderboardsLandscapeOnly();
 		}
 
-		public void showLoginToOpenKit()
+		public void ShowLoginToOpenKit()
 		{
 			OKBridgeShowLoginUI();
 		}
 
-		public void authenticateLocalPlayerToGC()
+		public void AuthenticateLocalPlayerToGC()
 		{
 			OKBridgeAuthenticateLocalPlayerWithGameCenter();
 		}
 
-		public void authenticateLocalPlayerToGCAndShowUIIfNecessary()
+		public void AuthenticateLocalPlayerToGCAndShowUIIfNecessary()
 		{
 			OKBridgeAuthenticateLocalPlayerWithGameCenterAndShowUIIfNecessary();
 		}
 
-		public void submitScoreComponent(OKScoreSubmitComponent score)
+		public void SubmitScoreComponent(OKScoreSubmitComponent score)
 		{
 			if(string.IsNullOrEmpty(score.gameCenterLeaderboardCategory)) {
 				Debug.Log("Submitting score to OpenKit");
@@ -108,13 +108,12 @@ namespace OpenKit.Native
 				OKBridgeSubmitScoreWithGameCenter(score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName(), score.gameCenterLeaderboardCategory);
 			}
 		}
-
-		public void submitAchievementScore(OKAchievementScore achievementScore)
+		public void SubmitAchievementScore(OKAchievementScore achievementScore)
 		{
 			OpenKit.OKLog.Error("Submit achievement score is not yet implemented on iOS");
 		}
 
-		public OKUser getCurrentUser()
+		public OKUser GetCurrentUser()
 		{
 			int okID = OKBridgeGetCurrentUserOKID();
 			OKLog.Info("Current openkit user id: " + okID);
@@ -131,12 +130,12 @@ namespace OpenKit.Native
 			}
 		}
 
-		public void logoutCurrentUserFromOpenKit()
+		public void LogoutCurrentUserFromOpenKit()
 		{
 			OKBridgeLogoutCurrentUserFromOpenKit();
 		}
 
-		public void getFacebookFriendsList(OKNativeAsyncCall functionCall)
+		public void GetFacebookFriendsList(OKNativeAsyncCall functionCall)
 		{
 			OKBridgeGetFacebookFriends(functionCall.GetCallbackGameObjectName());
 		}

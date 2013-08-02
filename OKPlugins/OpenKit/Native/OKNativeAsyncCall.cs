@@ -31,7 +31,7 @@ namespace OpenKit
 			createdCallBackObject.functionCallback = callback;
 			createdCallBackObject.callbackGameObjectName = callbackGameObjectName;
 
-			callNativeFunction(createdCallBackObject);
+			CallNativeFunction(createdCallBackObject);
 #else
 			asyncCallFailed("OpenKit native calls are not supported in the Unity editor");
 #endif
@@ -40,7 +40,7 @@ namespace OpenKit
 		}
 
 		// This method should be overridden
-		public virtual void callNativeFunction(OKNativeAsyncCall dynamicGameObject) {
+		public virtual void CallNativeFunction(OKNativeAsyncCall dynamicGameObject) {
 			Debug.Log("OKNativeAsyncCall callNativeFunction called instead of deriving class! Make sure you override callNativeFunction!");
 		}
 

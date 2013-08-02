@@ -24,44 +24,44 @@ namespace OpenKit.Native
 		{
 		}
 
-		public void setSecretKey(string secretKey)
+		public void SetSecretKey(string secretKey)
 		{
 			OKAndroidPlugin.CallStatic("setSecretKey", secretKey);
 		}
 
-		public void setAppKey(string appKey)
+		public void SetAppKey(string appKey)
 		{
 			OKAndroidPlugin.CallStatic("setAppKey", appKey);
 		}
 
-		public void setEndpoint(string endpoint)
+		public void SetEndpoint(string endpoint)
 		{
 			OKAndroidPlugin.CallStatic("setEndpoint", endpoint);
 		}
 
-		public void initializeAndroid()
+		public void InitializeAndroid()
 		{
 			OKAndroidPlugin.CallStatic("initialize");
 		}
 
-		public void showLeaderboards()
+		public void ShowLeaderboards()
 		{
 			OKAndroidPlugin.CallStatic("showLeaderboards");
 		}
 
-		public void showLeaderboardsLandscapeOnly()
+		public void ShowLeaderboardsLandscapeOnly()
 		{
 			Debug.Log("ShowLeaderboardsLandscapeOnly not implemented yet on Android, showing leaderboards regularly");
 			OKAndroidPlugin.CallStatic("showLeaderboards");
 		}
 
-		public void showLoginToOpenKit()
+		public void ShowLoginToOpenKit()
 		{
 			OKAndroidPlugin.CallStatic("showLoginUI");
 		}
 
 
-		public void submitScoreComponent(OKScoreSubmitComponent score)
+		public void SubmitScoreComponent(OKScoreSubmitComponent score)
 		{
 			if(score.displayString == null) {
 				//Set the displayString to blank if it's null because you can't pass null strings to JNI functions
@@ -70,7 +70,7 @@ namespace OpenKit.Native
 			OKAndroidPlugin.CallStatic("submitScore", score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName());
 		}
 
-		public void submitScore(OKScoreSubmitComponent score)
+		public void SubmitScore(OKScoreSubmitComponent score)
 		{
 			if(score.displayString == null) {
 				//Set the displayString to blank if it's null because you can't pass null strings to JNI functions
@@ -79,12 +79,12 @@ namespace OpenKit.Native
 			OKAndroidPlugin.CallStatic("submitScore", score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName());
 		}
 
-		public void submitAchievementScore(OKAchievementScore achievementScore)
+		public void SubmitAchievementScore(OKAchievementScore achievementScore)
 		{
 			OKAndroidPlugin.CallStatic("submitAchievementScore", achievementScore.progress, achievementScore.OKAchievementID, achievementScore.GetCallbackGameObjectName());
 		}
 
-		public OKUser getCurrentUser()
+		public OKUser GetCurrentUser()
 		{
 			int okID = OKAndroidPlugin.CallStatic<int>("getCurrentUserOKID");
 
@@ -100,12 +100,12 @@ namespace OpenKit.Native
 			}
 		}
 
-		public void logoutCurrentUserFromOpenKit()
+		public void LogoutCurrentUserFromOpenKit()
 		{
 			OKAndroidPlugin.CallStatic("logoutOfOpenKit");
 		}
 
-		public void getFacebookFriendsList(OKNativeAsyncCall functionCall)
+		public void GetFacebookFriendsList(OKNativeAsyncCall functionCall)
 		{
 			UnityEngine.Debug.Log("Get FB friends not yet implemented on Android");
 		}

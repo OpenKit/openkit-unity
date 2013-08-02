@@ -31,7 +31,7 @@ namespace OpenKit
 		public int scoreRank {get; set;}
 		public OKUser user {get; protected set;}
 
-		public void submitScore(Action<bool,string> callback)
+		public void SubmitScore(Action<bool,string> callback)
 		{
 			//Create a unique name for a new game object
 			string gameObjectName = "OpenKitSubmitScoreObject."+DateTime.Now.Ticks;
@@ -51,7 +51,7 @@ namespace OpenKit
 			scoreSubmitComponent.metadata = metadata;
 			scoreSubmitComponent.gameCenterLeaderboardCategory = gameCenterLeaderboardCategory;
 
-			OKManagerImpl.Instance.SubmitScore(scoreSubmitComponent);
+			OKManager.SubmitScore(scoreSubmitComponent);
 		}
 
 		public void submitScoreOnlyToOpenKit(Action<bool,string> callback)

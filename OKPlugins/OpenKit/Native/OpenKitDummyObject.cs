@@ -9,19 +9,19 @@ namespace OpenKit.Native
 		{
 		}
 
-		public void setAppKey(string appKey) {}
-		public void setSecretKey(string secretKey) {}
-		public void setEndpoint(string endpoint) {}
-		public void showLeaderboards() {}
-		public void showLoginToOpenKit() {}
-		public void submitScoreComponent(OKScoreSubmitComponent score) {
+		public void SetAppKey(string appKey) {}
+		public void SetSecretKey(string secretKey) {}
+		public void SetEndpoint(string endpoint) {}
+		public void ShowLeaderboards() {}
+		public void ShowLoginToOpenKit() {}
+		public void SubmitScoreComponent(OKScoreSubmitComponent score) {
 			score.scoreSubmissionFailed("Can't submit scores from Unity editor, native only");
 		}
-		public void submitAchievementScore(OKAchievementScore achievementScore) {}
-		public OKUser getCurrentUser() {return null;}
-		public void logoutCurrentUserFromOpenKit() {}
-		public void showLeaderboardsLandscapeOnly() {}
-		public void getFacebookFriendsList(OKNativeAsyncCall functionCall) {}
+		public void SubmitAchievementScore(OKAchievementScore achievementScore) {}
+		public OKUser GetCurrentUser() {return null;}
+		public void LogoutCurrentUserFromOpenKit() {}
+		public void ShowLeaderboardsLandscapeOnly() {}
+		public void GetFacebookFriendsList(OKNativeAsyncCall functionCall) {}
 	}
 }
 

@@ -7,15 +7,8 @@ using System;
 public class OKDemoScene : MonoBehaviour {
 
 
-	void Awake()
+	void Setup()
 	{
-		OKUser currentUser = OKManager.GetCurrentUser();
-		if(currentUser != null) {
-			Debug.Log("Logged into OpenKit as " + currentUser.userNick);
-		} else {
-			Debug.Log("Not logged into OpenKit");
-		}
-
 		// Authenticate the local player with GameCenter (iOS only).
 		OKManager.authenticateGameCenterLocalPlayer();
 
@@ -183,7 +176,9 @@ public class OKDemoScene : MonoBehaviour {
 
 	void OnGUI()
 	{
+#if !UNITY_EDITOR
 		GUI.matrix = GetScaleMatrix();
+#endif
 		Rect area = (IsPortraitOrientation() ? new Rect(0, 0, 320, 480) : new Rect(0, 0, 480, 320));
 		GUILayout.BeginArea(area);
 		GUILayoutOption h = GUILayout.Height(40);

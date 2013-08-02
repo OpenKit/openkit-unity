@@ -20,7 +20,7 @@ public class OKInitializer : MonoBehaviour
 		OKManager.AppKey = appKey;
 		OKManager.SecretKey = secretKey;
 		OKManager.Endpoint = endpoint;
-		
+
 #if UNITY_ANDROID && !UNITY_EDITOR
 		OKManager.InitializeAndroid();
 #endif
@@ -47,10 +47,9 @@ public class OKInitializer : MonoBehaviour
 		OKManager.HandleNativeEvent(this, OKNativeEvent.viewDidDisappear);
 	}
 
-	/*
 	public static void GetSocialScores(leaderboard)
 	{
-		
+
 	}
-	 */
+
 }

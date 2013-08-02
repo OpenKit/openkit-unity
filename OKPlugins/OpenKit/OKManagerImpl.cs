@@ -13,11 +13,11 @@ namespace OpenKit
 	public class OKManagerImpl
 	{
 		private const string DEFAULT_ENDPOINT = "http://stage.openkit.io";
-			
+
 		// Synchronization
 		private SynchronizationContext syncContext = null;
 		private static IOKNativeBridge nativeBridge = null;
-		
+
 		#region Singleton Implementation
 		// Utilizing singleton pattern (Not thread safe!  That should be ok).
 		// http://msdn.microsoft.com/en-us/library/ff650316.aspx
@@ -32,7 +32,7 @@ namespace OpenKit
 				return instance;
 			}
 		}
-		
+
 		private OKManagerImpl()
 		{
 #if UNITY_ANDROID && !UNITY_EDITOR
@@ -42,23 +42,23 @@ namespace OpenKit
 #else
 			nativeBridge = new OpenKitDummyObject();
 #endif
-			
+
 			syncContext = SynchronizationContext.Current;
 			if(syncContext == null)
 				OKLog.Info("SynchronizationContext.Current is null.");
 			else
 				OKLog.Info("SynchronizationContext is set.");
-			
+
 			nativeBridge.setEndpoint(DEFAULT_ENDPOINT);
 			endpoint = DEFAULT_ENDPOINT;
 		}
 		#endregion
-		
+
 		#region API
 		private string appKey;
-		public string AppKey 
+		public string AppKey
 		{
-			get { return appKey; } 
+			get { return appKey; }
 			set
 			{
 				nativeBridge.setAppKey(value);
@@ -79,46 +79,46 @@ namespace OpenKit
 		}
 
 		private string endpoint;
-		public string Endpoint 
-		{ 
+		public string Endpoint
+		{
 			get { return endpoint; }
-			set	
-			{ 
-				nativeBridge.setEndpoint(value); 
-				endpoint = value; 
+			set
+			{
+				nativeBridge.setEndpoint(value);
+				endpoint = value;
 			}
 		}
-		
+
 		public void ShowLeaderboards()
 		{
 			nativeBridge.showLeaderboards();
 		}
-		
+
 		public void ShowLeaderboardsLandscapeOnly()
 		{
 			nativeBridge.showLeaderboardsLandscapeOnly();
 		}
-		
+
 		public void ShowLoginToOpenKit()
 		{
 			nativeBridge.showLoginToOpenKit();
 		}
-		
+
 		public OKUser GetCurrentUser()
 		{
 			return nativeBridge.getCurrentUser();
 		}
-				
+
 		public void SubmitScore(OKScoreSubmitComponent score)
 		{
 			nativeBridge.submitScoreComponent(score);
 		}
-		
+
 		public void SubmitAchievementScore(OKAchievementScore achievementScore)
 		{
 			nativeBridge.submitAchievementScore(achievementScore);
 		}
-		
+
 		public void LogoutCurrentUserFromOpenKit()
 		{
 			nativeBridge.logoutCurrentUserFromOpenKit();
@@ -129,8 +129,8 @@ namespace OpenKit
 			return !(nativeBridge is OpenKitDummyObject);
 		}
 		#endregion
-		
-		
+
+
 		public void AuthenticateLocalPlayerWithGameCenter()
 		{
 #if UNITY_IPHONE && !UNITY_EDITOR
@@ -141,7 +141,7 @@ namespace OpenKit
 			return;
 #endif
 		}
-		
+
 		public void AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary()
 		{
 #if UNITY_IPHONE && !UNITY_EDITOR
@@ -152,24 +152,24 @@ namespace OpenKit
 			return;
 #endif
 		}
-		
-		
+
+
 		public void InitializeAndroid()
 		{
 #if UNITY_ANDROID && !UNITY_EDITOR
-			
+
 			OpenKitAndroid openKit = (OpenKitAndroid)nativeBridge;
 			openKit.initializeAndroid();
 #endif
 		}
-		
+
 		#region Overrides
 		// Called when logging object.
 		public override string ToString()
 		{
 			return string.Format("{0}, Endpoint: {1}", base.ToString(), Endpoint);
 		}
-		
+
 		public void getFacebookFriendsList(OKNativeAsyncCall functionCall)
 		{
 			nativeBridge.getFacebookFriendsList(functionCall);

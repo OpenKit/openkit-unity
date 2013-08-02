@@ -16,12 +16,12 @@ namespace OpenKit
 		{
 			return OKManager.Endpoint;
 		}
-		
+
 		public static string GetAppKey()
 		{
 			return OKManager.AppKey;
 		}
-		
+
 		private static RestClient restClient;
 		protected static RestClient GetRestClient()
 		{
@@ -31,7 +31,7 @@ namespace OpenKit
 			}
 			return restClient;
 		}
-		
+
 		private static RestRequest BuildPostRequest(string relativePath, Dictionary<string, object>requestParams)
 		{
 			RestRequest request = new RestRequest(relativePath, Method.POST);
@@ -40,19 +40,19 @@ namespace OpenKit
 			request.AddParameter("application/json", JSONObjectExt.encode(requestParams), ParameterType.RequestBody);
 			return request;
 		}
-		
-		private static RestRequest BuildGetRequest(string relativePath, Dictionary<string, object>requestParams) 
+
+		private static RestRequest BuildGetRequest(string relativePath, Dictionary<string, object>requestParams)
 		{
 			RestRequest request = new RestRequest(relativePath, Method.GET);
 			request.AddHeader("Accepts", "application/json");
 			if(requestParams != null) {
 				foreach(KeyValuePair<String,object> entry in requestParams) {
 					request.AddParameter(entry.Key, entry.Value);
-				} 
+				}
 			}
 			return request;
 		}
-		
+
 		public static void Request(RestRequest request, Action<JSONObject, OKCloudException>handler)
 		{
 			RestClient client = GetRestClient();
@@ -71,11 +71,11 @@ namespace OpenKit
 			RestRequest request = BuildPostRequest(relativePath, requestParams);
 			Request(request, handler);
 		}
-		
+
 		public static void Get(string relativePath, Dictionary<string, object>requestParams, Action<JSONObject, OKCloudException>handler)
 		{
 			RestRequest request = BuildGetRequest(relativePath, requestParams);
 			Request(request, handler);
 		}
-	}       
+	}
 }

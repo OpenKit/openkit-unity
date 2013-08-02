@@ -19,7 +19,7 @@ namespace OpenKit.Native
 				return _OKAndroidPlugin;
 			}
 		}
-		
+
 		public OpenKitAndroid ()
 		{
 		}
@@ -33,34 +33,34 @@ namespace OpenKit.Native
 		{
 			OKAndroidPlugin.CallStatic("setAppKey", appKey);
 		}
-		
+
 		public void setEndpoint(string endpoint)
 		{
 			OKAndroidPlugin.CallStatic("setEndpoint", endpoint);
 		}
-		
+
 		public void initializeAndroid()
 		{
 			OKAndroidPlugin.CallStatic("initialize");
 		}
-		
+
 		public void showLeaderboards()
 		{
 			OKAndroidPlugin.CallStatic("showLeaderboards");
 		}
-		
+
 		public void showLeaderboardsLandscapeOnly()
 		{
 			Debug.Log("ShowLeaderboardsLandscapeOnly not implemented yet on Android, showing leaderboards regularly");
 			OKAndroidPlugin.CallStatic("showLeaderboards");
 		}
-		
+
 		public void showLoginToOpenKit()
 		{
 			OKAndroidPlugin.CallStatic("showLoginUI");
 		}
-		
-		
+
+
 		public void submitScoreComponent(OKScoreSubmitComponent score)
 		{
 			if(score.displayString == null) {
@@ -69,7 +69,7 @@ namespace OpenKit.Native
 			}
 			OKAndroidPlugin.CallStatic("submitScore", score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName());
 		}
-		
+
 		public void submitScore(OKScoreSubmitComponent score)
 		{
 			if(score.displayString == null) {
@@ -78,20 +78,20 @@ namespace OpenKit.Native
 			}
 			OKAndroidPlugin.CallStatic("submitScore", score.scoreValue, score.OKLeaderboardID, score.metadata, score.displayString, score.GetCallbackGameObjectName());
 		}
-		
+
 		public void submitAchievementScore(OKAchievementScore achievementScore)
 		{
 			OKAndroidPlugin.CallStatic("submitAchievementScore", achievementScore.progress, achievementScore.OKAchievementID, achievementScore.GetCallbackGameObjectName());
 		}
-		
+
 		public OKUser getCurrentUser()
 		{
 			int okID = OKAndroidPlugin.CallStatic<int>("getCurrentUserOKID");
-			
+
 			if(okID == 0)
 				return null;
 			else {
-				OKUser user = new OKUser();	
+				OKUser user = new OKUser();
 				user.OKUserID = okID;
 				user.userNick = OKAndroidPlugin.CallStatic<string>("getCurrentUserNick");
 				user.FBUserID = OKAndroidPlugin.CallStatic<long>("getCurrentUserFBID");
@@ -99,12 +99,12 @@ namespace OpenKit.Native
 				return user;
 			}
 		}
-		
+
 		public void logoutCurrentUserFromOpenKit()
 		{
 			OKAndroidPlugin.CallStatic("logoutOfOpenKit");
 		}
-		
+
 		public void getFacebookFriendsList(OKNativeAsyncCall functionCall)
 		{
 			UnityEngine.Debug.Log("Get FB friends not yet implemented on Android");

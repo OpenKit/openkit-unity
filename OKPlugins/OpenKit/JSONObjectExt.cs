@@ -7,26 +7,26 @@ namespace OpenKit
 {
 	public class JSONObjectExt
 	{
-		
+
 		public static string encode(object o)
 		{
 			JSONObject jsonObj = jsonObjectify(o);
 			return jsonObj.print();
 		}
-		
+
 		public static JSONObject decode(string encodedStr)
 		{
 			JSONObject jsonObj = new JSONObject(encodedStr);
 			return jsonObj;
 		}
-		
+
 		public static JSONObject jsonObjectify(object o)
 		{
 			JSONObject j = null;
 			Type ot = o.GetType();
 			if (ot == typeof(String)) {
 				j = new JSONObject { type = JSONObject.Type.STRING, str = (string)o };
-			} 
+			}
 			else if (ot == typeof(ArrayList)) {
 				j = new JSONObject { type = JSONObject.Type.ARRAY };
 				foreach (object element in (ArrayList)o) {

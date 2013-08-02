@@ -148,11 +148,11 @@ public class OKDemoScene : MonoBehaviour {
 			}
 		});
 	}
-	
+
 	void GetSocialScores(OKLeaderboard leaderboard)
 	{
 		Debug.Log("Getting social scores");
-		
+
 		leaderboard.GetFacebookFriendsScores((List<OKScore> scoresList, OKException e) => {
 			if(e == null) {
 				Debug.Log("Got social scores, total of: " + scoresList.Count + " scores");
@@ -166,7 +166,7 @@ public class OKDemoScene : MonoBehaviour {
 	static bool IsPortraitOrientation()
 	{
 		return ((Screen.orientation == ScreenOrientation.Portrait) ||
-			    (Screen.orientation == ScreenOrientation.PortraitUpsideDown));
+				(Screen.orientation == ScreenOrientation.PortraitUpsideDown));
 	}
 
 
@@ -223,16 +223,16 @@ public class OKDemoScene : MonoBehaviour {
 			OKManager.LogoutCurrentUserFromOpenKit();
 			OKLog.Info("logout of OpenKit");
 		}
-		
+
 		if(GUILayout.Button("Get Leaderboards", h)) {
 			//OKLeaderboard.getLeaderboards(
 			OKLeaderboard.GetLeaderboards((List<OKLeaderboard> leaderboards, OKException exception) => {
-				
+
 				if(leaderboards != null){
 					Debug.Log("Received " + leaderboards.Count + " leaderboards ");
-					
+
 					OKLeaderboard leaderboard = (OKLeaderboard)leaderboards[0];
-					
+
 					Debug.Log("Getting scores for leaderboard ID: " + leaderboard.OKLeaderboardID + " named: " + leaderboard.Name);
 					leaderboard.GetGlobalScores(1,(List<OKScore> scores, OKException exception2) => {
 						if(exception2 == null)
@@ -240,14 +240,14 @@ public class OKDemoScene : MonoBehaviour {
 							Debug.Log("Got global scores in the callback");
 						}
 					});
-					
+
 					GetSocialScores(leaderboard);
 				} else {
 					Debug.Log("Error getting leaderboards");
 				}
 			});
 		}
-		
+
 		if(GUILayout.Button("Get social scores Friends", h)) {
 			/*OKFacebookUtilities.getFacebookFriendsFromNative((bool didSucceed, string results) => {
 				if(didSucceed)

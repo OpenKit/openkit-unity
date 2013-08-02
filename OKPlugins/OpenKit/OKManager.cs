@@ -32,47 +32,47 @@ namespace OpenKit
 			get { return OKManagerImpl.Instance.Endpoint; }
 			set { OKManagerImpl.Instance.Endpoint = value; }
 		}
-		
+
 		public static void ShowLeaderboards()
 		{
 			OKManagerImpl.Instance.ShowLeaderboards();
 		}
-		
+
 		public static void ShowLeaderboardsLandscapeOnly()
 		{
 			OKManagerImpl.Instance.ShowLeaderboardsLandscapeOnly();
 		}
-		
+
 		public static void ShowLoginToOpenKit()
 		{
 			OKManagerImpl.Instance.ShowLoginToOpenKit();
 		}
-		
+
 		public static OKUser GetCurrentUser()
 		{
 			return OKManagerImpl.Instance.GetCurrentUser();
 		}
-				
+
 		public static void SubmitScore(OKScoreSubmitComponent score)
 		{
 			OKManagerImpl.Instance.SubmitScore(score);
 		}
-		
+
 		public static void SubmitAchievementScore(OKAchievementScore achievementScore)
 		{
 			OKManagerImpl.Instance.SubmitAchievementScore(achievementScore);
 		}
-		
+
 		public static void authenticateGameCenterLocalPlayer()
 		{
 			OKManagerImpl.Instance.AuthenticateLocalPlayerWithGameCenter();
 		}
-		
+
 		public static void AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary()
 		{
 			OKManagerImpl.Instance.AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary();
 		}
-		
+
 		public static void LogoutCurrentUserFromOpenKit()
 		{
 			OKManagerImpl.Instance.LogoutCurrentUserFromOpenKit();
@@ -106,14 +106,14 @@ namespace OpenKit
 				break;
 			}
 		}
-		
+
 		public static void InitializeAndroid()
 		{
 			OKManagerImpl.Instance.InitializeAndroid();
 		}
 
 		#endregion
-		
+
 		public OKManager() {}
 	}
 }

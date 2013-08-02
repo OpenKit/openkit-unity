@@ -8,7 +8,7 @@ namespace OpenKit.Native
 		public OpenKitDummyObject ()
 		{
 		}
-		
+
 		public void setAppKey(string appKey) {}
 		public void setSecretKey(string secretKey) {}
 		public void setEndpoint(string endpoint) {}

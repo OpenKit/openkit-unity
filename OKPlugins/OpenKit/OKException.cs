@@ -1,6 +1,6 @@
 using System;
 
-namespace OpenKit 
+namespace OpenKit
 {
 	public class OKException : Exception
 	{

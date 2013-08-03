@@ -76,11 +76,12 @@ public class OKDemoScene : MonoBehaviour {
 		score.gameCenterLeaderboardCategory = "openkitlevel3";
 		score.displayString = scoreString + " seconds";
 
-		score.SubmitScore((success, errorMessage) => {
-			if (success) {
-				Debug.Log("Score submitted successfully!");
+
+		score.SubmitScore((retScore, err) => {
+			if (err == null) {
+				Debug.Log("Score submitted successfully: " + retScore.ToString());
 			} else {
-				Debug.Log("Score did not submit. Error: " + errorMessage);
+				Debug.Log("Score did not submit. Error: " + err.Message);
 			}
 		});
 	}

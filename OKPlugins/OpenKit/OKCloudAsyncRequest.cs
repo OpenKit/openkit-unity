@@ -32,6 +32,31 @@ namespace OpenKit
 			return restClient;
 		}
 
+		private static RestRequest BuildMultiPartPostRequest(string relativePath, string filename, Dictionary<string, object>requestParams)
+		{
+			// Should use one of these instead of file on disk.
+			//  IRestRequest AddFile (string name, byte[] bytes, string fileName);
+			//  IRestRequest AddFile (string name, byte[] bytes, string fileName, string contentType);
+			RestRequest request = new RestRequest(relativePath, Method.POST);
+			request.AddHeader("Accepts", "application/json");
+			request.AddFile("score[meta_doc]", filename);
+
+			// This only handles one level of nesting! Fix me.
+			foreach (var p1 in requestParams) {
+				var v = p1.Value;
+				var k = p1.Key;
+				if (v.GetType() == typeof(Dictionary<string, object>)) {
+					foreach (var p2 in (Dictionary<string, object>)v) {
+						string paramKey = String.Format("{0}[{1}]", k, p2.Key);
+						request.AddParameter(paramKey, p2.Value);
+					}
+				} else {
+					request.AddParameter(k, v);
+				}
+			}
+			return request;
+		}
+
 		private static RestRequest BuildPostRequest(string relativePath, Dictionary<string, object>requestParams)
 		{
 			RestRequest request = new RestRequest(relativePath, Method.POST);
@@ -68,7 +93,17 @@ namespace OpenKit
 
 		public static void Post(string relativePath, Dictionary<string, object>requestParams, Action<JSONObject, OKCloudException>handler)
 		{
-			RestRequest request = BuildPostRequest(relativePath, requestParams);
+			Post(relativePath, requestParams, null, handler);
+		}
+
+		public static void Post(string relativePath, Dictionary<string, object>requestParams, string filename, Action<JSONObject, OKCloudException>handler)
+		{
+			RestRequest request;
+			if (filename == null) {
+				request = BuildPostRequest(relativePath, requestParams);
+			} else {
+				request = BuildMultiPartPostRequest(relativePath, filename, requestParams);
+			}
 			Request(request, handler);
 		}
 

@@ -59,6 +59,9 @@ namespace OpenKit
 		public     int scoreRank                     { get; set; }
 		public  OKUser user                          { get; protected set; }
 
+		public  string Filename                      { get; set; }
+
+
 		public void SubmitScore(Action<OKScore, OKException> callback)
 		{
 			OKUser u = GetUser();
@@ -75,7 +78,7 @@ namespace OpenKit
 			Dictionary<string, object> reqParams = new Dictionary<string, object>();
 			reqParams.Add("score", score);
 
-			OKCloudAsyncRequest.Post("/scores", reqParams, (JSONObject responseObj, OKCloudException e) => {
+			OKCloudAsyncRequest.Post("/scores", reqParams, this.Filename, (JSONObject responseObj, OKCloudException e) => {
 				if(e == null) {
 					OKScore retScore = new OKScore(responseObj);
 					callback(retScore, null);

@@ -59,7 +59,7 @@ namespace OpenKit
 		public     int scoreRank                     { get; set; }
 		public  OKUser user                          { get; protected set; }
 
-		public  string Filename                      { get; set; }
+		public  byte[] MetadataBuffer                { get; set; }
 
 
 		public void SubmitScore(Action<OKScore, OKException> callback)
@@ -78,7 +78,16 @@ namespace OpenKit
 			Dictionary<string, object> reqParams = new Dictionary<string, object>();
 			reqParams.Add("score", score);
 
-			OKCloudAsyncRequest.Post("/scores", reqParams, this.Filename, (JSONObject responseObj, OKCloudException e) => {
+			OKUploadBuffer buff = null;
+			if (MetadataBuffer != null) {
+				buff = new OKUploadBuffer() {
+					Bytes = MetadataBuffer,
+					ParamName = "score[meta_doc]",
+					FileName = "upload"
+				};
+			}
+
+			Action<JSONObject, OKCloudException>handler = (responseObj, e) => {
 				if(e == null) {
 					OKScore retScore = new OKScore(responseObj);
 					callback(retScore, null);
@@ -86,7 +95,9 @@ namespace OpenKit
 					OKException retErr = new OKException("Failed to create score " + e);
 					callback(null, retErr);
 				}
-			});
+			};
+
+			OKCloudAsyncRequest.Post("/scores", reqParams, buff, handler);
 		}
 
 		public void submitScoreOnlyToOpenKit(Action<bool,string> callback)

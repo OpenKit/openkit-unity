@@ -32,14 +32,11 @@ namespace OpenKit
 			return restClient;
 		}
 
-		private static RestRequest BuildMultiPartPostRequest(string relativePath, string filename, Dictionary<string, object>requestParams)
+		private static RestRequest BuildMultiPartPostRequest(string relativePath, Dictionary<string, object>requestParams, OKUploadBuffer upBuff)
 		{
-			// Should use one of these instead of file on disk.
-			//  IRestRequest AddFile (string name, byte[] bytes, string fileName);
-			//  IRestRequest AddFile (string name, byte[] bytes, string fileName, string contentType);
 			RestRequest request = new RestRequest(relativePath, Method.POST);
 			request.AddHeader("Accepts", "application/json");
-			request.AddFile("score[meta_doc]", filename);
+			request.AddFile(upBuff.ParamName, upBuff.Bytes, upBuff.FileName);
 
 			// This only handles one level of nesting! Fix me.
 			foreach (var p1 in requestParams) {
@@ -96,14 +93,15 @@ namespace OpenKit
 			Post(relativePath, requestParams, null, handler);
 		}
 
-		public static void Post(string relativePath, Dictionary<string, object>requestParams, string filename, Action<JSONObject, OKCloudException>handler)
+		public static void Post(string relativePath, Dictionary<string, object>requestParams, OKUploadBuffer upBuff, Action<JSONObject, OKCloudException>handler)
 		{
 			RestRequest request;
-			if (filename == null) {
+			if (upBuff == null) {
 				request = BuildPostRequest(relativePath, requestParams);
 			} else {
-				request = BuildMultiPartPostRequest(relativePath, filename, requestParams);
+				request = BuildMultiPartPostRequest(relativePath, requestParams, upBuff);
 			}
+
 			Request(request, handler);
 		}
 

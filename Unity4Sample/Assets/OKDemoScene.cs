@@ -75,8 +75,7 @@ public class OKDemoScene : MonoBehaviour {
 		OKScore score = new OKScore(lapTime, 27);
 		score.gameCenterLeaderboardCategory = "openkitlevel3";
 		score.displayString = scoreString + " seconds";
-		score.Filename = "TestScene_0.txt";
-
+		score.MetadataBuffer = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x80 };
 
 		score.SubmitScore((retScore, err) => {
 			if (err == null) {

@@ -24,19 +24,18 @@ namespace OpenKit
 	{
 		private static int NUM_SCORES_PER_PAGE = 25;
 
-		public string Name { get; set; }
-		public int OKLeaderboardID {get; set;}
-		public LeaderboardSortType SortType {get; set;}
-		public string IconUrl { get; set; }
-		public int PlayerCount { get; set; }
-
+		public  string Name          { get; set; }
+		public     int LeaderboardID { get; set; }
+		public  string IconUrl       { get; set; }
+		public     int PlayerCount   { get; set; }
+		public LeaderboardSortType SortType { get; set; }
 
 		public OKLeaderboard() {}
 
 		public OKLeaderboard(JSONObject leaderboardJSON)
 		{
 			this.Name = leaderboardJSON.GetField("name").str;
-			this.OKLeaderboardID = (int)leaderboardJSON.GetField("id").n;
+			this.LeaderboardID = (int)leaderboardJSON.GetField("id").n;
 			this.IconUrl = leaderboardJSON.GetField("icon_url").str;
 			this.PlayerCount = (int)leaderboardJSON.GetField("player_count").n;
 
@@ -82,7 +81,7 @@ namespace OpenKit
 				pageNum = 1;
 
 			Dictionary<string, object> requestParams = new Dictionary<string, object>();
-			requestParams.Add("leaderboard_id", this.OKLeaderboardID);
+			requestParams.Add("leaderboard_id", this.LeaderboardID);
 			requestParams.Add("page_num", pageNum);
 			requestParams.Add("leaderboard_range","all_time");
 			requestParams.Add("num_per_page",NUM_SCORES_PER_PAGE);
@@ -98,7 +97,7 @@ namespace OpenKit
 		private void GetUsersTopScore(int currentUserID, Action<OKScore,OKException> requestHandler)
 		{
 			Dictionary<string, object> requestParams = new Dictionary<string, object>();
-			requestParams.Add("leaderboard_id", this.OKLeaderboardID);
+			requestParams.Add("leaderboard_id", this.LeaderboardID);
 			requestParams.Add("leaderboard_range","all_time");
 			requestParams.Add("user_id",currentUserID);
 

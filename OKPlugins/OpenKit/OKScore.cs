@@ -14,7 +14,7 @@ namespace OpenKit
 		public OKScore(long scoreVal, int leaderboardID)
 		{
 			scoreValue = scoreVal;
-			OKLeaderboardID = leaderboardID;
+			LeaderboardID = leaderboardID;
 		}
 
 
@@ -38,8 +38,8 @@ namespace OpenKit
 
 		public OKScore(JSONObject scoreJSON)
 		{
-			this.OKLeaderboardID = (int)SafeMap<int>(scoreJSON, "leaderboard_id", -1);
-			this.OKScoreID       = (int)SafeMap<int>(scoreJSON, "id", -1);
+			this.LeaderboardID   = (int)SafeMap<int>(scoreJSON, "leaderboard_id", -1);
+			this.ScoreID         = (int)SafeMap<int>(scoreJSON, "id", -1);
 			this.scoreValue      = (long)SafeMap<long>(scoreJSON, "value", 0);
 			this.displayString   = (string)SafeMap<string>(scoreJSON, "display_string", null);
 			this.metadata        = (int)SafeMap<int>(scoreJSON, "metadata", 0);
@@ -51,11 +51,11 @@ namespace OpenKit
 		}
 
 		public    long scoreValue                    { get; set; }
-		public     int OKLeaderboardID               { get; set; }
+		public     int LeaderboardID                 { get; set; }
 		public     int metadata                      { get; set; }
 		public  string displayString                 { get; set; }
 		public  string gameCenterLeaderboardCategory { get; set; }
-		public     int OKScoreID                     { get; protected set; }
+		public     int ScoreID                       { get; protected set; }
 		public     int scoreRank                     { get; set; }
 		public  OKUser user                          { get; protected set; }
 
@@ -69,7 +69,7 @@ namespace OpenKit
 				throw new Exception("You need a user to perform cloud set.");
 
 			Dictionary<string, object> score = new Dictionary<string, object>();
-			score.Add("leaderboard_id", OKLeaderboardID);
+			score.Add("leaderboard_id", LeaderboardID);
 			score.Add("value"         , scoreValue);
 			score.Add("display_string", displayString);
 			score.Add("metadata"      , metadata);
@@ -106,7 +106,7 @@ namespace OpenKit
 
 		public override string ToString()
 		{
-			return string.Format("OKScore(id: {0}, leaderboard_id: {1}, display_string: {2})", OKScoreID, OKLeaderboardID, displayString);
+			return string.Format("OKScore(id: {0}, leaderboard_id: {1}, display_string: {2})", ScoreID, LeaderboardID, displayString);
 		}
 	}
 }

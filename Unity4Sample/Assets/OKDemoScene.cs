@@ -229,7 +229,7 @@ public class OKDemoScene : MonoBehaviour {
 
 					OKLeaderboard leaderboard = (OKLeaderboard)leaderboards[0];
 
-					Debug.Log("Getting scores for leaderboard ID: " + leaderboard.OKLeaderboardID + " named: " + leaderboard.Name);
+					Debug.Log("Getting scores for leaderboard ID: " + leaderboard.LeaderboardID + " named: " + leaderboard.Name);
 					leaderboard.GetGlobalScores(1,(List<OKScore> scores, OKException exception2) => {
 						if(exception2 == null)
 						{

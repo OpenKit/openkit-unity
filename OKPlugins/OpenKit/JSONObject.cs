@@ -133,8 +133,10 @@ public class JSONObject {
 									list.Add(new JSONObject(str.Substring(token_tmp + 1, i - token_tmp - 1)));
 									token_tmp = i;
 								}
-								if(str[i] == ']' || str[i] == '}')
-									list.Add(new JSONObject(str.Substring(token_tmp + 1, i - token_tmp - 1)));
+								if(str[i] == ']' || str[i] == '}') {
+									if(i - token_tmp > 1)
+										list.Add(new JSONObject(str.Substring(token_tmp + 1, i - token_tmp - 1)));
+								}
 							}
 							if(str[i] == ']' || str[i] == '}')
 								depth--;

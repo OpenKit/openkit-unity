@@ -107,14 +107,12 @@ namespace OpenKit
 			OKCloudAsyncRequest.Get("/best_scores/user",requestParams, (JSONObject responseObj, OKCloudException e) => {
 				if(e == null) {
 					if(responseObj.type == JSONObject.Type.OBJECT) {
-						Debug.Log("Succesfully got top score");
 						OKScore topScore = new OKScore(responseObj);
 						requestHandler(topScore, null);
 					} else {
 						requestHandler(null, new OKException("Expected a single score JSON object but got something else"));
 					}
-				} else
-				{
+				} else {
 					requestHandler(null, e);
 				}
 			});
@@ -123,14 +121,14 @@ namespace OpenKit
 		// Helper function for getting scores from OpenKit, internal use only
 		private void GetScores(ScoreRequestType rt, Dictionary<string, object> requestParams,Action<List<OKScore>, OKException> requestHandler)
 		{
-			OKCloudAsyncRequest.Get(path,requestParams, (JSONObject responseObj, OKCloudException e) => {
+			Action<JSONObject, OKCloudException> internalHandler = (responseObj, e) => {
 				if(e == null) {
 					if(responseObj.type == JSONObject.Type.ARRAY) {
-						Debug.Log("Succesfully got " + responseObj.list.Count + " scores");
+						Debug.Log("Successfully got " + responseObj.list.Count + " scores");
+						Debug.Log("Respones json: " + responseObj.ToString());
 						List<OKScore> scoresList = new List<OKScore>(responseObj.list.Count);
 
-						for(int x = 0; x < responseObj.list.Count; x++)
-						{
+						for(int x = 0; x < responseObj.list.Count; x++) {
 							OKScore score = new OKScore(responseObj[x]);
 							scoresList.Add(score);
 						}
@@ -139,20 +137,28 @@ namespace OpenKit
 					} else {
 						requestHandler(null, new OKException("Expected an array of scores but did not get back an Array JSON"));
 					}
-				} else
-				{
+				} else {
 					requestHandler(null, e);
 				}
-			});
+			};
+
+			switch (rt) {
+				case ScoreRequestType.Global:
+					OKCloudAsyncRequest.Get("/best_scores", requestParams, internalHandler);
+					break;
+				case ScoreRequestType.Social:
+					OKCloudAsyncRequest.Post("/best_scores/social", requestParams, internalHandler);
+					break;
+			}
 		}
 
 		public void GetFacebookFriendsScores(Action<List<OKScore>,OKException> requestHandler)
 		{
 			OKFacebookUtilities.GetFacebookFriendsList((List<string> fbFriends,OKException e) => {
 				if(e == null) {
-					requestHandler(null, e);
-				} else {
 					this.GetFacebookFriendsScores(fbFriends, requestHandler);
+				} else {
+					requestHandler(null, e);
 				}
 			});
 		}

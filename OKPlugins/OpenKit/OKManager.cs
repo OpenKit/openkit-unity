@@ -232,7 +232,12 @@ namespace OpenKit
 
 		public OKUser _GetCurrentUser()
 		{
+#if UNITY_EDITOR
+			Debug.LogError("Can't get an OpenKit user in the Editor.");
+			return null;
+#else
 			return nativeBridge.GetCurrentUser();
+#endif
 		}
 
 		public void _SubmitScore(OKScoreSubmitComponent score)

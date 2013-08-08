@@ -61,7 +61,7 @@ public class OKDemoScene : MonoBehaviour {
 	// the display string is used for displaying scores in the UI.
 	void SubmitSampleScore()
 	{
-		int lapTime = 6500;  // value in hundredths, 65 seconds.
+		int lapTime = 5500;  // value in hundredths, 65 seconds.
 		int total_sec = lapTime / 100;
 		int total_min = total_sec / 60;
 		int hour = total_min / 60;
@@ -90,8 +90,8 @@ public class OKDemoScene : MonoBehaviour {
 	void UnlockSampleAchievement()
 	{
 		var achievementProgress = 5;
-		var achievementId = 3;
-		OKAchievementScore achievementScore = new OKAchievementScore(achievementProgress, achievementId);
+		var achievementID = 3;
+		OKAchievementScore achievementScore = new OKAchievementScore(achievementProgress, achievementID);
 		achievementScore.submitAchievementScore((success, errorMessage) => {
 			if (success) {
 				Debug.Log("Achievement score/progress submitted successfully!");
@@ -143,15 +143,44 @@ public class OKDemoScene : MonoBehaviour {
 		});
 	}
 
-	void GetSocialScores(OKLeaderboard leaderboard)
-	{
-		Debug.Log("Getting social scores");
 
+	private void ScoreFinishedLoadingMetadata(OKScore score)
+	{
+		UnityEngine.Debug.Log("Score finished loading: " + score);
+		String s;
+		for (int i = 0; i < 5; i++) {
+			s = String.Format("Byte {0} - Hex: {1:X}", i, score.MetadataBuffer[i]);
+			UnityEngine.Debug.Log("Got back: " + s);
+		}
+	}
+
+	void GetSocialScores()
+	{
+		OKLeaderboard leaderboard = new OKLeaderboard();
+		leaderboard.LeaderboardID = 27;
 		leaderboard.GetFacebookFriendsScores((List<OKScore> scoresList, OKException e) => {
 			if(e == null) {
 				Debug.Log("Got social scores, total of: " + scoresList.Count + " scores");
+				OKScore score = scoresList[0];
+				UnityEngine.Debug.Log("Does it have a MetadataLocation? " + (score.MetadataLocation != null));
+				if (score.MetadataBuffer == null && score.MetadataLocation != null) {
+					score.LoadMetadataBuffer(this.ScoreFinishedLoadingMetadata);
+				}
 			} else {
 				Debug.Log("Failed to get social scores");
+			}
+		});
+	}
+
+	void GetMyBestScore()
+	{
+		OKLeaderboard leaderboard = new OKLeaderboard();
+		leaderboard.LeaderboardID = 27;
+		leaderboard.GetUsersTopScore((score, err) => {
+			if (err == null) {
+				UnityEngine.Debug.Log("Got a score: " + score);
+			} else {
+				UnityEngine.Debug.Log("Error getting best score: " + err.Message);
 			}
 		});
 	}
@@ -182,7 +211,7 @@ public class OKDemoScene : MonoBehaviour {
 #endif
 		Rect area = (IsPortraitOrientation() ? new Rect(0, 0, 320, 480) : new Rect(0, 0, 480, 320));
 		GUILayout.BeginArea(area);
-		GUILayoutOption h = GUILayout.Height(40);
+		GUILayoutOption h = GUILayout.Height(35);
 
 		GUILayout.Label("Testing OpenKit...");
 
@@ -221,7 +250,6 @@ public class OKDemoScene : MonoBehaviour {
 		}
 
 		if(GUILayout.Button("Get Leaderboards", h)) {
-			//OKLeaderboard.getLeaderboards(
 			OKLeaderboard.GetLeaderboards((List<OKLeaderboard> leaderboards, OKException exception) => {
 
 				if(leaderboards != null){
@@ -236,8 +264,6 @@ public class OKDemoScene : MonoBehaviour {
 							Debug.Log("Got global scores in the callback");
 						}
 					});
-
-					GetSocialScores(leaderboard);
 				} else {
 					Debug.Log("Error getting leaderboards");
 				}
@@ -245,12 +271,12 @@ public class OKDemoScene : MonoBehaviour {
 		}
 
 		if(GUILayout.Button("Get social scores Friends", h)) {
-			/*OKFacebookUtilities.getFacebookFriendsFromNative((bool didSucceed, string results) => {
-				if(didSucceed)
-					Debug.Log("Facebook friends: " + results);
-			});*/
+			GetSocialScores();
 		}
 
+		if(GUILayout.Button("Get my best score!", h)) {
+			GetMyBestScore();
+		}
 
 		GUILayout.EndArea();
 	}

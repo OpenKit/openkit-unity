@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using RestSharp;
 
 namespace OpenKit
 {
@@ -16,7 +17,6 @@ namespace OpenKit
 			scoreValue = scoreVal;
 			LeaderboardID = leaderboardID;
 		}
-
 
 		// Use this in case a field doesn't come back in the JSON.
 		public object SafeMap<T>(JSONObject json, string field, object defaultTo)
@@ -44,6 +44,7 @@ namespace OpenKit
 			this.displayString   = (string)SafeMap<string>(scoreJSON, "display_string", null);
 			this.metadata        = (int)SafeMap<int>(scoreJSON, "metadata", 0);
 			this.scoreRank       = (int)SafeMap<int>(scoreJSON, "rank", 0);
+			this.MetadataLocation  = (string)SafeMap<string>(scoreJSON, "meta_doc_url", null);
 
 			JSONObject u = scoreJSON.GetField("user");
 			if (u != null)
@@ -58,8 +59,10 @@ namespace OpenKit
 		public     int ScoreID                       { get; protected set; }
 		public     int scoreRank                     { get; set; }
 		public  OKUser user                          { get; protected set; }
-
+		public  string MetadataLocation              { get; set; }
 		public  byte[] MetadataBuffer                { get; set; }
+
+		public delegate void DidLoadMetadataHandler(OKScore sender);
 
 
 		public void SubmitScore(Action<OKScore, OKException> callback)
@@ -102,6 +105,20 @@ namespace OpenKit
 
 		public void submitScoreOnlyToOpenKit(Action<bool,string> callback)
 		{
+		}
+
+		public void LoadMetadataBuffer(DidLoadMetadataHandler handler)
+		{
+			if (MetadataLocation != null) {
+				var uri     = new Uri(this.MetadataLocation);
+				var client  = new RestClient(uri.GetLeftPart(UriPartial.Authority));
+				var request = new RestRequest(uri, Method.GET);
+
+				client.ExecuteAsync(request, response => {
+					this.MetadataBuffer = response.RawBytes;
+					handler(this);
+				});
+			}
 		}
 
 		public override string ToString()

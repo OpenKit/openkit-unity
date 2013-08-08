@@ -33,6 +33,19 @@ namespace OpenKit
 					j.Add(jsonObjectify(element));
 				}
 			}
+			else if (ot.IsGenericType && (ot.GetGenericTypeDefinition() == typeof(List<>))) {
+				j = new JSONObject { type = JSONObject.Type.ARRAY };
+				// There must be a better way to do this at runtime.  Right now we get
+				// the type T in List<T>  and cast 'o' to it.
+				Type lt = ot.GetGenericArguments()[0];
+				if (lt == typeof(string)) {
+					foreach (object element in (List<string>)o) {
+						j.Add(jsonObjectify(element));
+					}
+				} else {
+					UnityEngine.Debug.LogError("Lists of that type are not supported by JSONObjectExt! Fix me.");
+				}
+			}
 			else if (ot == typeof(Dictionary<string, object>)) {
 				j = new JSONObject { type = JSONObject.Type.OBJECT };
 				foreach (KeyValuePair<string,object> entry in (Dictionary<string, object>)o) {

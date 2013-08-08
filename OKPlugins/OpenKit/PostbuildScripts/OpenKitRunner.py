@@ -55,6 +55,9 @@ log('Wrote modifications to Info.plist.')
 project = XcodeProject.Load(install_path + '/Unity-iPhone.xcodeproj/project.pbxproj')
 log('Loaded project.pbxproj.')
 
+project.add_file('System/Library/Frameworks/MessageUI.framework', tree='SDKROOT')
+log('Added security framework.')
+
 project.add_file('System/Library/Frameworks/Security.framework', tree='SDKROOT')
 log('Added security framework.')
 

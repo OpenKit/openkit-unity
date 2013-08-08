@@ -23,6 +23,10 @@ namespace OpenKit
 	public class OKLeaderboard
 	{
 		private static int NUM_SCORES_PER_PAGE = 25;
+		private enum ScoreRequestType {
+			Global,
+			Social
+		}
 
 		public  string Name          { get; set; }
 		public     int LeaderboardID { get; set; }
@@ -83,10 +87,9 @@ namespace OpenKit
 			Dictionary<string, object> requestParams = new Dictionary<string, object>();
 			requestParams.Add("leaderboard_id", this.LeaderboardID);
 			requestParams.Add("page_num", pageNum);
-			requestParams.Add("leaderboard_range","all_time");
-			requestParams.Add("num_per_page",NUM_SCORES_PER_PAGE);
-
-			this.GetScores("/best_scores", requestParams, requestHandler);
+			requestParams.Add("leaderboard_range", "all_time");
+			requestParams.Add("num_per_page", NUM_SCORES_PER_PAGE);
+			GetScores(ScoreRequestType.Global, requestParams, requestHandler);
 		}
 
 		public void GetUsersTopScore(Action<OKScore,OKException> requestHandler)
@@ -118,7 +121,7 @@ namespace OpenKit
 		}
 
 		// Helper function for getting scores from OpenKit, internal use only
-		private void GetScores(string path, Dictionary<string, object> requestParams,Action<List<OKScore>, OKException> requestHandler)
+		private void GetScores(ScoreRequestType rt, Dictionary<string, object> requestParams,Action<List<OKScore>, OKException> requestHandler)
 		{
 			OKCloudAsyncRequest.Get(path,requestParams, (JSONObject responseObj, OKCloudException e) => {
 				if(e == null) {
@@ -157,15 +160,10 @@ namespace OpenKit
 		private void GetFacebookFriendsScores(List<string> fbfriends, Action<List<OKScore>,OKException> requestHandler)
 		{
 			Dictionary<string, object> requestParams = new Dictionary<string, object>();
-			requestParams.Add("leaderboard_id", this.OKLeaderboardID);
-			requestParams.Add("leaderboard_range","all_time");
-			requestParams.Add("fb_friends",fbfriends);
-
-			this.GetScores("/best_scores/social", requestParams, requestHandler);
+			requestParams.Add("leaderboard_id", this.LeaderboardID);
+			requestParams.Add("leaderboard_range", "all_time");
+			requestParams.Add("fb_friends", fbfriends);
+			GetScores(ScoreRequestType.Social, requestParams, requestHandler);
 		}
-
-
 	}
-
-
 }

@@ -143,31 +143,77 @@ public class OKDemoScene : MonoBehaviour {
 		});
 	}
 
-
-	private void ScoreFinishedLoadingMetadata(OKScore score)
+	// OKScore with meta document API (this stuff will make it into SDK in time):
+	protected class OKGhostScoreLoader
 	{
-		UnityEngine.Debug.Log("Score finished loading: " + score);
-		String s;
-		for (int i = 0; i < 5; i++) {
-			s = String.Format("Byte {0} - Hex: {1:X}", i, score.MetadataBuffer[i]);
-			UnityEngine.Debug.Log("Got back: " + s);
+		private List<OKScore> _scores;
+		public List<OKScore> Scores		{ get { return _scores; } }
+		public delegate void GhostScoresDidLoadHandler(OKGhostScoreLoader sender);
+
+		private GhostScoresDidLoadHandler _handler;
+		private int LeaderboardID { get; set; }
+		private List<OKScore> _pending;
+
+		public OKGhostScoreLoader(int leaderboardID)
+		{
+			this.LeaderboardID = leaderboardID;
+			_pending = new List<OKScore>();
 		}
-	}
 
-	void GetSocialScores()
-	{
-		OKLeaderboard leaderboard = new OKLeaderboard();
-		leaderboard.LeaderboardID = 27;
-		leaderboard.GetFacebookFriendsScores((List<OKScore> scoresList, OKException e) => {
+		// TODO: This should return a reference to an obj that can cancel all requests.
+		public void ExecuteAsync(GhostScoresDidLoadHandler handler)
+		{
+			_handler = handler;
+			OKLeaderboard leaderboard = new OKLeaderboard();
+			leaderboard.LeaderboardID = this.LeaderboardID;
+
+			// Kick off the chain...
+			leaderboard.GetFacebookFriendsScores(FacebookFriendsScoresDidLoad);
+		}
+
+		private void ScoreDidLoadMetadata(OKScore score)
+		{
+			_pending.Remove(score);
+			if(_pending.Count == 0)
+				_handler(this);
+		}
+
+		private void FacebookFriendsScoresDidLoad(List<OKScore> scoresList, OKException e)
+		{
 			if(e == null) {
 				Debug.Log("Got social scores, total of: " + scoresList.Count + " scores");
-				OKScore score = scoresList[0];
-				UnityEngine.Debug.Log("Does it have a MetadataLocation? " + (score.MetadataLocation != null));
-				if (score.MetadataBuffer == null && score.MetadataLocation != null) {
-					score.LoadMetadataBuffer(this.ScoreFinishedLoadingMetadata);
+				_scores = scoresList;
+				foreach(OKScore score in _scores) {
+					if (score.MetadataBuffer == null && score.MetadataLocation != null) {
+						_pending.Add(score);
+						score.LoadMetadataBuffer(this.ScoreDidLoadMetadata);
+					}
 				}
 			} else {
 				Debug.Log("Failed to get social scores");
+			}
+		}
+	}
+
+
+	void GetSocialScores()
+	{
+		int leaderboardID = 27;
+		OKGhostScoreLoader loader = new OKGhostScoreLoader(leaderboardID);
+		loader.ExecuteAsync((sender) => {
+
+			// Do stuff with sender.Scores here.
+			//
+			// At this point, all scores in sender.Scores are guaranteed to
+			// have the metadataBuffer loaded on them.
+
+			foreach (OKScore score in sender.Scores) {
+				UnityEngine.Debug.Log("Writing first five bytes of metadataBuffer for score: " + score.ScoreID);
+				String s;
+				for (int i = 0; i < 5; i++) {
+					s = String.Format("Byte {0} - Hex: {1:X}", i, score.MetadataBuffer[i]);
+					UnityEngine.Debug.Log("Got back: " + s);
+				}
 			}
 		});
 	}

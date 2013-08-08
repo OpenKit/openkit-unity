@@ -24,8 +24,9 @@ namespace OpenKit
 		{
 			GetFacebookFriendsFromNative((bool didSucceed, string result) => {
 				if(didSucceed) {
-					List<string> fbFriendsList = parseListOfFBFriendsIntoArray(result);
-					callback(fbFriendsList,null);
+					string[] friends = result.Split(',');
+					List<string> friendsList = new List<string>(friends);
+					callback(friendsList,null);
 				} else {
 					callback(null, new OKException(result));
 				}
@@ -38,11 +39,6 @@ namespace OpenKit
 			GameObject gameObject = new GameObject("OpenKitGetFBFriendsTempObject");
 			OKFBFriendsRequest friendsRequest = gameObject.AddComponent<OKFBFriendsRequest>();
 			friendsRequest.callFunction(callback);
-		}
-
-		private static List<string> parseListOfFBFriendsIntoArray(string fbFriendsList)
-		{
-			return new List<string>(fbFriendsList.Split(','));
 		}
 	}
 }

@@ -34,6 +34,7 @@ namespace OpenKit
 		public     int PlayerCount   { get; set; }
 		public LeaderboardSortType SortType { get; set; }
 
+
 		public OKLeaderboard() {}
 
 		public OKLeaderboard(JSONObject leaderboardJSON)

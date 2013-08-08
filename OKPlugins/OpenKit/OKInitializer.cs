@@ -46,10 +46,11 @@ public class OKInitializer : MonoBehaviour
 	{
 		OKManager.HandleNativeEvent(this, OKNativeEvent.viewDidDisappear);
 	}
-	
+
+	/*
 	public static void GetSocialScores(leaderboard)
 	{
 		
 	}
-
+	 */
 }

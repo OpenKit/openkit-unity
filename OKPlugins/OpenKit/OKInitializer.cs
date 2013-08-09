@@ -10,9 +10,9 @@ public class OKInitializer : OKBaseInitializer
 	{
 		base.SetupOpenKit();
 
-		OKManager.AppKey = "zRn4FrBcWi6ntUmWnEwm";
-		OKManager.SecretKey = "rjqQmuDZaO6JtLuW25XPB2D6P0jplBfmuuANCKuu";
-		OKManager.Endpoint = "http://192.168.1.105:3000";
+		OKManager.AppKey = "D3iyQTsqRNF8nZWgsOpa";
+		OKManager.SecretKey = "T6Y3yllYH5QusVpWo6wcMtURr4jIhKdMgpr2L5nd";
+		OKManager.Endpoint = "http://192.168.1.100:3000";
 	}
 
 	void Awake()

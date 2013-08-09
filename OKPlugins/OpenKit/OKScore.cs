@@ -119,8 +119,7 @@ namespace OpenKit
 					OKScore retScore = new OKScore(responseObj);
 					callback(retScore, null);
 				} else {
-					OKException retErr = new OKException("Failed to create score " + e);
-					callback(null, retErr);
+					callback(null, e);
 				}
 			};
 

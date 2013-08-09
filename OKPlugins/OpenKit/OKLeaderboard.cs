@@ -110,6 +110,8 @@ namespace OpenKit
 					if(responseObj.type == JSONObject.Type.OBJECT) {
 						OKScore topScore = new OKScore(responseObj);
 						requestHandler(topScore, null);
+					} else if (responseObj.type == JSONObject.Type.NULL) {
+						requestHandler(null, null);
 					} else {
 						requestHandler(null, new OKException("Expected a single score JSON object but got something else"));
 					}

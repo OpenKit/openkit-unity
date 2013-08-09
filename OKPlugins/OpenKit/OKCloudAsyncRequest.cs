@@ -82,8 +82,10 @@ namespace OpenKit
 				if (response.StatusCode == System.Net.HttpStatusCode.OK) {
 					JSONObject jsonObj = JSONObjectExt.decode(response.Content);
 					handler(jsonObj, null);
+				} else if (response.StatusCode == System.Net.HttpStatusCode.Forbidden) {
+					handler(null, new OKCloudException("Forbidden: Verify that your key and secret are correct."));
 				} else {
-					handler(null, new OKCloudException(response.ErrorMessage));
+					handler(null, new OKCloudException("Async request failed with message: " + JSONObjectExt.decode(response.Content).GetField("message")));
 				}
 			});
 		}

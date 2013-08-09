@@ -6,6 +6,8 @@ using System;
 
 public class OKDemoScene : MonoBehaviour {
 
+	private static int SampleLeaderboardID = 17;
+
 
 	void Setup()
 	{
@@ -71,8 +73,7 @@ public class OKDemoScene : MonoBehaviour {
 
 		string scoreString = "" + hour.ToString("00") + ":" + min.ToString("00") + ":" + sec.ToString("00") + "." + hun.ToString("00");
 
-		// Leaderboard ID = 27 for development.openkit.io
-		OKScore score = new OKScore(lapTime, 27);
+		OKScore score = new OKScore(lapTime, SampleLeaderboardID);
 		score.gameCenterLeaderboardCategory = "openkitlevel3";
 		score.displayString = scoreString + " seconds";
 
@@ -88,7 +89,7 @@ public class OKDemoScene : MonoBehaviour {
 			if (err == null) {
 				Debug.Log("Score submitted successfully: " + retScore.ToString());
 			} else {
-				Debug.Log("Score did not submit. Error: " + err.Message);
+				Debug.Log("Score post failed: " + err.Message);
 			}
 		};
 
@@ -196,16 +197,20 @@ public class OKDemoScene : MonoBehaviour {
 		private void FacebookFriendsScoresDidLoad(List<OKScore> scoresList, OKException e)
 		{
 			if(e == null) {
-				Debug.Log("Got social scores, total of: " + scoresList.Count + " scores");
 				_scores = scoresList;
-				foreach(OKScore score in _scores) {
+				foreach (OKScore score in _scores) {
 					if (score.MetadataBuffer == null && score.MetadataLocation != null) {
 						_pending.Add(score);
 						score.LoadMetadataBuffer(this.ScoreDidLoadMetadata);
 					}
 				}
+				Debug.Log("Number of social scores: " + _scores.Count);
+				Debug.Log("Number we need to pull metadata of: " + _pending.Count);
+				if (_pending.Count == 0) {
+					_handler(this);
+				}
 			} else {
-				Debug.Log("Failed to get social scores");
+				Debug.Log("Failed to get social scores: " + e.Message);
 			}
 		}
 	}
@@ -213,8 +218,7 @@ public class OKDemoScene : MonoBehaviour {
 
 	void GetSocialScores()
 	{
-		int leaderboardID = 27;
-		OKGhostScoreLoader loader = new OKGhostScoreLoader(leaderboardID);
+		OKGhostScoreLoader loader = new OKGhostScoreLoader(SampleLeaderboardID);
 		loader.ExecuteAsync((sender) => {
 
 			// Do stuff with sender.Scores here.
@@ -236,10 +240,14 @@ public class OKDemoScene : MonoBehaviour {
 	void GetMyBestScore()
 	{
 		OKLeaderboard leaderboard = new OKLeaderboard();
-		leaderboard.LeaderboardID = 27;
+		leaderboard.LeaderboardID = SampleLeaderboardID;
 		leaderboard.GetUsersTopScore((score, err) => {
 			if (err == null) {
-				UnityEngine.Debug.Log("Got a score: " + score);
+				if (score == null) {
+					UnityEngine.Debug.Log("User does not have a score for this leaderboard.");
+				} else {
+					UnityEngine.Debug.Log("Got user's best score: " + score);
+				}
 			} else {
 				UnityEngine.Debug.Log("Error getting best score: " + err.Message);
 			}

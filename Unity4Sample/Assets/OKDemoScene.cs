@@ -63,7 +63,7 @@ public class OKDemoScene : MonoBehaviour {
 	// the display string is used for displaying scores in the UI.
 	void SubmitSampleScore()
 	{
-		int lapTime = 5500;  // value in hundredths, 65 seconds.
+		int lapTime = 5400;  // value in hundredths
 		int total_sec = lapTime / 100;
 		int total_min = total_sec / 60;
 		int hour = total_min / 60;

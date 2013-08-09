@@ -75,15 +75,30 @@ public class OKDemoScene : MonoBehaviour {
 		OKScore score = new OKScore(lapTime, 27);
 		score.gameCenterLeaderboardCategory = "openkitlevel3";
 		score.displayString = scoreString + " seconds";
-		score.MetadataBuffer = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x80 };
 
-		score.SubmitScore((retScore, err) => {
+		Action<bool, string> nativeHandle = (success, errorMessage) => {
+			if (success) {
+				Debug.Log("Score submitted successfully!");
+			} else {
+				Debug.Log("Score did not submit. Error: " + errorMessage);
+			}
+		};
+
+		Action<OKScore, OKException> defaultHandle = (retScore, err) => {
 			if (err == null) {
 				Debug.Log("Score submitted successfully: " + retScore.ToString());
 			} else {
 				Debug.Log("Score did not submit. Error: " + err.Message);
 			}
-		});
+		};
+
+		bool dropToNative = false;
+		if (dropToNative) {
+			score.SubmitScoreNatively(nativeHandle);
+		} else {
+			score.MetadataBuffer = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x80 };
+			score.SubmitScore(defaultHandle);
+		}
 	}
 
 

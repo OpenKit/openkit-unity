@@ -64,6 +64,30 @@ namespace OpenKit
 
 		public delegate void DidLoadMetadataHandler(OKScore sender);
 
+		public void SubmitScoreNatively(Action<bool,string> callback)
+		{
+			if (MetadataBuffer != null) {
+				UnityEngine.Debug.LogError("A score with MetadataBuffer set cannot be submitted via native plugin");
+				callback(false, null);
+			}
+
+			// Create a uniquely named GameObject, and keep it around between scene switches.
+			string gameObjectName = "OpenKitSubmitScoreObject." + DateTime.Now.Ticks;
+			GameObject gameObject = new GameObject(gameObjectName);
+			UnityEngine.Object.DontDestroyOnLoad(gameObject);
+
+			OKScoreSubmitComponent scoreSubmitComponent = gameObject.AddComponent<OKScoreSubmitComponent>();
+			scoreSubmitComponent.submitScoreCallback           = callback;
+			scoreSubmitComponent.callbackGameObjectName        = gameObjectName;
+			scoreSubmitComponent.scoreValue                    = scoreValue;
+			scoreSubmitComponent.OKLeaderboardID               = LeaderboardID;
+			scoreSubmitComponent.displayString                 = displayString;
+			scoreSubmitComponent.metadata                      = metadata;
+			scoreSubmitComponent.gameCenterLeaderboardCategory = gameCenterLeaderboardCategory;
+
+			OKManager.SubmitScore(scoreSubmitComponent);
+		}
+
 
 		public void SubmitScore(Action<OKScore, OKException> callback)
 		{

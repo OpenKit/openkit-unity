@@ -12,7 +12,7 @@ public class OKInitializer : OKBaseInitializer
 
 		OKManager.AppKey = "D3iyQTsqRNF8nZWgsOpa";
 		OKManager.SecretKey = "T6Y3yllYH5QusVpWo6wcMtURr4jIhKdMgpr2L5nd";
-		OKManager.Endpoint = "http://192.168.1.100:3000";
+		OKManager.Endpoint = "http://development.openkit.io";
 	}
 
 	void Awake()

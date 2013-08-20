@@ -10,8 +10,8 @@ public class OKInitializer : OKBaseInitializer
 	{
 		base.SetupOpenKit();
 
-		OKManager.AppKey = "D3iyQTsqRNF8nZWgsOpa";
-		OKManager.SecretKey = "T6Y3yllYH5QusVpWo6wcMtURr4jIhKdMgpr2L5nd";
+		OKManager.AppKey = "zRn4FrBcWi6ntUmWnEwm";
+		OKManager.SecretKey = "rjqQmuDZaO6JtLuW25XPB2D6P0jplBfmuuANCKuu";
 		OKManager.Endpoint = "http://development.openkit.io";
 	}
 

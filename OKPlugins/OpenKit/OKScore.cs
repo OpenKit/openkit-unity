@@ -87,13 +87,18 @@ namespace OpenKit
 
 			OKManager.SubmitScore(scoreSubmitComponent);
 		}
-
+		
+		// Wrapper method to keep previous API working
+		public void SubmitScore(Action<bool,string> callback)
+		{
+			SubmitScoreNatively(callback);
+		}
 
 		public void SubmitScore(Action<OKScore, OKException> callback)
 		{
 			OKUser u = GetUser();
 			if (u == null)
-				throw new Exception("You need a user to perform cloud set.");
+				throw new Exception("You need a user to submit a score");
 
 			Dictionary<string, object> score = new Dictionary<string, object>();
 			score.Add("leaderboard_id", LeaderboardID);

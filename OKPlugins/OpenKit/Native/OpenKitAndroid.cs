@@ -48,6 +48,11 @@ namespace OpenKit.Native
 		{
 			OKAndroidPlugin.CallStatic("showLeaderboards");
 		}
+		
+		public void ShowLeaderboard(int leaderboardID)
+		{
+			OKAndroidPlugin.CallStatic("showLeaderboard",leaderboardID);
+		}
 
 		public void ShowLeaderboardsLandscapeOnly()
 		{
@@ -108,6 +113,11 @@ namespace OpenKit.Native
 		public void GetFacebookFriendsList(OKNativeAsyncCall functionCall)
 		{
 			UnityEngine.Debug.Log("Get FB friends not yet implemented on Android");
+		}
+		
+		public void SetAchievementsEnabled(bool enabled)
+		{
+			OKAndroidPlugin.CallStatic("setAchievementsEnabled",enabled);
 		}
 	}
 }

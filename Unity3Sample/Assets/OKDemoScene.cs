@@ -184,6 +184,10 @@ public class OKDemoScene : MonoBehaviour {
 		if(GUILayout.Button("Show Leaderboards Landscape Only", h)) {
 			OKManager.ShowLeaderboardsLandscapeOnly();
 		}
+		
+		if(GUILayout.Button("Show single leaderboard",h)) {
+			OKManager.ShowLeaderboard(27);
+		}
 
 		if(GUILayout.Button("Show Login UI", h)) {
 			ShowLoginUI();

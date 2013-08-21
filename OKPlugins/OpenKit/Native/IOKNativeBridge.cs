@@ -15,6 +15,7 @@ namespace OpenKit.Native
 		void LogoutCurrentUserFromOpenKit();
 		OKUser GetCurrentUser();
 		void GetFacebookFriendsList(OKNativeAsyncCall functionCall);
+		void SetAchievementsEnabled(bool enabled);
 	}
 }
 

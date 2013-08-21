@@ -13,6 +13,7 @@ namespace OpenKit.Native
 		public void SetSecretKey(string secretKey) {}
 		public void SetEndpoint(string endpoint) {}
 		public void ShowLeaderboards() {}
+		public void ShowLeaderboard(int leaderboardID) {}
 		public void ShowLoginToOpenKit() {}
 		public void SubmitScoreComponent(OKScoreSubmitComponent score) {
 			score.scoreSubmissionFailed("Can't submit scores from Unity editor, native only");
@@ -22,6 +23,7 @@ namespace OpenKit.Native
 		public void LogoutCurrentUserFromOpenKit() {}
 		public void ShowLeaderboardsLandscapeOnly() {}
 		public void GetFacebookFriendsList(OKNativeAsyncCall functionCall) {}
+		public void SetAchievementsEnabled(bool enabled) {}
 	}
 }
 

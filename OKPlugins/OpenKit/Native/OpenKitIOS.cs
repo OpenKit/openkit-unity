@@ -77,6 +77,11 @@ namespace OpenKit.Native
 		{
 			OKBridgeShowLeaderboards();
 		}
+		
+		public void ShowLeaderboard(int leaderboardID) 
+		{
+			Debug.Log("ShowLeaderboard(int id) not yet implemented on iOS");
+		}
 
 		public void ShowLeaderboardsLandscapeOnly()
 		{
@@ -139,6 +144,12 @@ namespace OpenKit.Native
 		{
 			OKBridgeGetFacebookFriends(functionCall.GetCallbackGameObjectName());
 		}
+		
+		public void SetAchievementsEnabled(bool enabled)
+		{
+			Debug.Log("OpenKit achievements not yet implemented on iOS, so SetAchievementsEnabled is also NYI");
+		}
+		
 	}
 }
 

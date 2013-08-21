@@ -138,6 +138,17 @@ namespace OpenKit
 		{
 			OKManager.Instance._GetFacebookFriendsList(functionCall);
 		}
+		
+		public static void SetAchievementsEnabled(bool enabled)
+		{
+			OKManager.instance._SetAchievementsEnabled(enabled);
+		}
+		
+		public static void ShowLeaderboard(int leaderboardID)
+		{
+			OKManager.instance._ShowLeaderboard(leaderboardID);
+		}
+		
 
 		// Native events are forwarded here from OKBaseInitializer.  This makes
 		// the API consistent for using OKManager as a configuration point
@@ -289,6 +300,17 @@ namespace OpenKit
 		{
 			nativeBridge.GetFacebookFriendsList(functionCall);
 		}
+		
+		public void _SetAchievementsEnabled(bool enabled)
+		{
+			nativeBridge.SetAchievementsEnabled(enabled);
+		}
+		
+		public void _ShowLeaderboard(int leaderboardID)
+		{
+			nativeBridge.ShowLeaderboard(leaderboardID);
+		}
+		
 		#endregion
 
 

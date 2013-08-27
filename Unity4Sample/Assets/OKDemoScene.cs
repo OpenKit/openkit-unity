@@ -52,7 +52,10 @@ public class OKDemoScene : MonoBehaviour {
 
 	// Notes about posting a score:
 	//
-	// If the user is not logged in, the score will not be submitted successfully.
+	// If the user is not logged in, the score will not be submitted successfully. 
+	// 
+	// When submitting a score natively, if the score submission fails, the score is cached locally on the device and resubmitted
+	// when the user logs in or next time the app loads, whichever comes first.
 	//
 	// Metadata (optional) is stored and retrieved with each score.  It can be used
 	// to save additional state information with each score.

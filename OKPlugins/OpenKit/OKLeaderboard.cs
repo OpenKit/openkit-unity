@@ -23,6 +23,7 @@ namespace OpenKit
 	public class OKLeaderboard
 	{
 		private static int NUM_SCORES_PER_PAGE = 25;
+		private static string DEFAULT_LEADERBOARD_LIST_TAG = "v1";
 		private enum ScoreRequestType {
 			Global,
 			Social
@@ -52,10 +53,28 @@ namespace OpenKit
 				this.SortType = LeaderboardSortType.LowValue;
 			}
 		}
-
+		
 		public static void GetLeaderboards(Action<List<OKLeaderboard>, OKException> requestHandler)
 		{
-			OKCloudAsyncRequest.Get("/leaderboards", null, (JSONObject responseObj, OKCloudException e) => {
+			// By default, if a leaderboard list tag is not defined through OKManger, we
+		    // load the leaderboards with the tag = 'v1'. In the OK Dashboard, new leaderboards
+		    // have a default tag of v1. This sets up future proofing so a developer can issue
+		    // a set of leaderboards in the first version of their game, and then change the leaderboards
+		    // in a future version of their game
+			
+			if(OKManager.Instance.GetLeaderboardListTag() == null) {
+				GetLeaderboards(DEFAULT_LEADERBOARD_LIST_TAG, requestHandler);
+			} else {
+				GetLeaderboards(OKManager.Instance.GetLeaderboardListTag(), requestHandler);
+			}
+		}
+		
+		public static void GetLeaderboards(String leaderboardListTag, Action<List<OKLeaderboard>, OKException> requestHandler)
+		{
+			Dictionary<string, object> requestParams = new Dictionary<string, object>();
+			requestParams.Add("tag", leaderboardListTag);
+			
+			OKCloudAsyncRequest.Get("/leaderboards", requestParams, (JSONObject responseObj, OKCloudException e) => {
 				if(e != null) {
 					OKLog.Error("Getting leaderboards failed with error: " + e);
 					requestHandler(null, e);

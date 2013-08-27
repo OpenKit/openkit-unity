@@ -10,7 +10,9 @@ namespace OpenKit
 	{
 
 		private const string DEFAULT_ENDPOINT = "http://stage.openkit.io";
-
+		
+		private string _LeaderboardListTag = null;
+		
 		// Synchronization
 		private SynchronizationContext syncContext = null;
 		private static IOKNativeBridge nativeBridge = null;
@@ -152,6 +154,11 @@ namespace OpenKit
 		public static void SetLeaderboardListTag(String tag)
 		{
 			OKManager.instance._SetLeaderboardListTag(tag);
+		}
+		
+		public string GetLeaderboardListTag()
+		{
+			return _LeaderboardListTag;
 		}
 		
 		public static void SetGoogleLoginEnabled(bool enabled)

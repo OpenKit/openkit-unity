@@ -14,7 +14,12 @@ public class OKInitializer : OKBaseInitializer
 		OKManager.SecretKey = "rjqQmuDZaO6JtLuW25XPB2D6P0jplBfmuuANCKuu";
 		OKManager.Endpoint = "http://development.openkit.io";
 		
-		OKManager.SetAchievementsEnabled(false);
+		// If you want to disable the achievements UI, uncomment the line below
+		//OKManager.SetAchievementsEnabled(false);
+		
+		// If you want to display a LeaderboardListTag other than the default "v1" tag, then
+		// uncomment this line
+		OKManager.SetLeaderboardListTag("v2");
 	}
 
 	void Awake()

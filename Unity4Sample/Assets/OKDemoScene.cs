@@ -6,7 +6,7 @@ using System;
 
 public class OKDemoScene : MonoBehaviour {
 
-	private static int SampleLeaderboardID = 17;
+	private static int SampleLeaderboardID = 26;
 
 
 	void Setup()
@@ -93,7 +93,7 @@ public class OKDemoScene : MonoBehaviour {
 			}
 		};
 
-		bool dropToNative = false;
+		bool dropToNative = true;
 		if (dropToNative) {
 			score.SubmitScoreNatively(nativeHandle);
 		} else {
@@ -297,7 +297,7 @@ public class OKDemoScene : MonoBehaviour {
 			ShowLoginUI();
 		}
 
-		if(GUILayout.Button("Submit Score to Level 3 Leaderboard", h)) {
+		if(GUILayout.Button("Submit Score to Level 2 Leaderboard", h)) {
 			SubmitSampleScore();
 		}
 

@@ -18,11 +18,11 @@ public class OKInitializer : OKBaseInitializer
 		//OKManager.SetAchievementsEnabled(false);
 		
 		// If you want to display a LeaderboardListTag other than the default "v1" tag, then
-		// uncomment this line
-		OKManager.SetLeaderboardListTag("v2");
+		// uncomment this line and set the tag
+		//OKManager.SetLeaderboardListTag("v1");
 		
-		// If you want to disable Google Login, uncomment the below line
-		OKManager.SetGoogleLoginEnabled(false);
+		// If you want to disable Google Login, uncomment the below line (Android only)
+		//OKManager.SetGoogleLoginEnabled(false);
 	}
 
 	void Awake()

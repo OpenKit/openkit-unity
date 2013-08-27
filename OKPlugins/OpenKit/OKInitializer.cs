@@ -20,6 +20,9 @@ public class OKInitializer : OKBaseInitializer
 		// If you want to display a LeaderboardListTag other than the default "v1" tag, then
 		// uncomment this line
 		OKManager.SetLeaderboardListTag("v2");
+		
+		// If you want to disable Google Login, uncomment the below line
+		OKManager.SetGoogleLoginEnabled(false);
 	}
 
 	void Awake()

@@ -24,6 +24,8 @@ namespace OpenKit.Native
 		public void ShowLeaderboardsLandscapeOnly() {}
 		public void GetFacebookFriendsList(OKNativeAsyncCall functionCall) {}
 		public void SetAchievementsEnabled(bool enabled) {}
+		public void SetLeaderboardListTag(String tag) {}
+		public void SetGoogleLoginEnabled(bool enabled) {}
 	}
 }
 

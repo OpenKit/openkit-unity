@@ -119,6 +119,15 @@ namespace OpenKit.Native
 		{
 			OKAndroidPlugin.CallStatic("setAchievementsEnabled",enabled);
 		}
+		
+		public void SetLeaderboardListTag(String tag) 
+		{
+			OKAndroidPlugin.CallStatic("setLeaderboardListTag",tag);
+		}
+		public void SetGoogleLoginEnabled(bool enabled) 
+		{
+			OKAndroidPlugin.CallStatic("setGoogleLoginEnabled",enabled);
+		}
 	}
 }
 #endif

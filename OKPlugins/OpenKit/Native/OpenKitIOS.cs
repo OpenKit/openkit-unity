@@ -16,6 +16,9 @@ namespace OpenKit.Native
 
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeSetEndpoint(string endpoint);
+		
+		[DllImport (OK_IPHONE_DLL)]
+		public static extern void OKBridgeSetLeaderboardListTag(string tag);
 
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeShowLeaderboards();
@@ -148,6 +151,15 @@ namespace OpenKit.Native
 		public void SetAchievementsEnabled(bool enabled)
 		{
 			Debug.Log("OpenKit achievements not yet implemented on iOS, so SetAchievementsEnabled is also NYI");
+		}
+		
+		public void SetLeaderboardListTag(String tag) 
+		{
+			OKBridgeSetLeaderboardListTag(tag);
+		}
+		public void SetGoogleLoginEnabled(bool enabled) 
+		{
+			Debug.Log("Google auth not supported on iOS yet, so SetGoogleAuthEnabled(boolean) does nothing on iOS");
 		}
 		
 	}

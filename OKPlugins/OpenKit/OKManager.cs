@@ -149,6 +149,17 @@ namespace OpenKit
 			OKManager.instance._ShowLeaderboard(leaderboardID);
 		}
 		
+		public static void SetLeaderboardListTag(String tag)
+		{
+			OKManager.instance._SetLeaderboardListTag(tag);
+		}
+		
+		public static void SetGoogleLoginEnabled(bool enabled)
+		{
+			OKManager.instance._SetGoogleLoginEnabled(enabled);
+		}
+		
+		
 
 		// Native events are forwarded here from OKBaseInitializer.  This makes
 		// the API consistent for using OKManager as a configuration point
@@ -309,6 +320,16 @@ namespace OpenKit
 		public void _ShowLeaderboard(int leaderboardID)
 		{
 			nativeBridge.ShowLeaderboard(leaderboardID);
+		}
+		
+		public void _SetLeaderboardListTag(String tag)
+		{
+			nativeBridge.SetLeaderboardListTag(tag);
+		}
+		
+		public void _SetGoogleLoginEnabled(bool enabled)
+		{
+			nativeBridge.SetGoogleLoginEnabled(enabled);
 		}
 		
 		#endregion

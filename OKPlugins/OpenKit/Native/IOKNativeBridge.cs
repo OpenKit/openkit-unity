@@ -17,6 +17,8 @@ namespace OpenKit.Native
 		OKUser GetCurrentUser();
 		void GetFacebookFriendsList(OKNativeAsyncCall functionCall);
 		void SetAchievementsEnabled(bool enabled);
+		void SetLeaderboardListTag(String tag);
+		void SetGoogleLoginEnabled(bool enabled);
 	}
 }
 

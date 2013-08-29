@@ -8,7 +8,6 @@ public class OKInitializer : OKBaseInitializer
 	// The keys below are for the openkit sample app.
 	new protected void SetupOpenKit()
 	{
-		base.SetupOpenKit();
 
 		OKManager.AppKey = "zRn4FrBcWi6ntUmWnEwm";
 		OKManager.SecretKey = "rjqQmuDZaO6JtLuW25XPB2D6P0jplBfmuuANCKuu";
@@ -23,6 +22,9 @@ public class OKInitializer : OKBaseInitializer
 		
 		// If you want to disable Google Login, uncomment the below line (Android only)
 		//OKManager.SetGoogleLoginEnabled(false);
+		
+		// This should be called at the end of this function, after setting the endpoint, appkey, secretkey
+		base.SetupOpenKit();
 	}
 
 	void Awake()

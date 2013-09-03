@@ -9,7 +9,7 @@ namespace OpenKit
 	public class OKManager
 	{
 
-		private const string DEFAULT_ENDPOINT = "http://stage.openkit.io";
+		private const string DEFAULT_ENDPOINT = "http://development.openkit.io";
 		
 		private string _LeaderboardListTag = null;
 		

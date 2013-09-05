@@ -230,11 +230,13 @@ public class OKDemoScene : MonoBehaviour {
 			// have the metadataBuffer loaded on them.
 
 			foreach (OKScore score in sender.Scores) {
-				UnityEngine.Debug.Log("Writing first five bytes of metadataBuffer for score: " + score.ScoreID);
-				String s;
-				for (int i = 0; i < 5; i++) {
-					s = String.Format("Byte {0} - Hex: {1:X}", i, score.MetadataBuffer[i]);
-					UnityEngine.Debug.Log("Got back: " + s);
+				if(score.MetadataBuffer != null) {
+					UnityEngine.Debug.Log("Writing first five bytes of metadataBuffer for score: " + score.ScoreID);
+					String s;
+					for (int i = 0; i < 5; i++) {
+						s = String.Format("Byte {0} - Hex: {1:X}", i, score.MetadataBuffer[i]);
+						UnityEngine.Debug.Log("Got back: " + s);
+					}
 				}
 			}
 		});

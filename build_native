@@ -39,16 +39,19 @@ cp ../openkit-android/OpenKitSDK/bin/jars/openkit-unity-plugin.jar /OKPlugins/An
 blue "Copying Android Libs files"
 cp ../openkit-android/OpenKitSDK/libs/* OKPlugins/Android/
 
-blue "Copying Android res folder"
+blue "Deleting Android res folder and copying Res folder"
+rm -r OKPlugins/Android/res
+cp -r -v ../openkit-android/OpenKitSDK/res OKPlugins/Android/
  
+blue "Finished building and copying for Android $CONFIG"
 
-blue "Cleaning OpenKit Project, all targets"
-xcodebuild -alltargets clean -project $IOS_PROJECT
+#blue "Cleaning OpenKit Project, all targets"
+#xcodebuild -alltargets clean -project $IOS_PROJECT
 
 #blue "Building OpenKit project, $CONFIG"
 #xcodebuild -project $IOS_PROJECT -configuration $CONFIG -target OpenKit
 
-blue "Building OpenKitUnity Plugin, $CONFIG"
-xcodebuild -project $IOS_PROJECT -verbose -configuration  $CONFIG -scheme OpenKitUnity ARCHS="armv7 armv7s" ONLY_ACTIVE_ARCH=NO
+#blue "Building OpenKitUnity Plugin, $CONFIG"
+#xcodebuild -project $IOS_PROJECT -verbose -configuration  $CONFIG -scheme OpenKitUnity ARCHS="armv7 armv7s" ONLY_ACTIVE_ARCH=NO
 
 blue "Finished building $CONFIG"

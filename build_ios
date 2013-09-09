@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+function blue
+{
+  tput setaf 7; tput setab 4
+  echo "$1"
+  tput op
+}
+
+IOS_PROJECT="../openkit-ios/OpenKit.xcodeproj"
+
+echo "Do you want to build a debug or release package? Default is release. (d/r)"
+read -e MORE
+if [ $MORE == "d" ]
+then
+	CONFIG="debug"	
+else
+	CONFIG="release"
+fi
+
+blue "Building $CONFIG"
+
+blue "Cleaning OpenKit Project, all targets"
+xcodebuild -alltargets clean -project $IOS_PROJECT
+
+blue "Building OpenKit project, $CONFIG"
+xcodebuild -project $IOS_PROJECT -verbose -configuration $CONFIG -target OpenKit
+
+blue "Copying libOpenKit.a to Unity project"
+cp -v ../openkit-ios/build/Release-universal/libOpenKit.a OKPlugins/iOS/ 
+
+blue "Building OpenKitUnity Plugin, $CONFIG"
+xcodebuild -project $IOS_PROJECT -verbose -configuration  $CONFIG -target OpenKitUnity
+
+blue "Copying libOpenKitUnity.a file"
+cp -v ../openkit-ios/build/Release-iphoneos/libOpenKitUnity.a OKPlugins/iOS/
+
+blue "Deleting include and resources folders"
+rm -r OKPlugins/iOS/OpenKitResources/Resources
+rm -r OKPlugins/iOS/OpenKitResources/include
+
+blue "Copying include folder"
+cp -r -v ../openkit-ios/build/Release-universal/include/ OKPlugins/iOS/OpenKitResources/include
+
+blue "Copying Resources folder"
+cp -r -v ../openkit-ios/build/Release-universal/Resources/ OKPlugins/iOS/OpenKitResources/Resources
+

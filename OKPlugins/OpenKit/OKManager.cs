@@ -80,7 +80,15 @@ namespace OpenKit
 			get { return OKManager.Instance._Endpoint; }
 			set { OKManager.Instance._Endpoint = value; }
 		}
-
+		
+		
+		public static OKUser GetCurrentUser()
+		{
+			return OKManager.Instance._GetCurrentUser();
+		}
+		
+		/* METHODS TO SHOW OPENKIT UI */
+		
 		public static void ShowLeaderboards()
 		{
 			OKManager.Instance._ShowLeaderboards();
@@ -90,17 +98,29 @@ namespace OpenKit
 		{
 			OKManager.Instance._ShowLeaderboardsLandscapeOnly();
 		}
+		
+		public static void ShowLeaderboard(int leaderboardID)
+		{
+			OKManager.instance._ShowLeaderboard(leaderboardID);
+		}
+		
+		public static void ShowLeaderboardLandscapeOnly(int aLeaderboardID)
+		{
+			OKManager.instance._ShowLeaderboardLandscapeOnly(aLeaderboardID);
+		}
 
 		public static void ShowLoginToOpenKit()
 		{
 			OKManager.Instance._ShowLoginToOpenKit();
 		}
-
-		public static OKUser GetCurrentUser()
+		
+		public static void AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary()
 		{
-			return OKManager.Instance._GetCurrentUser();
+			OKManager.Instance._AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary();
 		}
 
+		/* end show UI methods region */
+		
 		public static void SubmitScore(OKScoreSubmitComponent score)
 		{
 			OKManager.Instance._SubmitScore(score);
@@ -114,11 +134,6 @@ namespace OpenKit
 		public static void authenticateGameCenterLocalPlayer()
 		{
 			OKManager.Instance._AuthenticateLocalPlayerWithGameCenter();
-		}
-
-		public static void AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary()
-		{
-			OKManager.Instance._AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary();
 		}
 
 		public static void LogoutCurrentUserFromOpenKit()
@@ -146,10 +161,6 @@ namespace OpenKit
 			OKManager.instance._SetAchievementsEnabled(enabled);
 		}
 		
-		public static void ShowLeaderboard(int leaderboardID)
-		{
-			OKManager.instance._ShowLeaderboard(leaderboardID);
-		}
 		
 		public static void SetLeaderboardListTag(String tag)
 		{
@@ -243,7 +254,7 @@ namespace OpenKit
 				_endpoint = value;
 			}
 		}
-
+		
 		public void _ShowLeaderboards()
 		{
 			nativeBridge.ShowLeaderboards();
@@ -324,9 +335,14 @@ namespace OpenKit
 			nativeBridge.SetAchievementsEnabled(enabled);
 		}
 		
-		public void _ShowLeaderboard(int leaderboardID)
+		public void _ShowLeaderboard(int aLeaderboardID)
 		{
-			nativeBridge.ShowLeaderboard(leaderboardID);
+			nativeBridge.ShowLeaderboard(aLeaderboardID);
+		}
+		
+		public void _ShowLeaderboardLandscapeOnly(int aLeaderboardID)
+		{
+			nativeBridge.ShowLeaderboardLandscapeOnly(aLeaderboardID);
 		}
 		
 		public void _SetLeaderboardListTag(String tag)
@@ -338,6 +354,8 @@ namespace OpenKit
 		{
 			nativeBridge.SetGoogleLoginEnabled(enabled);
 		}
+		
+		
 		
 		#endregion
 

@@ -53,10 +53,16 @@ namespace OpenKit.Native
 		{
 			OKAndroidPlugin.CallStatic("showLeaderboard",leaderboardID);
 		}
+		
+		public void ShowLeaderboardLandscapeOnly(int leaderboardID)
+		{
+			Debug.Log("ShowLeaderboardLandscapeOnly on Android simply displays leaderboards. To restrict them to landscape only you need to modify AndroidManifest.xml");
+			OKAndroidPlugin.CallStatic("showLeaderboard",leaderboardID);
+		}
 
 		public void ShowLeaderboardsLandscapeOnly()
 		{
-			Debug.Log("ShowLeaderboardsLandscapeOnly not implemented yet on Android, showing leaderboards regularly");
+			Debug.Log("ShowLeaderboardsLandscapeOnly on Android simply displays leaderboards. To restrict them to landscape only you need to modify AndroidManifest.xml");
 			OKAndroidPlugin.CallStatic("showLeaderboards");
 		}
 

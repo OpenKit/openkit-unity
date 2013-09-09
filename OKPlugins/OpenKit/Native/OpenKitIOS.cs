@@ -25,6 +25,12 @@ namespace OpenKit.Native
 
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeShowLeaderboardsLandscapeOnly();
+		
+		[DllImport (OK_IPHONE_DLL)]
+		public static extern void OKBridgeShowLeaderboardID(int leaderboardID);
+		
+		[DllImport (OK_IPHONE_DLL)]
+		public static extern void OKBridgeShowLeaderboardIDWithLandscapeOnly(int leaderboardID, bool landscapeOnly);
 
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeShowLoginUI();
@@ -83,7 +89,12 @@ namespace OpenKit.Native
 		
 		public void ShowLeaderboard(int leaderboardID) 
 		{
-			Debug.Log("ShowLeaderboard(int id) not yet implemented on iOS");
+			OKBridgeShowLeaderboardID(leaderboardID);
+		}
+		
+		public void ShowLeaderboardLandscapeOnly(int leaderboardID)
+		{
+			OKBridgeShowLeaderboardIDWithLandscapeOnly(leaderboardID, true);
 		}
 
 		public void ShowLeaderboardsLandscapeOnly()

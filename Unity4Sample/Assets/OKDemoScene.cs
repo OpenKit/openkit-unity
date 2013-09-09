@@ -293,9 +293,9 @@ public class OKDemoScene : MonoBehaviour {
 			ShowLeaderboards();
 		}
 
-		if(GUILayout.Button("Show Leaderboards Landscape Only (iOS)", h)) {
-			// For Android, to show Leaderboards landscape only you simply need to modify the AndroidManifest.xml file
-			OKManager.ShowLeaderboardsLandscapeOnly();
+		if(GUILayout.Button("Show Single Leaderboard", h)) {
+			// Instead of showing a list of leaderboards, show a single specified leaderboard ID
+			OKManager.ShowLeaderboard(26);
 		}
 
 		if(GUILayout.Button("Show Login UI", h)) {

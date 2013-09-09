@@ -53,5 +53,5 @@ blue "Copying include folder"
 cp -r -v $INCLUDES_FOLDER OKPlugins/iOS/OpenKitResources/include
 
 blue "Copying Resources folder"
-cp -r -v $INCLUDES_FOLDER OKPlugins/iOS/OpenKitResources/Resources
+cp -r -v $RESOURCES_FOLDER OKPlugins/iOS/OpenKitResources/Resources
 

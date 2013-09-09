@@ -13,10 +13,20 @@ echo "Do you want to build a debug or release package? Default is release. (d/r)
 read -e MORE
 if [ $MORE == "d" ]
 then
-	CONFIG="debug"	
+	CONFIG="Debug"
+	LIB_OPENKIT_UNITY_BUILD_PATH="../openkit-ios/build/Debug-iphoneos/libOpenKitUnity.a"
+	LIB_OPENKIT_BUILD_PATH="../openkit-ios/build/Debug-iphoneos/libOpenKit.a"
+	INCLUDES_FOLDER="../openkit-ios/build/Debug-iphoneos/include/"
+	RESOURCES_FOLDER="../openkit-ios/build/Debug-iphoneos/Resources/"
 else
-	CONFIG="release"
+	CONFIG="Release"
+	LIB_OPENKIT_UNITY_BUILD_PATH="../openkit-ios/build/Release-iphoneos/libOpenKitUnity.a"
+	LIB_OPENKIT_BUILD_PATH="../openkit-ios/build/Release-universal/libOpenKit.a"
+	INCLUDES_FOLDER="../openkit-ios/build/Release-universal/include/"
+	RESOURCES_FOLDER="../openkit-ios/build/Release-universal/Resources/"
 fi
+
+blue "Resources folder: $RESOURCES_FOLDER"
 
 blue "Building $CONFIG"
 
@@ -24,24 +34,24 @@ blue "Cleaning OpenKit Project, all targets"
 xcodebuild -alltargets clean -project $IOS_PROJECT
 
 blue "Building OpenKit project, $CONFIG"
-xcodebuild -project $IOS_PROJECT -verbose -configuration $CONFIG -target OpenKit
-
-blue "Copying libOpenKit.a to Unity project"
-cp -v ../openkit-ios/build/Release-universal/libOpenKit.a OKPlugins/iOS/ 
+xcodebuild -project $IOS_PROJECT -configuration $CONFIG -target OpenKit
 
 blue "Building OpenKitUnity Plugin, $CONFIG"
-xcodebuild -project $IOS_PROJECT -verbose -configuration  $CONFIG -target OpenKitUnity
+xcodebuild -project $IOS_PROJECT -configuration $CONFIG -target OpenKitUnity
 
 blue "Copying libOpenKitUnity.a file"
-cp -v ../openkit-ios/build/Release-iphoneos/libOpenKitUnity.a OKPlugins/iOS/
+cp -v $LIB_OPENKIT_UNITY_BUILD_PATH OKPlugins/iOS/
+
+blue "Copying libOpenKit.a to Unity project"
+cp -v $LIB_OPENKIT_BUILD_PATH OKPlugins/iOS/ 
 
 blue "Deleting include and resources folders"
 rm -r OKPlugins/iOS/OpenKitResources/Resources
 rm -r OKPlugins/iOS/OpenKitResources/include
 
 blue "Copying include folder"
-cp -r -v ../openkit-ios/build/Release-universal/include/ OKPlugins/iOS/OpenKitResources/include
+cp -r -v $INCLUDES_FOLDER OKPlugins/iOS/OpenKitResources/include
 
 blue "Copying Resources folder"
-cp -r -v ../openkit-ios/build/Release-universal/Resources/ OKPlugins/iOS/OpenKitResources/Resources
+cp -r -v $INCLUDES_FOLDER OKPlugins/iOS/OpenKitResources/Resources
 

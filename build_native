@@ -22,22 +22,25 @@ fi
 
 blue "Building $CONFIG"
 
-if [ $CONFIG=="debug"]
+if [ $CONFIG == "debug"]
 then
-blue "Building OpenKitSDK jar $CONFIG"
+	blue "Building OpenKitSDK jar $CONFIG"
 	ant jar -f ../openkit-android/OpenKitSDK/build.xml
+	blue "Building openkit-unity-plugin jar $CONFIG"
 	ant jar -f ../openkit-android/UnityAndroid/build.xml
 else
+	blue "Building OpenKitSDK jar $CONFIG"
 	ant dist-jar -f ../openkit-android/OpenKitSDK/build.xml
+	blue "Building openkit-unity-plugin jar $CONFIG"
 	ant dist-jar -f ../openkit-android/UnityAndroid/build.xml
 fi
 
 blue "Copying Android SDK JARS"
-cp ../openkit-android/OpenKitSDK/bin/jars/openkitsdk.jar /OKPlugins/Android/openkitsdk.jar
-cp ../openkit-android/OpenKitSDK/bin/jars/openkit-unity-plugin.jar /OKPlugins/Android/openkit-unity-plugin.jar
+cp -v ../openkit-android/OpenKitSDK/bin/jars/openkitsdk.jar OKPlugins/Android/
+cp -v ../openkit-android/OpenKitSDK/bin/jars/openkit-unity-plugin.jar OKPlugins/Android/
 
 blue "Copying Android Libs files"
-cp ../openkit-android/OpenKitSDK/libs/* OKPlugins/Android/
+cp -v ../openkit-android/OpenKitSDK/libs/* OKPlugins/Android/
 
 blue "Deleting Android res folder and copying Res folder"
 rm -r OKPlugins/Android/res

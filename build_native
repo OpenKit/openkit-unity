@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+function blue
+{
+  tput setaf 7; tput setab 4
+  echo "$1"
+  tput op
+}
+
+IOS_PROJECT="../openkit-ios/OpenKit.xcodeproj"
+
+echo "Do you want to build a debug or release package? Default is release. (d/r)"
+read -e MORE
+if [ $MORE == "d" ]
+then
+	CONFIG="debug"	
+else
+	CONFIG="release"
+fi
+
+
+
+blue "Building $CONFIG"
+
+if [ $CONFIG=="debug"]
+then
+blue "Building OpenKitSDK jar $CONFIG"
+	ant jar -f ../openkit-android/OpenKitSDK/build.xml
+	ant jar -f ../openkit-android/UnityAndroid/build.xml
+else
+	ant dist-jar -f ../openkit-android/OpenKitSDK/build.xml
+	ant dist-jar -f ../openkit-android/UnityAndroid/build.xml
+fi
+
+blue "Copying Android SDK JARS"
+cp ../openkit-android/OpenKitSDK/bin/jars/openkitsdk.jar /OKPlugins/Android/openkitsdk.jar
+cp ../openkit-android/OpenKitSDK/bin/jars/openkit-unity-plugin.jar /OKPlugins/Android/openkit-unity-plugin.jar
+
+blue "Copying Android Libs files"
+cp ../openkit-android/OpenKitSDK/libs/* OKPlugins/Android/
+
+blue "Copying Android res folder"
+ 
+
+blue "Cleaning OpenKit Project, all targets"
+xcodebuild -alltargets clean -project $IOS_PROJECT
+
+#blue "Building OpenKit project, $CONFIG"
+#xcodebuild -project $IOS_PROJECT -configuration $CONFIG -target OpenKit
+
+blue "Building OpenKitUnity Plugin, $CONFIG"
+xcodebuild -project $IOS_PROJECT -verbose -configuration  $CONFIG -scheme OpenKitUnity ARCHS="armv7 armv7s" ONLY_ACTIVE_ARCH=NO
+
+blue "Finished building $CONFIG"

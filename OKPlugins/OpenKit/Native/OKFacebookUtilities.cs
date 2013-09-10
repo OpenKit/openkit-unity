@@ -36,7 +36,7 @@ namespace OpenKit
 
 		private static void GetFacebookFriendsFromNative(Action<bool,string> callback)
 		{
-			GameObject gameObject = new GameObject("OpenKitGetFBFriendsTempObject");
+			GameObject gameObject = new GameObject("OpenKitGetFBFriendsTempObject" + DateTime.Now.Ticks);
 			OKFBFriendsRequest friendsRequest = gameObject.AddComponent<OKFBFriendsRequest>();
 			friendsRequest.callFunction(callback);
 		}

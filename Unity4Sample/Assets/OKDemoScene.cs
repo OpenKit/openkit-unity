@@ -6,7 +6,7 @@ using System;
 
 public class OKDemoScene : MonoBehaviour {
 
-	private static int SampleLeaderboardID = 26;
+	private static int SampleLeaderboardID = 25;
 
 
 	void Setup()

@@ -118,7 +118,7 @@ namespace OpenKit.Native
 
 		public void GetFacebookFriendsList(OKNativeAsyncCall functionCall)
 		{
-			UnityEngine.Debug.Log("Get FB friends not yet implemented on Android");
+			OKAndroidPlugin.CallStatic("getFacebookFriendsList", functionCall.GetCallbackGameObjectName());
 		}
 		
 		public void SetAchievementsEnabled(bool enabled)

@@ -178,8 +178,10 @@ namespace OpenKit
 		{
 			OKFacebookUtilities.GetFacebookFriendsList((List<string> fbFriends,OKException e) => {
 				if(e == null) {
+					Debug.Log("Got facebook friends list");
 					this.GetFacebookFriendsScores(fbFriends, requestHandler);
 				} else {
+					Debug.Log("Error getting list of fb friends");
 					requestHandler(null, e);
 				}
 			});

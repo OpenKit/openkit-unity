@@ -3,6 +3,14 @@
 
 $installPath = $ARGV[0];
 $FacebookAppID = $ARGV[1];
+$UnityVersion = $ARGV[2];
+
+if ($UnityVersion eq 'Unity3') {
+	$Unity3 = 1;
+} else {
+	$Unity3 = 0;
+}
+
 $currDir = `pwd`;
 chomp $currDir;
 $python_script_path = $currDir."/Assets/Plugins/OpenKit/PostbuildScripts/OpenKitRunner.py";
@@ -19,6 +27,8 @@ In PostBuildOpenKitIOSScript
 ---------------------------
 Perl Version: $perl_v
 Python Version: $python_v
+Unity version: $UnityVersion
+Unity 3?: $Unity3
 FacebookAppID: $FacebookAppID
 Install Path: $installPath
 Current Dir: $currDir
@@ -100,6 +110,14 @@ foreach (@FILES) {
 					$handle2 = 1;	
 				} elsif ( $line =~ /.*-.*\(.*void.*\).*applicationWillTerminate.*:.*\(.*UIApplication.*\*.*\).*application.*/ ){
 					$willTerminate = 1;	
+				} elsif ($Unity3 && $line =~ /.*#.*define.*USE_DISPLAY_LINK_IF_AVAILABLE.*1/) {
+					print SOURCEFILE "// USE_DISPLAY_LINK_IF_AVAILABLE undefined and redefined to 0 by OpenKit postprocessbuild script \n"; 
+					print SOURCEFILE "// to get rid of sticky scrolling on UIViews and UITableViewController in OpenKit leaderboards \n";
+					print SOURCEFILE "#undef USE_DISPLAY_LINK_IF_AVAILABLE \n";
+					print SOURCEFILE "#define USE_DISPLAY_LINK_IF_AVAILABLE 0 \n \n";
+					open(LOGFILE, ">>$log_filename");
+					print LOGFILE "Undef USE_DISPLAY_LINK_IF_AVAILABLE and re-def to 0 for Unity 3 \n";
+					close (LOGFILE);	
 				}
 	 		}
  			close (SOURCEFILE);

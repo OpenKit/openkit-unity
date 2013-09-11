@@ -23,25 +23,10 @@ namespace OpenKit.Native
 		public OpenKitAndroid ()
 		{
 		}
-
-		public void SetSecretKey(string secretKey)
+		
+		public void Configure(string appKey, string secretKey, string endpoint)
 		{
-			OKAndroidPlugin.CallStatic("setSecretKey", secretKey);
-		}
-
-		public void SetAppKey(string appKey)
-		{
-			OKAndroidPlugin.CallStatic("setAppKey", appKey);
-		}
-
-		public void SetEndpoint(string endpoint)
-		{
-			OKAndroidPlugin.CallStatic("setEndpoint", endpoint);
-		}
-
-		public void InitializeAndroid()
-		{
-			OKAndroidPlugin.CallStatic("initialize");
+			OKAndroidPlugin.CallStatic("configure", appKey, secretKey, endpoint);
 		}
 
 		public void ShowLeaderboards()

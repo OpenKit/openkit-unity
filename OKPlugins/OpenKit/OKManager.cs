@@ -152,11 +152,6 @@ namespace OpenKit
 			return OKManager.Instance._IsEnabled();
 		}
 
-		public static void InitializeAndroid()
-		{
-			OKManager.Instance._InitializeAndroid();
-		}
-
 		public static void GetFacebookFriendsList(OKNativeAsyncCall functionCall)
 		{
 			OKManager.Instance._GetFacebookFriendsList(functionCall);
@@ -319,13 +314,6 @@ namespace OpenKit
 			((OpenKitIOS)nativeBridge).AuthenticateLocalPlayerToGCAndShowUIIfNecessary();
 #else
 			Debug.Log("AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary ONLY supported on iOS");
-#endif
-		}
-
-		public void _InitializeAndroid()
-		{
-#if UNITY_ANDROID && !UNITY_EDITOR
-			((OpenKitAndroid)nativeBridge).InitializeAndroid();
 #endif
 		}
 

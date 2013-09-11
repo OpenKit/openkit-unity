@@ -42,7 +42,7 @@ namespace OpenKit.Native
 		public static extern string OKBridgeGetCurrentUserNick();
 
 		[DllImport (OK_IPHONE_DLL)]
-		public static extern long OKBridgeGetCurrentUserFBID();
+		public static extern string OKBridgeGetCurrentUserFBID();
 
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeAuthenticateLocalPlayerWithGameCenter();
@@ -126,9 +126,9 @@ namespace OpenKit.Native
 			else {
 				OKUser user = new OKUser();
 				user.OKUserID = okID;
-				user.userNick = OKBridgeGetCurrentUserNick();
+				user.UserNick = OKBridgeGetCurrentUserNick();
 				user.FBUserID = OKBridgeGetCurrentUserFBID();
-				user.twitterUserID = OKBridgeGetCurrentUserTwitterID();
+
 				return user;
 			}
 		}

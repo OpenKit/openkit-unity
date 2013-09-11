@@ -9,7 +9,7 @@ namespace OpenKit
 	public class OKManager
 	{
 
-		private const string DEFAULT_ENDPOINT = "http://development.openkit.io";
+		private const string DEFAULT_ENDPOINT = "http://api.openkit.io";
 		
 		private string _LeaderboardListTag = null;
 		
@@ -50,7 +50,6 @@ namespace OpenKit
 			else
 				OKLog.Info("SynchronizationContext is set.");
 
-			nativeBridge.SetEndpoint(DEFAULT_ENDPOINT);
 			_endpoint = DEFAULT_ENDPOINT;
 		}
 		#endregion
@@ -63,22 +62,29 @@ namespace OpenKit
 		public static event EventHandler ViewDidAppear;
 		public static event EventHandler ViewDidDisappear;
 
+		public static void Configure(string appKey, string secretKey, string endpoint)
+		{
+			OKManager.Instance._Configure(appKey, secretKey, endpoint);
+		}
+		
+		public static void Configure(string appKey, string secretKey)
+		{
+			OKManager.Configure(appKey, secretKey, null);
+		}
+		
 		public static string AppKey
 		{
 			get { return OKManager.Instance._AppKey; }
-			set { OKManager.Instance._AppKey = value; }
 		}
 
 		public static string SecretKey
 		{
 			get { return OKManager.Instance._SecretKey; }
-			set { OKManager.Instance._SecretKey = value;}
 		}
 
 		public static string Endpoint
 		{
 			get { return OKManager.Instance._Endpoint; }
-			set { OKManager.Instance._Endpoint = value; }
 		}
 		
 		
@@ -221,38 +227,36 @@ namespace OpenKit
 		/////////////////////////////////////////////////////////////////////////////////////////////////////
 		#region Instance
 		/////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		public void _Configure(string appKey, string secretKey, string endpoint)
+		{
+			_appKey = appKey;
+			_secretKey = secretKey;
+			if(endpoint != null) {
+				_endpoint = endpoint;
+			} else {
+				_endpoint = DEFAULT_ENDPOINT;
+			}
+
+			nativeBridge.Configure(appKey, secretKey, endpoint);
+		}
+		
 		private string _appKey;
 		public string _AppKey
 		{
 			get { return _appKey; }
-			set
-			{
-				nativeBridge.SetAppKey(value);
-				_appKey = value;
-			}
 		}
 
 		private string _secretKey;
 		public string _SecretKey
 		{
 			get { return _secretKey; }
-			set
-			{
-				nativeBridge.SetSecretKey(value);
-				_secretKey = value;
-			}
-
 		}
 
 		private string _endpoint;
 		public string _Endpoint
 		{
 			get { return _endpoint; }
-			set
-			{
-				nativeBridge.SetEndpoint(value);
-				_endpoint = value;
-			}
 		}
 		
 		public void _ShowLeaderboards()

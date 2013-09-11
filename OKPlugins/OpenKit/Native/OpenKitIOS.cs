@@ -9,13 +9,7 @@ namespace OpenKit.Native
 		public const string OK_IPHONE_DLL = "__Internal";
 
 		[DllImport (OK_IPHONE_DLL)]
-		public static extern void OKBridgeSetAppKey(string appKey);
-
-		[DllImport (OK_IPHONE_DLL)]
-		public static extern void OKBridgeSetSecretKey(string secretKey);
-
-		[DllImport (OK_IPHONE_DLL)]
-		public static extern void OKBridgeSetEndpoint(string endpoint);
+		public static extern void OKBridgeConfigureOpenKit(string appKey, string secretKey, string endpoint);
 		
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeSetLeaderboardListTag(string tag);
@@ -66,20 +60,10 @@ namespace OpenKit.Native
 		public static extern void OKBridgeGetFacebookFriends(string gameObjectName);
 
 		public OpenKitIOS() {}
-
-		public void SetAppKey(string appKey)
+		
+		public void Configure(string appKey, string secretKey, string endpoint) 
 		{
-			OKBridgeSetAppKey(appKey);
-		}
-
-		public void SetSecretKey(string secretKey)
-		{
-			OKBridgeSetSecretKey(secretKey);
-		}
-
-		public void SetEndpoint(string endpoint)
-		{
-			OKBridgeSetEndpoint(endpoint);
+			OKBridgeConfigureOpenKit(appKey, secretKey, endpoint);
 		}
 
 		public void ShowLeaderboards()

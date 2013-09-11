@@ -9,9 +9,7 @@ namespace OpenKit.Native
 		{
 		}
 
-		public void SetAppKey(string appKey) {}
-		public void SetSecretKey(string secretKey) {}
-		public void SetEndpoint(string endpoint) {}
+		public void Configure(string appKey, string secretKey, string endpoint) {}
 		public void ShowLeaderboards() {}
 		public void ShowLeaderboard(int leaderboardID) {}
 		public void ShowLeaderboardLandscapeOnly(int leaderboardID) {}

@@ -9,9 +9,11 @@ public class OKInitializer : OKBaseInitializer
 	new protected void SetupOpenKit()
 	{
 
-		OKManager.AppKey = "zRn4FrBcWi6ntUmWnEwm";
-		OKManager.SecretKey = "rjqQmuDZaO6JtLuW25XPB2D6P0jplBfmuuANCKuu";
-		OKManager.Endpoint = "http://development.openkit.io";
+		string myAppKey = "zRn4FrBcWi6ntUmWnEwm";
+		string mySecretKey = "rjqQmuDZaO6JtLuW25XPB2D6P0jplBfmuuANCKuu";
+		string myEndpoint = "http://development.openkit.io";
+		
+		OKManager.Configure(myAppKey, mySecretKey, myEndpoint);
 		
 		// If you want to disable the achievements UI, uncomment the line below
 		//OKManager.SetAchievementsEnabled(false);

@@ -13,7 +13,7 @@ public class OKInitializer : OKBaseInitializer
 		string myEndpoint = "http://development.openkit.io";
 		
 		// You must call OKManager.Configure(..)
-		// In a production game you will likely call OKManager.Configure(appKey,SecretKey) and use the default endpoint
+		// In a production game you will likely call OKManager.Configure(appKey,SecretKey) and use the default endpoint which will already be set for you
 		OKManager.Configure(myAppKey, mySecretKey, myEndpoint);
 
 		// If you want to disable the achievements UI, uncomment the line below

@@ -28,6 +28,11 @@ namespace OpenKit
 		{
 			return OKManager.GetCurrentUser();
 		}
+		
+		public override string ToString()
+		{
+			return "OKUser id: " + OKUserID + " Nick: " + UserNick + " FBID: " + FBUserID + " GoogleID: " + GoogleID + " CustomID: " + CustomID;
+		}
 	}
 }
 

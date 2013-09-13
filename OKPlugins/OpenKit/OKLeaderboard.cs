@@ -113,17 +113,22 @@ namespace OpenKit
 		}
 
 		public void GetUsersTopScore(Action<OKScore,OKException> requestHandler)
-		{
-			this.GetUsersTopScore(OKUser.GetCurrentUser().OKUserID, requestHandler);
+		{	
+			this.GetUsersTopScore(OKUser.GetCurrentUser(), requestHandler);
 		}
 
-		private void GetUsersTopScore(int currentUserID, Action<OKScore,OKException> requestHandler)
+		private void GetUsersTopScore(OKUser currentUser, Action<OKScore,OKException> requestHandler)
 		{
+			if(currentUser == null) {
+				requestHandler(null, new OKException("No OKUser logged in, can't get best score"));
+				return;
+			}
 			Dictionary<string, object> requestParams = new Dictionary<string, object>();
 			requestParams.Add("leaderboard_id", this.LeaderboardID);
 			requestParams.Add("leaderboard_range","all_time");
-			requestParams.Add("user_id",currentUserID);
-
+			requestParams.Add("user_id",currentUser.OKUserID);
+			
+			OKLog.Info("About to make network request");
 			OKCloudAsyncRequest.Get("/best_scores/user",requestParams, (JSONObject responseObj, OKCloudException e) => {
 				if(e == null) {
 					if(responseObj.type == JSONObject.Type.OBJECT) {

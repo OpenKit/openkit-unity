@@ -90,7 +90,7 @@ namespace OpenKit.Native
 			else {
 				OKUser user = new OKUser();
 				user.OKUserID = okID;
-				user.userNick = OKAndroidPlugin.CallStatic<string>("getCurrentUserNick");
+				user.UserNick = OKAndroidPlugin.CallStatic<string>("getCurrentUserNick");
 				user.FBUserID = OKAndroidPlugin.CallStatic<string>("getCurrentUserFBID");
 				OKLog.Info("Current user: " + user);
 				return user;

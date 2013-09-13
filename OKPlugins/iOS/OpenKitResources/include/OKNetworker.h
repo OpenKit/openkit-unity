@@ -4,7 +4,11 @@
 
 #import <Foundation/Foundation.h>
 
+#define OK_UNSUBSCRIBED_USER_ERROR_CODE 410
+
 @interface OKNetworker : NSObject
+
++(int)getStatusCodeFromAFNetworkingError:(NSError*)error;
 
 + (void)requestWithMethod:(NSString *)method
                      path:(NSString *)path

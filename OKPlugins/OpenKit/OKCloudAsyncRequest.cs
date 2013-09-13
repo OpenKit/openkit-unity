@@ -11,10 +11,18 @@ namespace OpenKit
 {
 	public class OKCloudAsyncRequest
 	{
+		private static string OPENKIT_SERVER_VERSION = "v1";
+		
 		private static string endpoint;
 		public static string GetEndpoint()
 		{
-			return OKManager.Endpoint;
+			string BaseEndpoint = OKManager.Endpoint;
+			
+			if(BaseEndpoint.EndsWith("/")) {
+				return BaseEndpoint + OPENKIT_SERVER_VERSION;
+			} else {
+				return BaseEndpoint + "/" + OPENKIT_SERVER_VERSION;
+			}	
 		}
 
 		public static string GetAppKey()

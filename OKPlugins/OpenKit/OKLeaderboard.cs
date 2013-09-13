@@ -128,7 +128,6 @@ namespace OpenKit
 			requestParams.Add("leaderboard_range","all_time");
 			requestParams.Add("user_id",currentUser.OKUserID);
 			
-			OKLog.Info("About to make network request");
 			OKCloudAsyncRequest.Get("/best_scores/user",requestParams, (JSONObject responseObj, OKCloudException e) => {
 				if(e == null) {
 					if(responseObj.type == JSONObject.Type.OBJECT) {

@@ -120,48 +120,6 @@ public class OKDemoScene : MonoBehaviour {
 		});
 	}
 
-
-	void StoreSampleDictionary()
-	{
-		Dictionary<string, object> x = new Dictionary<string, object>();
-		x.Add("prop1", "Foo!");
-		x.Add("prop2", 99);
-
-		ArrayList arr = new ArrayList();
-		arr.Add("Hello");
-		arr.Add(-99);
-		x.Add("prop3", arr);
-
-		OKCloud.Set(x, "keyDict", (OKCloudException err) =>	{
-			if (err == null) {
-				OKLog.Info("Stored Dictionary!");
-			} else {
-				OKLog.Info("Error storing dictionary: " + err);
-			}
-		});
-	}
-
-
-	void RetrieveSampleDictionary()
-	{
-		OKCloud.Get("keyDict", (object obj, OKCloudException err) =>
-		{
-			OKLog.Info("In get dictionary handler! Obj is of class: " + obj.GetType().Name);
-			Dictionary<string,object> dict = (Dictionary<string,object>)obj;
-			if (err == null) {
-				OKLog.Info("Object for property1:\nclass: " + dict["prop1"].GetType().Name + "\nvalue: " + dict["prop1"]);
-				OKLog.Info("Object for property2:\nclass: " + dict["prop2"].GetType().Name + "\nvalue: " + dict["prop2"]);
-				OKLog.Info("Object for property3:\nclass: " + dict["prop3"].GetType().Name);
-				ArrayList arr = (ArrayList)dict["prop3"];
-				OKLog.Info("Elements of array:");
-				OKLog.Info("Element 0, class: " + arr[0].GetType().Name + " value: " + arr[0]);
-				OKLog.Info("Element 1, class: " + arr[1].GetType().Name + " value: " + arr[1]);
-			} else {
-				OKLog.Info("Error fetching dictionary: " + err);
-			}
-		});
-	}
-
 	// OKScore with meta document API (this stuff will make it into SDK in time):
 	protected class OKGhostScoreLoader
 	{
@@ -309,7 +267,7 @@ public class OKDemoScene : MonoBehaviour {
 		if(GUILayout.Button("Unlock Achievement", h)) {
 			UnlockSampleAchievement();
 		}
-
+		/*
 		if(GUILayout.Button("Store dictionary", h)) {
 			StoreSampleDictionary();
 		}
@@ -317,7 +275,7 @@ public class OKDemoScene : MonoBehaviour {
 		if(GUILayout.Button("Retrieve Dictionary", h)) {
 			RetrieveSampleDictionary();
 		}
-
+		 */
 
 		if(GUILayout.Button("Logout from OpenKit", h)) {
 			OKManager.LogoutCurrentUserFromOpenKit();

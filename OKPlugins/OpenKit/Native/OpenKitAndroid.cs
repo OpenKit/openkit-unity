@@ -91,7 +91,6 @@ namespace OpenKit.Native
 				user.OKUserID = okID;
 				user.userNick = OKAndroidPlugin.CallStatic<string>("getCurrentUserNick");
 				user.FBUserID = OKAndroidPlugin.CallStatic<long>("getCurrentUserFBID");
-				user.twitterUserID = OKAndroidPlugin.CallStatic<long>("getCurrentUserTwitterID");
 				return user;
 			}
 		}

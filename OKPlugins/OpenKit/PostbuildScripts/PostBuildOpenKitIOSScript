@@ -1,0 +1,222 @@
+#!/usr/bin/perl
+
+
+$installPath = $ARGV[0];
+$FacebookAppID = $ARGV[1];
+$UnityVersion = $ARGV[2];
+
+if ($UnityVersion eq 'Unity3') {
+	$Unity3 = 1;
+} else {
+	$Unity3 = 0;
+}
+
+$currDir = `pwd`;
+chomp $currDir;
+$python_script_path = $currDir."/Assets/Plugins/OpenKit/PostbuildScripts/OpenKitRunner.py";
+$ok_vendor_path     = $currDir."/Assets/Plugins/iOS/OpenKit_Vendor";
+$ok_resources_path  = $currDir."/Assets/Plugins/iOS/OpenKitResources";
+$log_filename = "OpenKitIOSBuildLogFile.txt";
+
+open (LOGFILE, ">$log_filename");
+my $perl_v = $];
+my $python_v = `python --version 2>&1`;
+chomp $python_v;
+$debug_info = <<END;
+In PostBuildOpenKitIOSScript
+---------------------------
+Perl Version: $perl_v
+Python Version: $python_v
+Unity version: $UnityVersion
+Unity 3?: $Unity3
+FacebookAppID: $FacebookAppID
+Install Path: $installPath
+Current Dir: $currDir
+Python Script Path: $python_script_path
+Starting python script...
+---------------------------\n
+END
+print LOGFILE $debug_info;
+close LOGFILE;
+
+# OpenKitRunner.py will add the necessary libraries to the xcode project
+`python \'$python_script_path' \'$installPath\' \'$FacebookAppID\' \'$ok_vendor_path\' \'$ok_resources_path\' `;
+
+open(LOGFILE, ">>$log_filename");
+print LOGFILE "\nBack in PostBuildOpenKitIOSScript\n";
+print LOGFILE "---------------------------\n";
+close (LOGFILE);
+
+open(LOGFILE, ">>$log_filename");
+print LOGFILE "Adding OK calls to lifecycle delegate methods in AppController...\n";
+close (LOGFILE);
+
+opendir(DIR, "$installPath/Classes");
+@FILES= readdir(DIR);
+$AppController = "";
+$foundAppController = 0;
+
+# States:
+#   0: not found
+#   1: found
+#  -1: ignore me now
+$didFinish       = 0;  # did finish launching with options
+$handle1         = 0;  # application handle openURL
+$handle2         = 0;  # application openURL sourceApplication
+$didBecomeActive = 0;  # application didBecomeActive
+$willTerminate   = 0;  # application willTerminate
+$didRegisterForRemote = 0;  # application:didRegisterForRemoteNotificationsWithDeviceToken:
+
+foreach (@FILES) {
+ 	$fileName = $_; 	
+ 	#only look at .m and .mm files
+ 	if($foundAppController == 0 && $fileName =~ /.*[.]m+$/){
+ 		open (SOURCEFILE , "<$installPath/Classes/$fileName");
+ 		my @lines = <SOURCEFILE>; 		
+ 		foreach(@lines){
+ 			$line = $_;
+ 			if( $line =~ /.*-.*\(.*void.*\).*applicationDidBecomeActive.*:.*\(.*UIApplication.*\*.*\).*application.*/){
+ 				$foundAppController = 1;
+ 				$AppController = $fileName;
+			}
+ 		}
+ 		close(SOURCEFILE);
+ 		if($foundAppController == 1){
+ 			open (SOURCEFILE , ">$installPath/Classes/$fileName");
+ 			print SOURCEFILE "#import \"OpenKit.h\"\n";
+ 			foreach(@lines){
+	 			$line = $_;
+	 			print SOURCEFILE $line;
+				if($didFinish == 1){
+					$didFinish = -1;
+					print SOURCEFILE "\t[OKManager sharedManager];\n";
+					print SOURCEFILE "\t[[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];\n"
+				} elsif ($handle1 == 1) {
+					$handle1 = -1;
+					print SOURCEFILE "\t[OKManager handleOpenURL:url];\n";
+				} elsif ($handle2 == 1) {
+					$handle2 = -1;
+					print SOURCEFILE "\t[OKManager handleOpenURL:url];\n";
+				} elsif ($didBecomeActive == 1) {
+					$didBecomeActive = -1;
+					print SOURCEFILE "\t[OKManager handleDidBecomeActive];\n";
+				} elsif ($willTerminate == 1) {
+					$willTerminate = -1;
+					print SOURCEFILE "\t[OKManager handleWillTerminate];\n";
+				} elsif ($didRegisterForRemote == 1) {
+					$didRegisterForRemote = -1;
+					print SOURCEFILE "\t[[OKManager sharedManager] registerToken:deviceToken];\n";
+				} elsif ( $line =~ /.*application:\(UIApplication\*\)application didFinishLaunchingWithOptions:\(NSDictionary\*\)launchOptions.*/ ){
+					$didFinish = 1;	
+				} elsif ( $line =~ /.*-.*\(.*void.*\).*applicationDidBecomeActive.*:.*\(.*UIApplication.*\*.*\).*application.*/ ){
+					$didBecomeActive = 1;	
+				} elsif ( $line =~ /.*-.*\(.*BOOL.*\).*application.*:.*\(.*UIApplication.*\*.*\).*application.*handleOpenURL.*:.*\(.*NSURL.*\*.*\).*url.*/ ){
+					$handle1 = 1;	
+				} elsif ( $line =~ /.*-.*\(.*BOOL.*\).*application.*:.*\(.*UIApplication.*\*.*\).*application.*openURL.*:.*\(.*NSURL.*\*\).*url.*sourceApplication.*:.*\(.*NSString.*\*.*\).*sourceApplication.*annotation.*:.*\(.*id.*\).*annotation.*/ ){
+					$handle2 = 1;	
+				} elsif ( $line =~ /.*-.*\(.*void.*\).*applicationWillTerminate.*:.*\(.*UIApplication.*\*.*\).*application.*/ ){
+					$willTerminate = 1;	
+				} elsif ($Unity3 && $line =~ /.*#.*define.*USE_DISPLAY_LINK_IF_AVAILABLE.*1/) {
+					print SOURCEFILE "// USE_DISPLAY_LINK_IF_AVAILABLE undefined and redefined to 0 by OpenKit postprocessbuild script \n"; 
+					print SOURCEFILE "// to get rid of sticky scrolling on UIViews and UITableViewController in OpenKit leaderboards \n";
+					print SOURCEFILE "#undef USE_DISPLAY_LINK_IF_AVAILABLE \n";
+					print SOURCEFILE "#define USE_DISPLAY_LINK_IF_AVAILABLE 0 \n \n";
+					open(LOGFILE, ">>$log_filename");
+					print LOGFILE "Undef USE_DISPLAY_LINK_IF_AVAILABLE and re-def to 0 for Unity 3 \n";
+					close (LOGFILE);	
+				} elsif ( $line =~ /.*-.*\(.*void.*\).*application.*:.*\(.*UIApplication.*\*.*\).*application.*didRegisterForRemoteNotificationsWithDeviceToken.*:.*\(.*NSData.*\*\).*deviceToken.*/ ) {
+					$didRegisterForRemote = 1;
+				}
+	 		}
+ 			close (SOURCEFILE);
+
+			# Ensure application:didRegisterForRemoteNotifications is implemented
+			if ($didRegisterForRemote == 0) {
+				open (SOURCEFILE , "<$installPath/Classes/$AppController");
+				my @lines = <SOURCEFILE>;
+				close(SOURCEFILE);
+				open (SOURCEFILE , ">$installPath/Classes/$AppController");
+				foreach(@lines){
+					$line = $_;
+					if( $line =~ /.*-.*\(.*void.*\).*applicationDidBecomeActive.*:.*\(.*UIApplication.*\*.*\).*application.*/ ){
+						print SOURCEFILE "-(void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken\n";
+						print SOURCEFILE "{\n";
+						print SOURCEFILE "\t[[OKManager sharedManager] registerToken:deviceToken];\n";
+						print SOURCEFILE "}\n\n";
+					}
+					print SOURCEFILE $line;
+				}
+				close (SOURCEFILE);
+			}
+
+			if ($handle1 == 0) {
+				open (SOURCEFILE , "<$installPath/Classes/$AppController");
+				my @lines = <SOURCEFILE>; 
+				close(SOURCEFILE);
+				open (SOURCEFILE , ">$installPath/Classes/$AppController");
+				foreach(@lines){
+					$line = $_;
+					if( $line =~ /.*-.*\(.*void.*\).*applicationDidBecomeActive.*:.*\(.*UIApplication.*\*.*\).*application.*/ ){
+						print SOURCEFILE "- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url\n";
+						print SOURCEFILE "{\n";
+						print SOURCEFILE "\t[OKManager handleOpenURL:url];\n";
+						print SOURCEFILE "\treturn YES;\n";
+						print SOURCEFILE "}\n\n";
+					}
+					print SOURCEFILE $line;
+				}
+				close (SOURCEFILE);
+			}
+
+			if ($handle2 == 0) {
+				open (SOURCEFILE , "<$installPath/Classes/$AppController");
+				my @lines = <SOURCEFILE>; 
+				close(SOURCEFILE);
+				open (SOURCEFILE , ">$installPath/Classes/$AppController");
+				foreach(@lines){
+					$line = $_;
+					if( $line =~ /.*-.*\(.*void.*\).*applicationDidBecomeActive.*:.*\(.*UIApplication.*\*.*\).*application.*/ ){
+						print SOURCEFILE "- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation\n";
+						print SOURCEFILE "{\n";
+						print SOURCEFILE "\t[OKManager handleOpenURL:url];\n";
+						print SOURCEFILE "\treturn YES;\n";
+						print SOURCEFILE "}\n\n";
+					}
+					print SOURCEFILE $line;
+				}
+				close (SOURCEFILE);
+			}
+		}
+	}
+}
+
+# didFinishLaunchingWithOptions should return YES. Otherwise, handleOpenURL will never be called.
+open(LOGFILE, ">>$log_filename");
+print LOGFILE "Making sure didFinishLaunchingWithOptions returns YES...\n";
+close (LOGFILE);
+
+$insideFunction = 0;
+open (SOURCEFILE , "<$installPath/Classes/$AppController");
+my @lines = <SOURCEFILE>; 
+close(SOURCEFILE);
+open (SOURCEFILE , ">$installPath/Classes/$AppController");
+foreach(@lines){
+	$line = $_;
+	if( $line =~ /.*application:\(UIApplication\*\)application didFinishLaunchingWithOptions:\(NSDictionary\*\)launchOptions.*/){
+		$insideFunction = 1;
+	}
+	if($insideFunction == 1 && $line =~ /.*return.*NO.*/){
+		print SOURCEFILE "\treturn YES;\n";
+		$insideFunction = 0;
+	}else{
+		print SOURCEFILE $line;
+	}
+}
+
+open(LOGFILE, ">>$log_filename");
+print LOGFILE "Done!\n";
+print LOGFILE "---------------------------\n\n\n";
+close (LOGFILE);
+
+close (SOURCEFILE);
+close (DIR);

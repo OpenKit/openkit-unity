@@ -8,13 +8,12 @@ public class OKInitializer : OKBaseInitializer
 	{
 		// Get your appKey and secretKey from the OpenKit developer dashboard.
 		// The keys below are for the openkit sample app.
-		string myAppKey = "zRn4FrBcWi6ntUmWnEwm";
-		string mySecretKey = "rjqQmuDZaO6JtLuW25XPB2D6P0jplBfmuuANCKuu";
-		string myEndpoint = "http://development.openkit.io";
+		string myAppKey = "BspfxiqMuYxNEotLeGLm";
+		string mySecretKey = "2sHQOuqgwzocUdiTsTWzyQlOy1paswYLGjrdRWWf";
 		
 		// You must call OKManager.Configure(..)
-		// In a production game you will likely call OKManager.Configure(appKey,SecretKey) and use the default endpoint which will already be set for you
-		OKManager.Configure(myAppKey, mySecretKey, myEndpoint);
+		// DEVELOPMENT BRANCH SETTINGS! In a production game you would just call OKManager.Configure(appKey, secretKey);
+		OKManager.Configure(myAppKey, mySecretKey, "http://development.openkit.io");
 
 		// If you want to disable the achievements UI, uncomment the line below
 		//OKManager.SetAchievementsEnabled(false);

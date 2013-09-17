@@ -120,6 +120,7 @@ public class OKDemoScene : MonoBehaviour {
 			}
 		});
 	}
+	
 
 	// OKScore with meta document API (this stuff will make it into SDK in time):
 	protected class OKGhostScoreLoader
@@ -176,7 +177,29 @@ public class OKDemoScene : MonoBehaviour {
 			}
 		}
 	}
+	
+	// Get the list of leaderboards in C# (native unity)
+	void GetLeaderboards()
+	{
+		OKLeaderboard.GetLeaderboards((List<OKLeaderboard> leaderboards, OKException exception) => {
 
+				if(leaderboards != null){
+					Debug.Log("Received " + leaderboards.Count + " leaderboards ");
+
+					OKLeaderboard leaderboard = (OKLeaderboard)leaderboards[0];
+
+					Debug.Log("Getting scores for leaderboard ID: " + leaderboard.LeaderboardID + " named: " + leaderboard.Name);
+					leaderboard.GetGlobalScores(1,(List<OKScore> scores, OKException exception2) => {
+						if(exception2 == null)
+						{
+							Debug.Log("Got global scores in the callback");
+						}
+					});
+				} else {
+					Debug.Log("Error getting leaderboards");
+				}
+			});
+	}
 
 	void GetSocialScores()
 	{
@@ -246,7 +269,7 @@ public class OKDemoScene : MonoBehaviour {
 		GUILayout.BeginArea(area);
 		GUILayoutOption h = GUILayout.Height(35);
 
-		GUILayout.Label("Testing OpenKit...");
+		GUILayout.Label("OpenKit Demo Scene");
 
 		if(GUILayout.Button("Show Leaderboards & Achievements", h)) {
 			ShowLeaderboards();
@@ -254,10 +277,11 @@ public class OKDemoScene : MonoBehaviour {
 
 		if(GUILayout.Button("Show Single Leaderboard", h)) {
 			// Instead of showing a list of leaderboards, show a single specified leaderboard ID
-			OKManager.ShowLeaderboard(26);
+			OKManager.ShowLeaderboard(SampleLeaderboardID);;
 		}
 
 		if(GUILayout.Button("Show Login UI", h)) {
+			OKLog.Info("Showing login UI");
 			ShowLoginUI();
 		}
 
@@ -275,24 +299,7 @@ public class OKDemoScene : MonoBehaviour {
 		}
 
 		if(GUILayout.Button("Get Leaderboards in C#", h)) {
-			OKLeaderboard.GetLeaderboards((List<OKLeaderboard> leaderboards, OKException exception) => {
-
-				if(leaderboards != null){
-					Debug.Log("Received " + leaderboards.Count + " leaderboards ");
-
-					OKLeaderboard leaderboard = (OKLeaderboard)leaderboards[0];
-
-					Debug.Log("Getting scores for leaderboard ID: " + leaderboard.LeaderboardID + " named: " + leaderboard.Name);
-					leaderboard.GetGlobalScores(1,(List<OKScore> scores, OKException exception2) => {
-						if(exception2 == null)
-						{
-							Debug.Log("Got global scores in the callback");
-						}
-					});
-				} else {
-					Debug.Log("Error getting leaderboards");
-				}
-			});
+			GetLeaderboards();
 		}
 
 		if(GUILayout.Button("Get social scores", h)) {

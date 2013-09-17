@@ -65,6 +65,8 @@ $handle1         = 0;  # application handle openURL
 $handle2         = 0;  # application openURL sourceApplication
 $didBecomeActive = 0;  # application didBecomeActive
 $willTerminate   = 0;  # application willTerminate
+$didRegisterForRemote = 0;  # application:didRegisterForRemoteNotificationsWithDeviceToken:
+
 foreach (@FILES) {
  	$fileName = $_; 	
  	#only look at .m and .mm files
@@ -88,6 +90,7 @@ foreach (@FILES) {
 				if($didFinish == 1){
 					$didFinish = -1;
 					print SOURCEFILE "\t[OKManager sharedManager];\n";
+					print SOURCEFILE "\t[[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];\n"
 				} elsif ($handle1 == 1) {
 					$handle1 = -1;
 					print SOURCEFILE "\t[OKManager handleOpenURL:url];\n";
@@ -100,6 +103,9 @@ foreach (@FILES) {
 				} elsif ($willTerminate == 1) {
 					$willTerminate = -1;
 					print SOURCEFILE "\t[OKManager handleWillTerminate];\n";
+				} elsif ($didRegisterForRemote == 1) {
+					$didRegisterForRemote = -1;
+					print SOURCEFILE "\t[[OKManager sharedManager] registerToken:deviceToken];\n";
 				} elsif ( $line =~ /.*application:\(UIApplication\*\)application didFinishLaunchingWithOptions:\(NSDictionary\*\)launchOptions.*/ ){
 					$didFinish = 1;	
 				} elsif ( $line =~ /.*-.*\(.*void.*\).*applicationDidBecomeActive.*:.*\(.*UIApplication.*\*.*\).*application.*/ ){
@@ -118,9 +124,30 @@ foreach (@FILES) {
 					open(LOGFILE, ">>$log_filename");
 					print LOGFILE "Undef USE_DISPLAY_LINK_IF_AVAILABLE and re-def to 0 for Unity 3 \n";
 					close (LOGFILE);	
+				} elsif ( $line =~ /.*-.*\(.*void.*\).*application.*:.*\(.*UIApplication.*\*.*\).*application.*didRegisterForRemoteNotificationsWithDeviceToken.*:.*\(.*NSData.*\*\).*deviceToken.*/ ) {
+					$didRegisterForRemote = 1;
 				}
 	 		}
  			close (SOURCEFILE);
+
+			# Ensure application:didRegisterForRemoteNotifications is implemented
+			if ($didRegisterForRemote == 0) {
+				open (SOURCEFILE , "<$installPath/Classes/$AppController");
+				my @lines = <SOURCEFILE>;
+				close(SOURCEFILE);
+				open (SOURCEFILE , ">$installPath/Classes/$AppController");
+				foreach(@lines){
+					$line = $_;
+					if( $line =~ /.*-.*\(.*void.*\).*applicationDidBecomeActive.*:.*\(.*UIApplication.*\*.*\).*application.*/ ){
+						print SOURCEFILE "-(void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken\n";
+						print SOURCEFILE "{\n";
+						print SOURCEFILE "\t[[OKManager sharedManager] registerToken:deviceToken];\n";
+						print SOURCEFILE "}\n\n";
+					}
+					print SOURCEFILE $line;
+				}
+				close (SOURCEFILE);
+			}
 
 			if ($handle1 == 0) {
 				open (SOURCEFILE , "<$installPath/Classes/$AppController");
@@ -159,8 +186,8 @@ foreach (@FILES) {
 				}
 				close (SOURCEFILE);
 			}
- 		}
- 	}
+		}
+	}
 }
 
 # didFinishLaunchingWithOptions should return YES. Otherwise, handleOpenURL will never be called.

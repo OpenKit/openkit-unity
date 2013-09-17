@@ -8,7 +8,7 @@ public class OKDemoScene : MonoBehaviour {
 
 	private const int SampleLeaderboardID = 385;
 	private const String SampleLeaderboardGameCenterCategory = "level1";
-	private const bool submitScoreNatively = true;
+	private bool submitScoreNatively = true;
 	private const int SampleAchievementID = 188;
 	private const int SampleAchievementProgress = 10;
 	
@@ -83,7 +83,11 @@ public class OKDemoScene : MonoBehaviour {
 		OKScore score = new OKScore(lapTime, SampleLeaderboardID);
 		score.displayString = scoreString;
 		score.gameCenterLeaderboardCategory = SampleLeaderboardGameCenterCategory;
-
+		
+		// OKScore can be submitted to OpenKit in C# native unity, or platform native code (e.g. iOS and Android native cdoe).
+		// When possible you should use the platform native versions of OKScore.SubmitScore because both iOS and Android SDKs
+		// have local caching built in, as well as features like submit to GameCenter (iOS).
+		
 		Action<bool, string> nativeHandle = (success, errorMessage) => {
 			if (success) {
 				Debug.Log("Score submitted successfully!");
@@ -100,9 +104,10 @@ public class OKDemoScene : MonoBehaviour {
 			}
 		};
 
-		if (submitScoreNatively) {
+		if(submitScoreNatively) {
 			score.SubmitScoreNatively(nativeHandle);
-		} else {
+		}
+		else {
 			score.MetadataBuffer = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x80 };
 			score.SubmitScore(defaultHandle);
 		}

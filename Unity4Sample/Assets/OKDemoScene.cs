@@ -6,8 +6,12 @@ using System;
 
 public class OKDemoScene : MonoBehaviour {
 
-	private static int SampleLeaderboardID = 25;
-
+	private const int SampleLeaderboardID = 385;
+	private const String SampleLeaderboardGameCenterCategory = "level1";
+	private const bool submitScoreNatively = true;
+	private const int SampleAchievementID = 188;
+	private const int SampleAchievementProgress = 10;
+	
 
 	void Setup()
 	{
@@ -77,8 +81,8 @@ public class OKDemoScene : MonoBehaviour {
 		string scoreString = "" + hour.ToString("00") + ":" + min.ToString("00") + ":" + sec.ToString("00") + "." + hun.ToString("00");
 
 		OKScore score = new OKScore(lapTime, SampleLeaderboardID);
-		score.gameCenterLeaderboardCategory = "openkitlevel3";
-		score.displayString = scoreString + " seconds";
+		score.displayString = scoreString;
+		score.gameCenterLeaderboardCategory = SampleLeaderboardGameCenterCategory;
 
 		Action<bool, string> nativeHandle = (success, errorMessage) => {
 			if (success) {
@@ -96,8 +100,7 @@ public class OKDemoScene : MonoBehaviour {
 			}
 		};
 
-		bool dropToNative = true;
-		if (dropToNative) {
+		if (submitScoreNatively) {
 			score.SubmitScoreNatively(nativeHandle);
 		} else {
 			score.MetadataBuffer = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x80 };
@@ -108,9 +111,7 @@ public class OKDemoScene : MonoBehaviour {
 
 	void UnlockSampleAchievement()
 	{
-		var achievementProgress = 5;
-		var achievementID = 3;
-		OKAchievementScore achievementScore = new OKAchievementScore(achievementProgress, achievementID);
+		OKAchievementScore achievementScore = new OKAchievementScore(SampleAchievementProgress, SampleAchievementID);
 		achievementScore.submitAchievementScore((success, errorMessage) => {
 			if (success) {
 				Debug.Log("Achievement score/progress submitted successfully!");
@@ -267,22 +268,13 @@ public class OKDemoScene : MonoBehaviour {
 		if(GUILayout.Button("Unlock Achievement", h)) {
 			UnlockSampleAchievement();
 		}
-		/*
-		if(GUILayout.Button("Store dictionary", h)) {
-			StoreSampleDictionary();
-		}
-
-		if(GUILayout.Button("Retrieve Dictionary", h)) {
-			RetrieveSampleDictionary();
-		}
-		 */
 
 		if(GUILayout.Button("Logout from OpenKit", h)) {
 			OKManager.LogoutCurrentUserFromOpenKit();
 			OKLog.Info("logout of OpenKit");
 		}
 
-		if(GUILayout.Button("Get Leaderboards", h)) {
+		if(GUILayout.Button("Get Leaderboards in C#", h)) {
 			OKLeaderboard.GetLeaderboards((List<OKLeaderboard> leaderboards, OKException exception) => {
 
 				if(leaderboards != null){
@@ -303,11 +295,11 @@ public class OKDemoScene : MonoBehaviour {
 			});
 		}
 
-		if(GUILayout.Button("Get social scores Friends", h)) {
+		if(GUILayout.Button("Get social scores", h)) {
 			GetSocialScores();
 		}
 
-		if(GUILayout.Button("Get my best score!", h)) {
+		if(GUILayout.Button("Get my best score (in C#)", h)) {
 			GetMyBestScore();
 		}
 

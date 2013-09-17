@@ -12,8 +12,7 @@ public class OKInitializer : OKBaseInitializer
 		string mySecretKey = "2sHQOuqgwzocUdiTsTWzyQlOy1paswYLGjrdRWWf";
 		
 		// You must call OKManager.Configure(..)
-		// DEVELOPMENT BRANCH SETTINGS! In a production game you would just call OKManager.Configure(appKey, secretKey);
-		OKManager.Configure(myAppKey, mySecretKey, "http://development.openkit.io");
+		OKManager.Configure(myAppKey, mySecretKey);
 
 		// If you want to disable the achievements UI, uncomment the line below
 		//OKManager.SetAchievementsEnabled(false);

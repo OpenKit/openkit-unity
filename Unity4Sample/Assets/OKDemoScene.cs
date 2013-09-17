@@ -290,7 +290,7 @@ public class OKDemoScene : MonoBehaviour {
 			ShowLoginUI();
 		}
 
-		if(GUILayout.Button("Submit Score to Level 2 Leaderboard", h)) {
+		if(GUILayout.Button("Submit Score to Level 1 Leaderboard", h)) {
 			SubmitSampleScore();
 		}
 

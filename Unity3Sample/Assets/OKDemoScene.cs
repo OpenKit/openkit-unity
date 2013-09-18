@@ -46,7 +46,11 @@ public class OKDemoScene : MonoBehaviour {
 
 	void ShowLoginUI()
 	{
-		OKManager.ShowLoginToOpenKit();
+		Action loginCallback = () => {
+			Debug.Log("Finished showing OpenKit login UI");
+		};
+		
+		OKManager.ShowLoginToOpenKitWithDismissCallback(loginCallback);
 	}
 
 

@@ -55,6 +55,11 @@ namespace OpenKit.Native
 		{
 			OKAndroidPlugin.CallStatic("showLoginUI");
 		}
+		
+		public void ShowLoginToOpenKit(OKNativeAsyncCall functionCall);
+		{
+			Debug.Log("ShowLogin with callback Not yet implemented on Android");
+		}
 
 
 		public void SubmitScoreComponent(OKScoreSubmitComponent score)

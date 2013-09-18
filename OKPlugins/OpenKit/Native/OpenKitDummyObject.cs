@@ -17,6 +17,7 @@ namespace OpenKit.Native
 		public void SubmitScoreComponent(OKScoreSubmitComponent score) {
 			score.scoreSubmissionFailed("Can't submit scores from Unity editor, native only");
 		}
+		public void ShowLoginToOpenKit(OKNativeAsyncCall functionCall) {}
 		public void SubmitAchievementScore(OKAchievementScore achievementScore) {}
 		public OKUser GetCurrentUser() {return null;}
 		public void LogoutCurrentUserFromOpenKit() {}

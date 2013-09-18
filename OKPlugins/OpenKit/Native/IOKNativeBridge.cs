@@ -15,6 +15,7 @@ namespace OpenKit.Native
 		void ShowLeaderboard(int leaderboardID);
 		void ShowLeaderboardsLandscapeOnly();
 		void ShowLoginToOpenKit();
+		void ShowLoginToOpenKit(OKNativeAsyncCall functionCall);
 		void ShowLeaderboardLandscapeOnly(int leaderboardID);
 		
 		/* Native score submission related methods */

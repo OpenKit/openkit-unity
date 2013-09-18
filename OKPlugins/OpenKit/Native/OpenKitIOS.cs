@@ -30,6 +30,9 @@ namespace OpenKit.Native
 		public static extern void OKBridgeShowLoginUI();
 
 		[DllImport (OK_IPHONE_DLL)]
+		public static extern void OKBridgeShowLoginUIWithBlock(string gameObjectName);
+
+		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeSubmitScoreWithGameCenter(Int64 scoreValue, int leaderboardID, int metadata, string displayString, string gameObjectName, string gamecenterLeaderboardID);
 
 		[DllImport (OK_IPHONE_DLL)]
@@ -88,6 +91,8 @@ namespace OpenKit.Native
 			OKBridgeShowLoginUI();
 		}
 
+
+
 		public void AuthenticateLocalPlayerToGC()
 		{
 			OKBridgeAuthenticateLocalPlayerWithGameCenter();
@@ -139,6 +144,13 @@ namespace OpenKit.Native
 		public void GetFacebookFriendsList(OKNativeAsyncCall functionCall)
 		{
 			OKBridgeGetFacebookFriends(functionCall.GetCallbackGameObjectName());
+		}
+
+		public void ShowLoginToOpenKit(OKNativeAsyncCall functionCall)
+		{
+			//OKBridgeMethod with gameObjectName
+			string gameObjName = functionCall.GetCallbackGameObjectName();
+			OKBridgeShowLoginUIWithBlock(gameObjName);
 		}
 		
 		public void SetAchievementsEnabled(bool enabled)

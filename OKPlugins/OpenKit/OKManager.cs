@@ -120,6 +120,11 @@ namespace OpenKit
 			OKManager.Instance._ShowLoginToOpenKit();
 		}
 		
+		public static void ShowLoginToOpenKitWithDismissCallback(Action callback)
+		{
+			OKLoginRequest.ShowLoginUIWithCallback(callback);
+		}
+		
 		public static void AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary()
 		{
 			OKManager.Instance._AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary();
@@ -275,7 +280,12 @@ namespace OpenKit
 		{
 			nativeBridge.ShowLoginToOpenKit();
 		}
-
+		
+		public void _ShowLoginToOpenKit(OKNativeAsyncCall functionCall)
+		{
+			nativeBridge.ShowLoginToOpenKit(functionCall);
+		}
+		
 		public OKUser _GetCurrentUser()
 		{
 #if UNITY_EDITOR
@@ -328,6 +338,7 @@ namespace OpenKit
 		{
 			nativeBridge.GetFacebookFriendsList(functionCall);
 		}
+		
 		
 		public void _SetAchievementsEnabled(bool enabled)
 		{

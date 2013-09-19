@@ -58,6 +58,13 @@ namespace OpenKit.Native
 
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeGetFacebookFriends(string gameObjectName);
+		
+		[DllImport (OK_IPHONE_DLL)]
+		public static extern bool OKBridgeIsPlayerAuthenticatedWithGameCenter();
+		
+		[DllImport (OK_IPHONE_DLL)]
+		public static extern bool OKBridgeIsCurrentUserAuthenticated();
+		
 
 		public OpenKitIOS() {}
 		
@@ -90,8 +97,17 @@ namespace OpenKit.Native
 		{
 			OKBridgeShowLoginUI();
 		}
-
-
+		
+		
+		public bool IsPlayerAuthenticatedWithGameCenter()
+		{
+			return OKBridgeIsPlayerAuthenticatedWithGameCenter();
+		}
+		
+		public bool IsCurrentUserAuthenticated()
+		{
+			return OKBridgeIsCurrentUserAuthenticated();
+		}
 
 		public void AuthenticateLocalPlayerToGC()
 		{

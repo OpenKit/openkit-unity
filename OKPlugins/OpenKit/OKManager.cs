@@ -333,6 +333,26 @@ namespace OpenKit
 			Debug.Log("AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary ONLY supported on iOS");
 #endif
 		}
+		
+		public bool _IsPlayerAuthenticatedWithGameCenter()
+		{
+#if UNITY_IPHONE && !UNITY_EDITOR
+			return ((OpenKitIOS)nativeBridge).IsPlayerAuthenticatedWithGameCenter();
+#else
+			Debug.Log("_IsPlayerAuthenticatedWithGameCenter ONLY supported on iOS");
+			return false;
+#endif
+		}
+		
+		public bool _IsCurrentUserAuthenticated()
+		{
+#if UNITY_IPHONE && !UNITY_EDITOR
+			return ((OpenKitIOS)nativeBridge).IsCurrentUserAuthenticated();
+#else
+			Debug.Log("IsCurrentUserAuthenticated ONLY supported on iOS");
+			return (OKUser.GetCurrentUser() != null);
+#endif
+		}
 
 		public void _GetFacebookFriendsList(OKNativeAsyncCall functionCall)
 		{

@@ -151,7 +151,12 @@ namespace OpenKit
 		{
 			OKManager.Instance._LogoutCurrentUserFromOpenKit();
 		}
-
+		
+		public static bool IsCurrentUserAuthenticated()
+		{
+			return OKManager.Instance._IsCurrentUserAuthenticated();
+		}
+		
 		public static bool IsEnabled()
 		{
 			return OKManager.Instance._IsEnabled();
@@ -346,12 +351,7 @@ namespace OpenKit
 		
 		public bool _IsCurrentUserAuthenticated()
 		{
-#if UNITY_IPHONE && !UNITY_EDITOR
-			return ((OpenKitIOS)nativeBridge).IsCurrentUserAuthenticated();
-#else
-			Debug.Log("IsCurrentUserAuthenticated ONLY supported on iOS");
-			return (OKUser.GetCurrentUser() != null);
-#endif
+			return nativeBridge.IsCurrentUserAuthenticated();
 		}
 
 		public void _GetFacebookFriendsList(OKNativeAsyncCall functionCall)

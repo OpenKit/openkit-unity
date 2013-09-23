@@ -56,9 +56,9 @@ namespace OpenKit.Native
 			OKAndroidPlugin.CallStatic("showLoginUI");
 		}
 		
-		public void ShowLoginToOpenKit(OKNativeAsyncCall functionCall);
+		public void ShowLoginToOpenKit(OKNativeAsyncCall functionCall)
 		{
-			Debug.Log("ShowLogin with callback Not yet implemented on Android");
+			OKAndroidPlugin.CallStatic("showLoginUIWithCallback",functionCall.GetCallbackGameObjectName());
 		}
 
 
@@ -102,6 +102,11 @@ namespace OpenKit.Native
 			}
 			
 			
+		}
+		
+		public bool IsCurrentUserAuthenticated()
+		{
+			return OKAndroidPlugin.CallStatic<bool>("isCurrentUserAuthenticated");
 		}
 
 		public void LogoutCurrentUserFromOpenKit()

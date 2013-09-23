@@ -26,6 +26,7 @@ namespace OpenKit.Native
 		/* OKUser methods */
 		void LogoutCurrentUserFromOpenKit();
 		OKUser GetCurrentUser();
+		bool IsCurrentUserAuthenticated();
 	}
 }
 

@@ -8,7 +8,7 @@ namespace OpenKit
 {
 	public class OKManager
 	{
-		public const string OPENKIT_SDK_VERSION = "1.0";
+		public const string OPENKIT_SDK_VERSION = "1.0.1";
 		private const string DEFAULT_ENDPOINT = "http://api.openkit.io";
 		
 		private string _LeaderboardListTag = null;
@@ -120,6 +120,11 @@ namespace OpenKit
 			OKManager.Instance._ShowLoginToOpenKit();
 		}
 		
+		public static void ShowLoginToOpenKitWithDismissCallback(Action callback)
+		{
+			OKLoginRequest.ShowLoginUIWithCallback(callback);
+		}
+		
 		public static void AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary()
 		{
 			OKManager.Instance._AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary();
@@ -146,7 +151,12 @@ namespace OpenKit
 		{
 			OKManager.Instance._LogoutCurrentUserFromOpenKit();
 		}
-
+		
+		public static bool IsCurrentUserAuthenticated()
+		{
+			return OKManager.Instance._IsCurrentUserAuthenticated();
+		}
+		
 		public static bool IsEnabled()
 		{
 			return OKManager.Instance._IsEnabled();
@@ -275,7 +285,12 @@ namespace OpenKit
 		{
 			nativeBridge.ShowLoginToOpenKit();
 		}
-
+		
+		public void _ShowLoginToOpenKit(OKNativeAsyncCall functionCall)
+		{
+			nativeBridge.ShowLoginToOpenKit(functionCall);
+		}
+		
 		public OKUser _GetCurrentUser()
 		{
 #if UNITY_EDITOR
@@ -323,11 +338,27 @@ namespace OpenKit
 			Debug.Log("AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary ONLY supported on iOS");
 #endif
 		}
+		
+		public bool _IsPlayerAuthenticatedWithGameCenter()
+		{
+#if UNITY_IPHONE && !UNITY_EDITOR
+			return ((OpenKitIOS)nativeBridge).IsPlayerAuthenticatedWithGameCenter();
+#else
+			Debug.Log("_IsPlayerAuthenticatedWithGameCenter ONLY supported on iOS");
+			return false;
+#endif
+		}
+		
+		public bool _IsCurrentUserAuthenticated()
+		{
+			return nativeBridge.IsCurrentUserAuthenticated();
+		}
 
 		public void _GetFacebookFriendsList(OKNativeAsyncCall functionCall)
 		{
 			nativeBridge.GetFacebookFriendsList(functionCall);
 		}
+		
 		
 		public void _SetAchievementsEnabled(bool enabled)
 		{

@@ -17,6 +17,7 @@ namespace OpenKit.Native
 		public void SubmitScoreComponent(OKScoreSubmitComponent score) {
 			score.scoreSubmissionFailed("Can't submit scores from Unity editor, native only");
 		}
+		public void ShowLoginToOpenKit(OKNativeAsyncCall functionCall) {}
 		public void SubmitAchievementScore(OKAchievementScore achievementScore) {}
 		public OKUser GetCurrentUser() {return null;}
 		public void LogoutCurrentUserFromOpenKit() {}
@@ -25,6 +26,7 @@ namespace OpenKit.Native
 		public void SetAchievementsEnabled(bool enabled) {}
 		public void SetLeaderboardListTag(String tag) {}
 		public void SetGoogleLoginEnabled(bool enabled) {}
+		public bool IsCurrentUserAuthenticated() { OKLog.Error("Can't check for OKUser in unity, must use iOS or Android"); return false;}
 	}
 }
 

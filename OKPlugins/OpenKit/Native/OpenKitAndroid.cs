@@ -55,6 +55,11 @@ namespace OpenKit.Native
 		{
 			OKAndroidPlugin.CallStatic("showLoginUI");
 		}
+		
+		public void ShowLoginToOpenKit(OKNativeAsyncCall functionCall)
+		{
+			OKAndroidPlugin.CallStatic("showLoginUIWithCallback",functionCall.GetCallbackGameObjectName());
+		}
 
 
 		public void SubmitScoreComponent(OKScoreSubmitComponent score)
@@ -97,6 +102,11 @@ namespace OpenKit.Native
 			}
 			
 			
+		}
+		
+		public bool IsCurrentUserAuthenticated()
+		{
+			return OKAndroidPlugin.CallStatic<bool>("isCurrentUserAuthenticated");
 		}
 
 		public void LogoutCurrentUserFromOpenKit()

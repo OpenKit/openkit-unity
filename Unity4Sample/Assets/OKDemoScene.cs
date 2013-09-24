@@ -12,7 +12,12 @@ public class OKDemoScene : MonoBehaviour {
 	private const int SampleAchievementID = 188;
 	private const int SampleAchievementProgress = 10;
 	
-
+	
+	void Start()
+	{
+		Setup();
+	}
+	
 	void Setup()
 	{
 		// Authenticate the local player with GameCenter (iOS only).
@@ -23,6 +28,13 @@ public class OKDemoScene : MonoBehaviour {
 		OKManager.ViewDidAppear     += ViewDidAppear;
 		OKManager.ViewWillDisappear += ViewWillDisappear;
 		OKManager.ViewDidDisappear  += ViewDidDisappear;
+		
+		if(OKManager.IsCurrentUserAuthenticated()) {
+			Debug.Log("Found OpenKit user");
+		} else {
+			ShowLoginUI();
+			Debug.Log("Did not find OpenKit user");
+		}
 	}
 
 	static void ViewWillAppear(object sender, EventArgs e) {
@@ -50,7 +62,10 @@ public class OKDemoScene : MonoBehaviour {
 
 	void ShowLoginUI()
 	{
-		OKManager.ShowLoginToOpenKit();
+		OKLog.Info("Showing login UI");
+		OKManager.ShowLoginToOpenKitWithDismissCallback(() => {
+			OKLog.Info("Finished showing OpenKit login window, in the callback");
+		});
 	}
 
 
@@ -286,7 +301,6 @@ public class OKDemoScene : MonoBehaviour {
 		}
 
 		if(GUILayout.Button("Show Login UI", h)) {
-			OKLog.Info("Showing login UI");
 			ShowLoginUI();
 		}
 

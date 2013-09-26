@@ -64,8 +64,8 @@ log('Added security framework.')
 project.add_file('usr/lib/libsqlite3.0.dylib', tree='SDKROOT')
 log('Added libsqlite3.0.')
 
-project.add_file('System/Library/Frameworks/Twitter.framework', tree='SDKROOT', weak=True)
-log('Added twitter framework.')
+#project.add_file('System/Library/Frameworks/Twitter.framework', tree='SDKROOT', weak=True)
+#log('Added twitter framework.')
 
 project.add_file('System/Library/Frameworks/QuartzCore.framework', tree='SDKROOT')
 log('Added QuartzCore framework.')

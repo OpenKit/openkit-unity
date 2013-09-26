@@ -64,8 +64,8 @@ log('Added security framework.')
 project.add_file('usr/lib/libsqlite3.0.dylib', tree='SDKROOT')
 log('Added libsqlite3.0.')
 
-project.add_file('System/Library/Frameworks/Twitter.framework', tree='SDKROOT', weak=True)
-log('Added twitter framework.')
+#project.add_file('System/Library/Frameworks/Twitter.framework', tree='SDKROOT', weak=True)
+#log('Added twitter framework.')
 
 project.add_file('System/Library/Frameworks/QuartzCore.framework', tree='SDKROOT')
 log('Added QuartzCore framework.')
@@ -85,11 +85,11 @@ log('Added MobileCoreServices framework.')
 shutil.copytree(ok_vendor_path, install_path + '/OpenKit_Vendor');
 log('Copied OpenKit_Vendor directory into install path.')
 
-project.add_folder(install_path + '/OpenKit_Vendor');
-log('Added OpenKit_Vendor folder to Xcode project.')
-
 shutil.copytree(ok_resources_path, install_path + '/OpenKitResources');
 log('Copied OpenKitResources directory into install path.')
+
+project.add_folder(install_path + '/OpenKit_Vendor');
+log('Added OpenKit_Vendor folder to Xcode project.')
 
 project.add_folder(install_path + '/OpenKitResources');
 log('Added OpenKitResources folder to Xcode project.')

@@ -813,7 +813,9 @@ class XcodeProject(PBXDict):
 			if abs_path and tree == 'SOURCE_ROOT' and os.path.isfile(abs_path)\
 				and file_ref.build_phase == 'PBXFrameworksBuildPhase':
 				library_path = os.path.join('$(SRCROOT)', os.path.split(f_path)[0])
-				self.add_library_search_paths([library_path], recursive=False)
+				# suneetsh commented this out because it's causing a linker warning for
+				# our particular use case
+				#self.add_library_search_paths([library_path], recursive=False)
 
 			if abs_path and tree == 'SOURCE_ROOT' and not os.path.isfile(abs_path)\
 				and file_ref.build_phase == 'PBXFrameworksBuildPhase':

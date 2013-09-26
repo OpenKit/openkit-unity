@@ -88,15 +88,19 @@ Replace FB_APP_ID with your app id.
 
 5. Set your OpenKit app key in the start of your game
 
-When your game/app first starts, call **OKManager.AppKey = "YOUR_OPENKIT_APP_ID";** in your script and pass in your OpenKit application ID. You get this app ID from the OpenKit developer dashboard.
+Open up the file **OKInitializer.cs** found in Assets/Plugins/OpenKit and enter your AppKey and SecretKey in the initializer. In your game's main scene, where your game first starts, add the OpenKit prefab found in Assets/Prefabs .
+
+The OpenKit prefab will call OKInitializer.cs and initialize OpenKit. If you want to initialize OpenKit yourself without the prefab, simply instantiate OKInitializer somewhere in your code.
+
+Make sure that you are calling OKManager.Configure(appKey,secretKey) when your game starts.
 
 6. Check out the  OpenKit Demo Scene and Script
 
-There is a demo scene that shows OpenKit login, leaderboards, and submitting scores. 
+There is a demo scene that shows OpenKit login, leaderboards, and submitting scores copied into **Assets/**, called **OKDemoScene** with a corresponding script, **OKDemoScene.cs** .
 
-Check out the scene and script in Assets/Plugins/OpenKit/Demo. Add this scene and build and run on iOS and Android to try it out. 
+Add this scene and build and run on iOS and Android to try it out. 
 
-When running the demo scene, for Facebook authentication to work properly on both iOS and Android, you need to create your own Facebook application and use that application ID. 
+When running the demo scene, for Facebook authentication to work properly on both iOS and Android, you need to create your own Facebook application and use your own application ID. 
 
 7. Build your Unity app
 

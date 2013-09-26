@@ -85,11 +85,11 @@ log('Added MobileCoreServices framework.')
 shutil.copytree(ok_vendor_path, install_path + '/OpenKit_Vendor');
 log('Copied OpenKit_Vendor directory into install path.')
 
-project.add_folder(install_path + '/OpenKit_Vendor');
-log('Added OpenKit_Vendor folder to Xcode project.')
-
 shutil.copytree(ok_resources_path, install_path + '/OpenKitResources');
 log('Copied OpenKitResources directory into install path.')
+
+project.add_folder(install_path + '/OpenKit_Vendor');
+log('Added OpenKit_Vendor folder to Xcode project.')
 
 project.add_folder(install_path + '/OpenKitResources');
 log('Added OpenKitResources folder to Xcode project.')

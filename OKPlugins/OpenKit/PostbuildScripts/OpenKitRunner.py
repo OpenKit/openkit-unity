@@ -44,6 +44,8 @@ elements_to_add = '''
 <array>
  <string>en</string>
 </array>
+<key>UIViewControllerBasedStatusBarAppearance</key>
+<false/>
 '''
 
 plist = plist.replace('<key>', elements_to_add + '<key>', 1)

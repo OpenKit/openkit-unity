@@ -25,8 +25,9 @@ public class OKInitializer : OKBaseInitializer
 		//OKManager.SetGoogleLoginEnabled(false);
 	}
 
-	void Awake()
+	public override void Awake()
 	{
+		base.Awake();
 		SetupOpenKit();
 	}
 }

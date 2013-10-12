@@ -72,7 +72,7 @@ log('Added libsqlite3.0.')
 project.add_file('System/Library/Frameworks/QuartzCore.framework', tree='SDKROOT')
 log('Added QuartzCore framework.')
 
-project.add_file('System/Library/Frameworks/AdSupport.framework', tree='SDKROOT')
+project.add_file('System/Library/Frameworks/AdSupport.framework', tree='SDKROOT', weak=True)
 log('Added AdSupport framework.')
 
 project.add_file('System/Library/Frameworks/Accounts.framework', tree='SDKROOT', weak=True)

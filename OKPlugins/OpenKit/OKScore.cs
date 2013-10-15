@@ -62,7 +62,7 @@ namespace OpenKit
 		public  string MetadataLocation              { get; set; }
 		public  byte[] MetadataBuffer                { get; set; }
 
-		public delegate void DidLoadMetadataHandler(OKScore sender);
+		private OKMetadataRequest _metadataRequest = null;
 
 		public void SubmitScoreNatively(Action<bool,string> callback)
 		{
@@ -87,7 +87,7 @@ namespace OpenKit
 
 			OKManager.SubmitScore(scoreSubmitComponent);
 		}
-		
+
 		// Wrapper method to keep previous API working
 		public void SubmitScore(Action<bool,string> callback)
 		{
@@ -135,17 +135,29 @@ namespace OpenKit
 		{
 		}
 
-		public void LoadMetadataBuffer(DidLoadMetadataHandler handler)
+		public void LoadMetadataBuffer(Action<OKScore> handler)
 		{
 			if (MetadataLocation != null) {
-				var uri     = new Uri(this.MetadataLocation);
-				var client  = new RestClient(uri.GetLeftPart(UriPartial.Authority));
-				var request = new RestRequest(uri, Method.GET);
-
-				client.ExecuteAsync(request, response => {
-					this.MetadataBuffer = response.RawBytes;
+				_metadataRequest = OKMetadataRequest.Get(MetadataLocation, res => {
+					if (res.Status == OKIOStatus.Succeeded) {
+						MetadataBuffer = res.Raw;
+					}
 					handler(this);
+					_metadataRequest = null;
 				});
+			}
+		}
+
+		public bool MetadataRequestInProgress()
+		{
+			return (_metadataRequest != null);
+		}
+
+		public void CancelMetadataRequest()
+		{
+			if (MetadataRequestInProgress()) {
+				OKLog.Info("Cancelling the request for metadata of score: " + ScoreID);
+				_metadataRequest.Cancel();
 			}
 		}
 

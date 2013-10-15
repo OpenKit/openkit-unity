@@ -8,7 +8,7 @@ namespace OpenKit
 {
 	public class OKManager
 	{
-		public const string OPENKIT_SDK_VERSION = "1.0.2";
+		public const string OPENKIT_SDK_VERSION = "1.0.3";
 		private const string DEFAULT_ENDPOINT = "http://api.openkit.io";
 
 		private string _LeaderboardListTag = null;

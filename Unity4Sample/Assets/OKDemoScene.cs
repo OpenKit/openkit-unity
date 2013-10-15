@@ -142,58 +142,107 @@ public class OKDemoScene : MonoBehaviour {
 	}
 	
 
-	// OKScore with meta document API (this stuff will make it into SDK in time):
-	protected class OKGhostScoreLoader
+	public class OKGhostScoresResponse : OKIOResponse
 	{
-		private List<OKScore> _scores;
-		public List<OKScore> Scores		{ get { return _scores; } }
-		public delegate void GhostScoresDidLoadHandler(OKGhostScoreLoader sender);
+		public List<OKScore> scores;
+	}
 
-		private GhostScoresDidLoadHandler _handler;
-		private int LeaderboardID { get; set; }
-		private List<OKScore> _pending;
+	protected class GhostScoresRequest
+	{
+		public          bool Cancelled   { get; private set; }
+		public OKLeaderboard Leaderboard { get; private set; }
 
-		public OKGhostScoreLoader(int leaderboardID)
+		private OKRequestHandler<OKGhostScoresResponse> _didFinish;
+		private OKGhostScoresResponse _response;
+		private List<OKScore> _pendingBufferLoad;
+
+		#region Public API
+		public GhostScoresRequest(OKLeaderboard leaderboard)
 		{
-			this.LeaderboardID = leaderboardID;
-			_pending = new List<OKScore>();
+			Leaderboard = leaderboard;
+			_pendingBufferLoad = new List<OKScore>();
+			_response = new OKGhostScoresResponse();
 		}
 
-		// TODO: This should return a reference to an obj that can cancel all requests.
-		public void ExecuteAsync(GhostScoresDidLoadHandler handler)
+		public void Get(OKRequestHandler<OKGhostScoresResponse> handler)
 		{
-			_handler = handler;
-			OKLeaderboard leaderboard = new OKLeaderboard();
-			leaderboard.LeaderboardID = this.LeaderboardID;
-
-			// Kick off the chain...
-			leaderboard.GetFacebookFriendsScores(FacebookFriendsScoresDidLoad);
+			_didFinish = handler;
+			OKFacebookUtilities.GetFacebookFriendsList(FriendsListDidLoad);   // No request handle for this.
 		}
 
+		public void Cancel()
+		{
+			Cancelled = true;
+			foreach (OKScore score in _pendingBufferLoad) {
+				score.CancelMetadataRequest();
+			}
+			_pendingBufferLoad.Clear();
+			_response.Status = OKIOStatus.Cancelled;
+			DoDidFinish();
+
+		}
+		#endregion
+
+		private void DoDidFinish()
+		{
+			if (_didFinish != null) {
+				_didFinish(_response);
+			}
+		}
+
+
+		private void FriendsListDidLoad(List<string> ids, OKException e)
+		{
+			if (Cancelled)		// delegate protection
+				return;
+
+			if (e != null) {
+				_response.Status = OKIOStatus.FailedWithError;
+				_response.Err = new OKException("GhostScoresError: Failed to get FB Friends List.");
+				DoDidFinish();
+				return;
+			}
+
+			// No request handle:
+			Leaderboard.GetFacebookFriendsScores(ids, FriendsScoresDidLoad);
+		}
+
+
+		private void FriendsScoresDidLoad(List<OKScore> scores, OKException e)
+		{
+			if (Cancelled)
+				return;
+
+			if (e != null) {
+				_response.Status = OKIOStatus.FailedWithError;
+				_response.Err = new OKException("GhostScoresError: Failed to get Social Scores.");
+				DoDidFinish();
+				return;
+			}
+
+			foreach (OKScore score in scores) {
+				if (score.MetadataBuffer == null && score.MetadataLocation != null) {
+					_pendingBufferLoad.Add(score);
+					score.LoadMetadataBuffer(ScoreDidLoadMetadata);
+				}
+			}
+
+			_response.scores = scores;
+			if (_pendingBufferLoad.Count == 0) {
+				DoDidFinish();
+			}
+		}
+
+
+		// Make change.
 		private void ScoreDidLoadMetadata(OKScore score)
 		{
-			_pending.Remove(score);
-			if(_pending.Count == 0)
-				_handler(this);
-		}
+			if (Cancelled)
+				return;
 
-		private void FacebookFriendsScoresDidLoad(List<OKScore> scoresList, OKException e)
-		{
-			if(e == null) {
-				_scores = scoresList;
-				foreach (OKScore score in _scores) {
-					if (score.MetadataBuffer == null && score.MetadataLocation != null) {
-						_pending.Add(score);
-						score.LoadMetadataBuffer(this.ScoreDidLoadMetadata);
-					}
-				}
-				Debug.Log("Number of social scores: " + _scores.Count);
-				Debug.Log("Number we need to pull metadata of: " + _pending.Count);
-				if (_pending.Count == 0) {
-					_handler(this);
-				}
-			} else {
-				Debug.Log("Failed to get social scores: " + e.Message);
+			_pendingBufferLoad.Remove(score);
+			if(_pendingBufferLoad.Count == 0) {
+				DoDidFinish();
 			}
 		}
 	}
@@ -221,27 +270,53 @@ public class OKDemoScene : MonoBehaviour {
 			});
 	}
 
-	void GetSocialScores()
+
+	public void CancelGhostRequest(object state)
 	{
-		OKGhostScoreLoader loader = new OKGhostScoreLoader(SampleLeaderboardID);
-		loader.ExecuteAsync((sender) => {
+		GhostScoresRequest request = (GhostScoresRequest)state;
+		request.Cancel();
+	}
 
-			// Do stuff with sender.Scores here.
-			//
-			// At this point, all scores in sender.Scores are guaranteed to
-			// have the metadataBuffer loaded on them.
+	void GetScoresWithMetadata()
+	{
+		var leaderboard = new OKLeaderboard(SampleLeaderboardID);
+		var request = new GhostScoresRequest(leaderboard);
 
-			foreach (OKScore score in sender.Scores) {
-				if(score.MetadataBuffer != null) {
-					UnityEngine.Debug.Log("Writing first five bytes of metadataBuffer for score: " + score.ScoreID);
-					String s;
-					for (int i = 0; i < 5; i++) {
-						s = String.Format("Byte {0} - Hex: {1:X}", i, score.MetadataBuffer[i]);
-						UnityEngine.Debug.Log("Got back: " + s);
-					}
-				}
+		request.Get(response => {
+			switch (response.Status) {
+				case OKIOStatus.Cancelled:
+					OKLog.Info("Cancelled the ghost scores request.");
+					break;
+				case OKIOStatus.FailedWithError:
+					OKLog.Info("Ghost scores request failed with error: " + response.Err.Message);
+					break;
+				case OKIOStatus.Succeeded:
+					OKLog.Info("Ghost ghost scores!");
+					WriteMetadata(response.scores);
+					break;
 			}
 		});
+
+		// Cancel the request anytime with:
+		// request.Cancel();
+
+		// new System.Threading.Timer(CancelGhostRequest, request, 150, -1);
+	}
+
+	private void WriteMetadata(List<OKScore> scores)
+	{
+		foreach (OKScore score in scores) {
+			if (score.MetadataBuffer == null) {
+				OKLog.Info("Score does not have a metadata buffer: " +  score.ScoreID);
+				continue;
+			}
+			OKLog.Info("Writing first five bytes of metadataBuffer for score: " + score.ScoreID);
+			String s;
+			for (int i = 0; i < 5; i++) {
+				s = String.Format("Byte {0} - Hex: {1:X}", i, score.MetadataBuffer[i]);
+				OKLog.Info("Got back: " + s);
+			}
+		}
 	}
 
 	void GetMyBestScore()
@@ -321,8 +396,8 @@ public class OKDemoScene : MonoBehaviour {
 			GetLeaderboards();
 		}
 
-		if(GUILayout.Button("Get social scores", h)) {
-			GetSocialScores();
+		if(GUILayout.Button("Get scores with metadata", h)) {
+			GetScoresWithMetadata();
 		}
 
 		if(GUILayout.Button("Get my best score (in C#)", h)) {

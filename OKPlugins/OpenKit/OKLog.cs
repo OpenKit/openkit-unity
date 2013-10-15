@@ -13,11 +13,11 @@ namespace OpenKit {
 
 		// [Conditional("DEBUG")]
 		public static void Info(string msg) {
-			System.Console.WriteLine("OKUnity {0} {1}", StackInfo(), msg);
+			System.Console.WriteLine("OpenKit:Unity:Info {0}", msg);
 		}
 
 		public static void Error(string msg) {
-			System.Console.WriteLine("OKUnity ERROR {0} {1}", StackInfo(), msg);
+			System.Console.WriteLine("OpenKit:Unity:Error {0} {1}", StackInfo(), msg);
 		}
 
 		protected static string StackInfo() {

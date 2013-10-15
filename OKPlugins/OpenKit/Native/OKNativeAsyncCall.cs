@@ -41,12 +41,12 @@ namespace OpenKit
 
 		// This method should be overridden
 		public virtual void CallNativeFunction(OKNativeAsyncCall dynamicGameObject) {
-			Debug.Log("OKNativeAsyncCall callNativeFunction called instead of deriving class! Make sure you override callNativeFunction!");
+			Debug.LogError("OKNativeAsyncCall callNativeFunction called instead of deriving class! Make sure you override callNativeFunction!");
 		}
 
 		public void asyncCallSucceeded(string paramString)
 		{
-			Debug.Log("asyncCallSucceeded");
+			OKLog.Info("asyncCallSucceeded");
 			if(functionCallback != null) {
 				functionCallback(true,paramString);
 			}
@@ -56,7 +56,7 @@ namespace OpenKit
 		public void asyncCallFailed(string errorString)
 		{
 
-			Debug.Log("asyncCallFailed: " + errorString);
+			OKLog.Error("asyncCallFailed: " + errorString);
 			if(functionCallback != null) {
 				functionCallback(false, errorString);
 			}

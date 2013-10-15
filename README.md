@@ -2,12 +2,19 @@ Important
 =========
 
 After cloning the repo, run the following command from the root directory: 
+
 ```
 $ ./link.pl
 ```
 
-When you build and run, please make the build directory "Xcode", as that is
-included in the gitignore.
+
+Tips
+====
+* When you build and run, please make the build directory "Xcode", as that is
+included in the .gitignore.
+
+* To see OpenKit output when running in the Unity Editor: `$ tail -f ~/Library/Logs/Unity/Editor.log | grep OpenKit`
+
 
 Integrate OpenKit into your Unity Project
 =========================================

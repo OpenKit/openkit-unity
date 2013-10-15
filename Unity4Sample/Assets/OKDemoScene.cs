@@ -28,29 +28,29 @@ public class OKDemoScene : MonoBehaviour {
 		OKManager.ViewDidAppear     += ViewDidAppear;
 		OKManager.ViewWillDisappear += ViewWillDisappear;
 		OKManager.ViewDidDisappear  += ViewDidDisappear;
-		
+
 		if(OKManager.IsCurrentUserAuthenticated()) {
-			Debug.Log("Found OpenKit user");
+			OKLog.Info("Found OpenKit user");
 		} else {
 			ShowLoginUI();
-			Debug.Log("Did not find OpenKit user");
+			OKLog.Info("Did not find OpenKit user");
 		}
 	}
 
 	static void ViewWillAppear(object sender, EventArgs e) {
-		Debug.Log("OK ViewWillAppear");
+		OKLog.Info("OK ViewWillAppear");
 	}
 
 	static void ViewWillDisappear(object sender, EventArgs e) {
-		Debug.Log("OK ViewWillDisappear");
+		OKLog.Info("OK ViewWillDisappear");
 	}
 
 	static void ViewDidAppear(object sender, EventArgs e) {
-		Debug.Log("OK ViewDidAppear");
+		OKLog.Info("OK ViewDidAppear");
 	}
 
 	static void ViewDidDisappear(object sender, EventArgs e) {
-		Debug.Log("OK ViewDidDisappear");
+		OKLog.Info("OK ViewDidDisappear");
 	}
 
 
@@ -71,8 +71,8 @@ public class OKDemoScene : MonoBehaviour {
 
 	// Notes about posting a score:
 	//
-	// If the user is not logged in, the score will not be submitted successfully. 
-	// 
+	// If the user is not logged in, the score will not be submitted successfully.
+	//
 	// When submitting a score natively, if the score submission fails, the score is cached locally on the device and resubmitted
 	// when the user logs in or next time the app loads, whichever comes first.
 	//
@@ -102,20 +102,20 @@ public class OKDemoScene : MonoBehaviour {
 		// OKScore can be submitted to OpenKit in C# native unity, or platform native code (e.g. iOS and Android native cdoe).
 		// When possible you should use the platform native versions of OKScore.SubmitScore because both iOS and Android SDKs
 		// have local caching built in, as well as features like submit to GameCenter (iOS).
-		
+
 		Action<bool, string> nativeHandle = (success, errorMessage) => {
 			if (success) {
-				Debug.Log("Score submitted successfully!");
+				OKLog.Info("Score submitted successfully!");
 			} else {
-				Debug.Log("Score did not submit. Error: " + errorMessage);
+				OKLog.Info("Score did not submit. Error: " + errorMessage);
 			}
 		};
 
 		Action<OKScore, OKException> defaultHandle = (retScore, err) => {
 			if (err == null) {
-				Debug.Log("Score submitted successfully: " + retScore.ToString());
+				OKLog.Info("Score submitted successfully: " + retScore.ToString());
 			} else {
-				Debug.Log("Score post failed: " + err.Message);
+				OKLog.Info("Score post failed: " + err.Message);
 			}
 		};
 
@@ -134,9 +134,9 @@ public class OKDemoScene : MonoBehaviour {
 		OKAchievementScore achievementScore = new OKAchievementScore(SampleAchievementProgress, SampleAchievementID);
 		achievementScore.submitAchievementScore((success, errorMessage) => {
 			if (success) {
-				Debug.Log("Achievement score/progress submitted successfully!");
+				OKLog.Info("Achievement score/progress submitted successfully!");
 			} else {
-				Debug.Log("Achievement score/progress did not submit. Error: " + errorMessage);
+				OKLog.Info("Achievement score/progress did not submit. Error: " + errorMessage);
 			}
 		});
 	}
@@ -148,19 +148,19 @@ public class OKDemoScene : MonoBehaviour {
 		OKLeaderboard.GetLeaderboards((List<OKLeaderboard> leaderboards, OKException exception) => {
 
 				if(leaderboards != null){
-					Debug.Log("Received " + leaderboards.Count + " leaderboards ");
+					OKLog.Info("Received " + leaderboards.Count + " leaderboards ");
 
 					OKLeaderboard leaderboard = (OKLeaderboard)leaderboards[0];
 
-					Debug.Log("Getting scores for leaderboard ID: " + leaderboard.LeaderboardID + " named: " + leaderboard.Name);
+					OKLog.Info("Getting scores for leaderboard ID: " + leaderboard.LeaderboardID + " named: " + leaderboard.Name);
 					leaderboard.GetGlobalScores(1,(List<OKScore> scores, OKException exception2) => {
 						if(exception2 == null)
 						{
-							Debug.Log("Got global scores in the callback");
+							OKLog.Info("Got global scores in the callback");
 						}
 					});
 				} else {
-					Debug.Log("Error getting leaderboards");
+					OKLog.Info("Error getting leaderboards");
 				}
 			});
 	}
@@ -221,12 +221,12 @@ public class OKDemoScene : MonoBehaviour {
 		leaderboard.GetUsersTopScore((score, err) => {
 			if (err == null) {
 				if (score == null) {
-					UnityEngine.Debug.Log("User does not have a score for this leaderboard.");
+					OKLog.Info("User does not have a score for this leaderboard.");
 				} else {
-					UnityEngine.Debug.Log("Got user's best score: " + score);
+					OKLog.Info("Got user's best score: " + score);
 				}
 			} else {
-				UnityEngine.Debug.Log("Error getting best score: " + err.Message);
+				OKLog.Info("Error getting best score: " + err.Message);
 			}
 		});
 	}

@@ -38,6 +38,11 @@ namespace OpenKit
 
 		public OKLeaderboard() {}
 
+		public OKLeaderboard(int leaderboardId)
+		{
+			this.LeaderboardID = leaderboardId;
+		}
+
 		public OKLeaderboard(JSONObject leaderboardJSON)
 		{
 			this.Name = leaderboardJSON.GetField("name").str;
@@ -150,8 +155,8 @@ namespace OpenKit
 			Action<JSONObject, OKCloudException> internalHandler = (responseObj, e) => {
 				if(e == null) {
 					if(responseObj.type == JSONObject.Type.ARRAY) {
-						Debug.Log("Successfully got " + responseObj.list.Count + " scores");
-						Debug.Log("Respones json: " + responseObj.ToString());
+						OKLog.Info("Successfully got " + responseObj.list.Count + " scores");
+						// OKLog.Info("GetScores Response json: " + responseObj.ToString());
 						List<OKScore> scoresList = new List<OKScore>(responseObj.list.Count);
 
 						for(int x = 0; x < responseObj.list.Count; x++) {
@@ -191,7 +196,7 @@ namespace OpenKit
 			});
 		}
 
-		private void GetFacebookFriendsScores(List<string> fbfriends, Action<List<OKScore>,OKException> requestHandler)
+		public void GetFacebookFriendsScores(List<string> fbfriends, Action<List<OKScore>,OKException> requestHandler)
 		{
 			Dictionary<string, object> requestParams = new Dictionary<string, object>();
 			requestParams.Add("leaderboard_id", this.LeaderboardID);

@@ -43,7 +43,7 @@ namespace OpenKit
 						j.Add(jsonObjectify(element));
 					}
 				} else {
-					UnityEngine.Debug.LogError("Lists of that type are not supported by JSONObjectExt! Fix me.");
+					OKLog.Error("Lists of that type are not supported by JSONObjectExt! Fix me.");
 				}
 			}
 			else if (ot == typeof(Dictionary<string, object>)) {

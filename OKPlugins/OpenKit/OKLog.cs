@@ -1,4 +1,3 @@
-using UnityEngine;
 using System.Collections;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -14,6 +13,10 @@ namespace OpenKit {
 		// [Conditional("DEBUG")]
 		public static void Info(string msg) {
 			System.Console.WriteLine("OpenKit:Unity:Info {0}", msg);
+		}
+
+		public static void Warn(string msg) {
+			System.Console.WriteLine("OpenKit:Unity:Warning {0}", msg);
 		}
 
 		public static void Error(string msg) {

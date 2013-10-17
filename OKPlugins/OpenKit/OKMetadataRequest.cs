@@ -21,15 +21,13 @@ namespace OpenKit
 
 		private Uri _uri;
 		private RestClient _httpClient;
-		private RestRequest _sharpRequest;
 		private OKRequestHandler<OKMetadataResponse> _didFinish;
 		private RestRequestAsyncHandle _killSwitch;
 
 		protected OKMetadataRequest(string url)
 		{
 			_uri          = new Uri(url);
-			_httpClient   = GetHttpClient(_uri);
-			_sharpRequest = new RestRequest(_uri, Method.GET);
+			_httpClient   = GetMetadataClient(_uri);
 		}
 
 
@@ -54,7 +52,9 @@ namespace OpenKit
 				return;
 			}
 
-			_killSwitch = _httpClient.ExecuteAsync(_sharpRequest, response => {
+			var req = new RestRequest(_uri, Method.GET);
+
+			_killSwitch = _httpClient.ExecuteAsync(req, response => {
 				var y = new OKMetadataResponse();
 
 				if (response.ResponseStatus == ResponseStatus.Completed)
@@ -100,18 +100,17 @@ namespace OpenKit
 			}
 		}
 
-
 		// This is a slight optimization. We'll reset it if we see the base url of the
 		// metadata location change.  Otherwise we'll use the same client for each metadata request.
-		private static RestClient __httpClient = null;
-		private static RestClient GetHttpClient(Uri uri)
+		private static RestClient __metadataClient;
+		private static RestClient GetMetadataClient(Uri uri)
 		{
 			string baseUrl = uri.GetLeftPart(UriPartial.Authority);
-			if (__httpClient == null || !__httpClient.BaseUrl.Equals(baseUrl)) {
-				__httpClient = new RestClient(baseUrl);
-				__httpClient.UseSynchronizationContext = false;
+			if (__metadataClient == null || !__metadataClient.BaseUrl.Equals(baseUrl)) {
+				__metadataClient = new RestClient(baseUrl);
+				__metadataClient.UseSynchronizationContext = false;
 			}
-			return __httpClient;
+			return __metadataClient;
 		}
 
 		private static void DoCancel(object state) { ((OKMetadataRequest)state).SynchronizedCancel(); }

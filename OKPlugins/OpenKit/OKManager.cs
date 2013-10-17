@@ -237,12 +237,7 @@ namespace OpenKit
 
 			OKLog.Info("OpenKit configured with endpoint: " + _endpoint);
 
-			nativeBridge.Configure(appKey, secretKey, endpoint);
-		}
-
-		public void _Configure(string appKey, string secretKey)
-		{
-			_Configure(appKey,secretKey,null);
+			nativeBridge.Configure(_appKey, _secretKey, _endpoint);
 		}
 
 		private string _appKey;

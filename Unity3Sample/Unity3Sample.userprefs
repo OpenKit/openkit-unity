@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Editor/OpenKitPostprocessBuildPlayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Plugins/OpenKit/OKInitializer.cs">
     <Files>
       <File FileName="Assets/Plugins/OpenKit/OKInitializer.cs" Line="1" Column="643" />
       <File FileName="Assets/Plugins/OpenKit/Native/IOKNativeBridge.cs" Line="1" Column="1" />
@@ -19,9 +19,7 @@
           </Node>
           <Node name="Assembly-CSharp-Editor" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Editor" expanded="True">
-                <Node name="OpenKitPostprocessBuildPlayer.cs" selected="True" />
-              </Node>
+              <Node name="Editor" expanded="True" />
             </Node>
           </Node>
           <Node name="Assembly-CSharp-firstpass" expanded="True">
@@ -29,6 +27,7 @@
               <Node name="Plugins" expanded="True">
                 <Node name="OpenKit" expanded="True">
                   <Node name="Native" expanded="True" />
+                  <Node name="OKInitializer.cs" selected="True" />
                 </Node>
               </Node>
             </Node>

@@ -55,7 +55,7 @@ The OpenKit iOS plugin uses PostBuildScripts to configure the generated XCode pr
 
 2. Create a Facebook application 
 
-	Follow the guide here to create a Facebook application: http://openkit.io/docs/facebook/ . 
+	Follow the guide here to create a Facebook application: http://openkit.io/documentation/#facebook
 
 	You need a Facebook application to try out OpenKit authentication. Note your Facebook application ID. 
 

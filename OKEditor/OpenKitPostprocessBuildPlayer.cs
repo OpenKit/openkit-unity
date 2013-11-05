@@ -7,13 +7,19 @@ using System.IO;
 
 public class OpenKitPostprocessBuildPlayer : MonoBehaviour {
 
-	// You must set your Facebook application ID below.
-	// For more info, see http://openkit.io/docs/unity/integration.html
-	// The App ID listed below is a sample
-	public static string FacebookAppID = "450333868362300";
-
 	[PostProcessBuild]
 	public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) {
+
+		OKSettings.Load();
+		if (string.IsNullOrEmpty(OKSettings.FacebookAppId)) {
+			UnityEngine.Debug.LogError("Missing Facebook App Id for OpenKit - add it using the OpenKit config menu to configure your app before deploying!");
+		}
+		
+		if(string.IsNullOrEmpty(OKSettings.AppKey) || string.IsNullOrEmpty(OKSettings.AppSecretKey)) {
+			UnityEngine.Debug.LogError("Missing AppKey or SecretKey for OpenKit. You must add it using the OpenKit config menu to configure your app before building");
+			throw new System.ArgumentException("Missing appKey or secretKey for OpenKit");
+		}
+
 #if UNITY_IOS
 		string f = "OpenKitIOSBuildLogFile.txt";
 		string logfile = System.IO.Directory.GetCurrentDirectory() + "/" + f;
@@ -23,7 +29,7 @@ public class OpenKitPostprocessBuildPlayer : MonoBehaviour {
 		Process proc = new Process();
 		proc.EnableRaisingEvents=false;
 		proc.StartInfo.FileName = Application.dataPath + "/Plugins/OpenKit/PostbuildScripts/PostBuildOpenKitIOSScript";
-		proc.StartInfo.Arguments = "'" + pathToBuiltProject + "' '" + FacebookAppID + "'";
+		proc.StartInfo.Arguments = "'" + pathToBuiltProject + "' '" + OKSettings.FacebookAppId + "'";
 		
 		// Add the Unity version as an argument to the postbuild script, use 'Unity3' for all 3.x versions and for
 		// 4 and up use the API to get it

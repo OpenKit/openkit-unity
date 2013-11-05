@@ -6,13 +6,9 @@ public class OKInitializer : OKBaseInitializer
 {
 	void SetupOpenKit()
 	{
-		// Get your appKey and secretKey from the OpenKit developer dashboard.
-		// The keys below are for the openkit sample app.
-		string myAppKey = "BspfxiqMuYxNEotLeGLm";
-		string mySecretKey = "2sHQOuqgwzocUdiTsTWzyQlOy1paswYLGjrdRWWf";
-		
-		// You must call OKManager.Configure(..)
-		OKManager.Configure(myAppKey, mySecretKey);
+		OKSettings.Load();
+		// AppKey and SecretKey are set in the OpenKit menu
+		OKManager.Configure(OKSettings.AppKey, OKSettings.AppSecretKey);
 
 		// If you want to disable the achievements UI, uncomment the line below
 		//OKManager.SetAchievementsEnabled(false);

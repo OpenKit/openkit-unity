@@ -164,6 +164,22 @@ public class OKDemoScene : MonoBehaviour {
 				}
 			});
 	}
+	
+		void GetSocialScores()
+		{
+	
+			OKLeaderboard leaderboard = new OKLeaderboard(SampleLeaderboardID);
+
+			OKLog.Info("Getting scores for leaderboard ID: " + leaderboard.LeaderboardID + " named: " + leaderboard.Name);
+			leaderboard.GetFacebookFriendsScores((List<OKScore> scores, OKException exception2) => {
+				if(exception2 == null) {
+					OKLog.Info("Got facebook friends scores scores in the callback");
+				} else {
+					OKLog.Info("Error getting facebook friends scores: " + exception2);
+				}
+			});
+					
+		}
 
 
 	public void CancelGhostRequest(object state)
@@ -287,17 +303,23 @@ public class OKDemoScene : MonoBehaviour {
 			OKLog.Info("logout of OpenKit");
 		}
 
-		if(GUILayout.Button("Get Leaderboards in C#", h)) {
+		if(GUILayout.Button("Get Leaderboards and global scores in C#", h)) {
 			GetLeaderboards();
+		}
+		
+		if(GUILayout.Button("Get my best score (in C#)", h)) {
+			GetMyBestScore();
+		}
+		
+		if(GUILayout.Button("Get friends scores in C#",h)) {
+			GetSocialScores();
 		}
 
 		if(GUILayout.Button("Get scores with metadata", h)) {
 			GetScoresWithMetadata();
 		}
 
-		if(GUILayout.Button("Get my best score (in C#)", h)) {
-			GetMyBestScore();
-		}
+
 
 		GUILayout.EndArea();
 	}

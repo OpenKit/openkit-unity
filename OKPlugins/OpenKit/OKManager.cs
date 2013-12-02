@@ -143,6 +143,11 @@ namespace OpenKit
 		{
 			OKManager.Instance._LogoutCurrentUserFromOpenKit();
 		}
+		
+		public static void IsPlayerAuthenticatedWithGameCenter()
+		{
+			return OKManager.instance._IsPlayerAuthenticatedWithGameCenter();
+		}
 
 		public static bool IsCurrentUserAuthenticated()
 		{
@@ -179,8 +184,7 @@ namespace OpenKit
 		{
 			OKManager.instance._SetGoogleLoginEnabled(enabled);
 		}
-
-
+		
 
 		// Native events are forwarded here from OKBaseInitializer.  This makes
 		// the API consistent for using OKManager as a configuration point

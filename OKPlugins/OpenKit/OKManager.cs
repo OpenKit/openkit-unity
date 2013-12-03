@@ -144,7 +144,7 @@ namespace OpenKit
 			OKManager.Instance._LogoutCurrentUserFromOpenKit();
 		}
 		
-		public static void IsPlayerAuthenticatedWithGameCenter()
+		public static bool IsPlayerAuthenticatedWithGameCenter()
 		{
 			return OKManager.instance._IsPlayerAuthenticatedWithGameCenter();
 		}

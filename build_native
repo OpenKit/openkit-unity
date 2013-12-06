@@ -7,6 +7,15 @@ function blue
   tput op
 }
 
+function red
+{
+  tput setaf 7; tput setab 1
+  echo "$1"
+  tput op
+}
+
+
+
 IOS_PROJECT="../openkit-ios/OpenKit.xcodeproj"
 ANDROID_SDK_BUILD_FILE="../openkit-android/OpenKitSDK/build.xml"
 ANDROID_UNITY_BUILD_FILE="../openkit-android/UnityAndroid/build.xml" 
@@ -30,26 +39,41 @@ else
 	ANT_TARGET="dist-jar"
 fi
 
+ERROR=0
+
+function check_error
+{
+	if [ $? != 0 ]
+	then
+		red "There was an error with the previous command"
+		ERROR=1
+	fi
+}
+
 
 blue "Building $CONFIG"
 
 blue "Building OpenKitSDK jar $CONFIG"
 ant $ANT_TARGET -f $ANDROID_SDK_BUILD_FILE
+check_error
 
 blue "Building openkit-unity-plugin jar $CONFIG"
 ant $ANT_TARGET -f $ANDROID_UNITY_BUILD_FILE
-
+check_error
 
 blue "Copying Android SDK JARS"
 cp -v ../openkit-android/OpenKitSDK/bin/jars/openkitsdk.jar OKPlugins/Android/
 cp -v ../openkit-android/OpenKitSDK/bin/jars/openkit-unity-plugin.jar OKPlugins/Android/
+check_error
 
 blue "Copying Android Libs files"
 cp -v ../openkit-android/OpenKitSDK/libs/* OKPlugins/Android/
+check_error
 
 blue "Deleting Android res folder and copying Res folder"
 rm -r OKPlugins/Android/res
 cp -r -v ../openkit-android/OpenKitSDK/res OKPlugins/Android/
+check_error
  
 blue "Finished building and copying for Android $CONFIG"
 
@@ -57,27 +81,41 @@ blue "Building iOS $CONFIG"
 
 blue "Cleaning OpenKit Project, all targets"
 xcodebuild -alltargets clean -project $IOS_PROJECT
+check_error
 
 blue "Building OpenKit project, $CONFIG"
 xcodebuild -project $IOS_PROJECT -configuration $CONFIG -target OpenKit
+check_error
 
 blue "Building OpenKitUnity Plugin, $CONFIG"
 xcodebuild -project $IOS_PROJECT -configuration $CONFIG -target OpenKitUnity
+check_error
 
 blue "Copying libOpenKitUnity.a file"
 cp -v $LIB_OPENKIT_UNITY_BUILD_PATH OKPlugins/iOS/
+check_error
 
 blue "Copying libOpenKit.a to Unity project"
 cp -v $LIB_OPENKIT_BUILD_PATH OKPlugins/iOS/ 
+check_error
 
 blue "Deleting include and resources folders"
 rm -r OKPlugins/iOS/OpenKitResources/Resources
 rm -r OKPlugins/iOS/OpenKitResources/include
+check_error
 
 blue "Copying include folder"
 cp -r -v $INCLUDES_FOLDER OKPlugins/iOS/OpenKitResources/include
+check_error
 
 blue "Copying Resources folder"
 cp -r -v $RESOURCES_FOLDER OKPlugins/iOS/OpenKitResources/Resources
+check_error
 
 blue "Finished building $CONFIG"
+
+#Check for any errors
+if [ $ERROR != 0 ]
+then
+	red "There was an error!"
+fi

@@ -3,7 +3,7 @@ using OpenKit;
 
 public class OKBaseInitializer : MonoBehaviour {
 
-	void Awake()
+	public virtual void Awake()
 	{
 		gameObject.name = "OpenKitPrefab";
 		DontDestroyOnLoad(gameObject);

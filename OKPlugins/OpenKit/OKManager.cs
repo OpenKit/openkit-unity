@@ -8,13 +8,10 @@ namespace OpenKit
 {
 	public class OKManager
 	{
-		public const string OPENKIT_SDK_VERSION = "1.0.2";
+		public const string OPENKIT_SDK_VERSION = "1.0.4";
 		private const string DEFAULT_ENDPOINT = "http://api.openkit.io";
-		
+
 		private string _LeaderboardListTag = null;
-		
-		// Synchronization
-		private SynchronizationContext syncContext = null;
 		private static IOKNativeBridge nativeBridge = null;
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,12 +40,7 @@ namespace OpenKit
 #else
 			nativeBridge = new OpenKitDummyObject();
 #endif
-
-			syncContext = SynchronizationContext.Current;
-			if(syncContext == null)
-				OKLog.Info("SynchronizationContext.Current is null.");
-			else
-				OKLog.Info("SynchronizationContext is set.");
+			OKCtx.SetCtx(SynchronizationContext.Current);
 
 			_endpoint = DEFAULT_ENDPOINT;
 		}
@@ -66,12 +58,12 @@ namespace OpenKit
 		{
 			OKManager.Instance._Configure(appKey, secretKey, endpoint);
 		}
-		
+
 		public static void Configure(string appKey, string secretKey)
 		{
 			OKManager.Configure(appKey, secretKey, null);
 		}
-		
+
 		public static string AppKey
 		{
 			get { return OKManager.Instance._AppKey; }
@@ -86,15 +78,15 @@ namespace OpenKit
 		{
 			get { return OKManager.Instance._Endpoint; }
 		}
-		
-		
+
+
 		public static OKUser GetCurrentUser()
 		{
 			return OKManager.Instance._GetCurrentUser();
 		}
-		
+
 		/* METHODS TO SHOW OPENKIT UI */
-		
+
 		public static void ShowLeaderboards()
 		{
 			OKManager.Instance._ShowLeaderboards();
@@ -104,12 +96,12 @@ namespace OpenKit
 		{
 			OKManager.Instance._ShowLeaderboardsLandscapeOnly();
 		}
-		
+
 		public static void ShowLeaderboard(int leaderboardID)
 		{
 			OKManager.instance._ShowLeaderboard(leaderboardID);
 		}
-		
+
 		public static void ShowLeaderboardLandscapeOnly(int aLeaderboardID)
 		{
 			OKManager.instance._ShowLeaderboardLandscapeOnly(aLeaderboardID);
@@ -119,19 +111,19 @@ namespace OpenKit
 		{
 			OKManager.Instance._ShowLoginToOpenKit();
 		}
-		
+
 		public static void ShowLoginToOpenKitWithDismissCallback(Action callback)
 		{
 			OKLoginRequest.ShowLoginUIWithCallback(callback);
 		}
-		
+
 		public static void AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary()
 		{
 			OKManager.Instance._AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary();
 		}
 
 		/* end show UI methods region */
-		
+
 		public static void SubmitScore(OKScoreSubmitComponent score)
 		{
 			OKManager.Instance._SubmitScore(score);
@@ -152,11 +144,16 @@ namespace OpenKit
 			OKManager.Instance._LogoutCurrentUserFromOpenKit();
 		}
 		
+		public static bool IsPlayerAuthenticatedWithGameCenter()
+		{
+			return OKManager.instance._IsPlayerAuthenticatedWithGameCenter();
+		}
+
 		public static bool IsCurrentUserAuthenticated()
 		{
 			return OKManager.Instance._IsCurrentUserAuthenticated();
 		}
-		
+
 		public static bool IsEnabled()
 		{
 			return OKManager.Instance._IsEnabled();
@@ -166,28 +163,27 @@ namespace OpenKit
 		{
 			OKManager.Instance._GetFacebookFriendsList(functionCall);
 		}
-		
+
 		public static void SetAchievementsEnabled(bool enabled)
 		{
 			OKManager.instance._SetAchievementsEnabled(enabled);
 		}
-		
-		
+
+
 		public static void SetLeaderboardListTag(String tag)
 		{
 			OKManager.instance._SetLeaderboardListTag(tag);
 		}
-		
+
 		public string GetLeaderboardListTag()
 		{
 			return _LeaderboardListTag;
 		}
-		
+
 		public static void SetGoogleLoginEnabled(bool enabled)
 		{
 			OKManager.instance._SetGoogleLoginEnabled(enabled);
 		}
-		
 		
 
 		// Native events are forwarded here from OKBaseInitializer.  This makes
@@ -232,7 +228,7 @@ namespace OpenKit
 		/////////////////////////////////////////////////////////////////////////////////////////////////////
 		#region Instance
 		/////////////////////////////////////////////////////////////////////////////////////////////////////
-		
+
 		public void _Configure(string appKey, string secretKey, string endpoint)
 		{
 			_appKey = appKey;
@@ -242,17 +238,12 @@ namespace OpenKit
 			} else {
 				_endpoint = DEFAULT_ENDPOINT;
 			}
-			
+
 			OKLog.Info("OpenKit configured with endpoint: " + _endpoint);
 
-			nativeBridge.Configure(appKey, secretKey, endpoint);
+			nativeBridge.Configure(_appKey, _secretKey, _endpoint);
 		}
-		
-		public void _Configure(string appKey, string secretKey)
-		{
-			_Configure(appKey,secretKey,null);
-		}
-		
+
 		private string _appKey;
 		public string _AppKey
 		{
@@ -270,7 +261,7 @@ namespace OpenKit
 		{
 			get { return _endpoint; }
 		}
-		
+
 		public void _ShowLeaderboards()
 		{
 			nativeBridge.ShowLeaderboards();
@@ -326,7 +317,7 @@ namespace OpenKit
 #if UNITY_IPHONE && !UNITY_EDITOR
 			((OpenKitIOS)nativeBridge).AuthenticateLocalPlayerToGC();
 #else
-			Debug.Log("AuthenticateLocalPlayerWithGameCenter ONLY supported on iOS");
+			OKLog.Info("AuthenticateLocalPlayerWithGameCenter ONLY supported on iOS");
 #endif
 		}
 
@@ -335,20 +326,20 @@ namespace OpenKit
 #if UNITY_IPHONE && !UNITY_EDITOR
 			((OpenKitIOS)nativeBridge).AuthenticateLocalPlayerToGCAndShowUIIfNecessary();
 #else
-			Debug.Log("AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary ONLY supported on iOS");
+			OKLog.Info("AuthenticateLocalPlayerWithGameCenterAndShowGameCenterUIIfNecessary ONLY supported on iOS");
 #endif
 		}
-		
+
 		public bool _IsPlayerAuthenticatedWithGameCenter()
 		{
 #if UNITY_IPHONE && !UNITY_EDITOR
 			return ((OpenKitIOS)nativeBridge).IsPlayerAuthenticatedWithGameCenter();
 #else
-			Debug.Log("_IsPlayerAuthenticatedWithGameCenter ONLY supported on iOS");
+			OKLog.Info("_IsPlayerAuthenticatedWithGameCenter ONLY supported on iOS");
 			return false;
 #endif
 		}
-		
+
 		public bool _IsCurrentUserAuthenticated()
 		{
 			return nativeBridge.IsCurrentUserAuthenticated();
@@ -358,35 +349,35 @@ namespace OpenKit
 		{
 			nativeBridge.GetFacebookFriendsList(functionCall);
 		}
-		
-		
+
+
 		public void _SetAchievementsEnabled(bool enabled)
 		{
 			nativeBridge.SetAchievementsEnabled(enabled);
 		}
-		
+
 		public void _ShowLeaderboard(int aLeaderboardID)
 		{
 			nativeBridge.ShowLeaderboard(aLeaderboardID);
 		}
-		
+
 		public void _ShowLeaderboardLandscapeOnly(int aLeaderboardID)
 		{
 			nativeBridge.ShowLeaderboardLandscapeOnly(aLeaderboardID);
 		}
-		
+
 		public void _SetLeaderboardListTag(String tag)
 		{
 			nativeBridge.SetLeaderboardListTag(tag);
 		}
-		
+
 		public void _SetGoogleLoginEnabled(bool enabled)
 		{
 			nativeBridge.SetGoogleLoginEnabled(enabled);
 		}
-		
-		
-		
+
+
+
 		#endregion
 
 

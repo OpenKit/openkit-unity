@@ -44,6 +44,8 @@ elements_to_add = '''
 <array>
  <string>en</string>
 </array>
+<key>UIViewControllerBasedStatusBarAppearance</key>
+<false/>
 '''
 
 plist = plist.replace('<key>', elements_to_add + '<key>', 1)
@@ -70,7 +72,7 @@ log('Added libsqlite3.0.')
 project.add_file('System/Library/Frameworks/QuartzCore.framework', tree='SDKROOT')
 log('Added QuartzCore framework.')
 
-project.add_file('System/Library/Frameworks/AdSupport.framework', tree='SDKROOT')
+project.add_file('System/Library/Frameworks/AdSupport.framework', tree='SDKROOT', weak=True)
 log('Added AdSupport framework.')
 
 project.add_file('System/Library/Frameworks/Accounts.framework', tree='SDKROOT', weak=True)

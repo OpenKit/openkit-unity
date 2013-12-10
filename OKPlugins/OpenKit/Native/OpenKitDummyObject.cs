@@ -27,6 +27,7 @@ namespace OpenKit.Native
 		public void SetLeaderboardListTag(String tag) {}
 		public void SetGoogleLoginEnabled(bool enabled) {}
 		public bool IsCurrentUserAuthenticated() { OKLog.Error("Can't check for OKUser in unity, must use iOS or Android"); return false;}
+		public bool IsFBSessionOpen() {return false;}
 	}
 }
 

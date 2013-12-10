@@ -27,6 +27,7 @@ namespace OpenKit.Native
 		void LogoutCurrentUserFromOpenKit();
 		OKUser GetCurrentUser();
 		bool IsCurrentUserAuthenticated();
+		bool IsFBSessionOpen();
 	}
 }
 

@@ -132,6 +132,11 @@ namespace OpenKit.Native
 		{
 			OKAndroidPlugin.CallStatic("setGoogleLoginEnabled",enabled);
 		}
+
+		public bool IsFBSessionOpen()
+		{
+			return OKAndroidPlugin.CallStatic<bool>("isFBSessionOpen");
+		}
 	}
 }
 #endif

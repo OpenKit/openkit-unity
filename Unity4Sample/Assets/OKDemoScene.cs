@@ -66,6 +66,8 @@ public class OKDemoScene : MonoBehaviour {
 		OKManager.ShowLoginToOpenKitWithDismissCallback(() => {
 			OKLog.Info("Finished showing OpenKit login window, in the callback");
 		});
+
+		OKLog.Info("Is fb session Open: " + OKManager.IsFBSessionOpen());
 	}
 
 

@@ -64,6 +64,9 @@ namespace OpenKit.Native
 		
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern bool OKBridgeIsCurrentUserAuthenticated();
+
+		[DllImport (OK_IPHONE_DLL)]
+		public static extern bool OKBridgeIsFBSessionOpen();
 		
 
 		public OpenKitIOS() {}
@@ -107,6 +110,11 @@ namespace OpenKit.Native
 		public bool IsCurrentUserAuthenticated()
 		{
 			return OKBridgeIsCurrentUserAuthenticated();
+		}
+
+		public bool IsFBSessionOpen()
+		{
+			return OKBridgeIsFBSessionOpen();
 		}
 
 		public void AuthenticateLocalPlayerToGC()

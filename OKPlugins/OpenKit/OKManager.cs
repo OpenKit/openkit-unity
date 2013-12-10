@@ -184,6 +184,11 @@ namespace OpenKit
 		{
 			OKManager.instance._SetGoogleLoginEnabled(enabled);
 		}
+
+		public static bool IsFBSessionOpen()
+		{
+			return OKManager.instance._IsFBSessionOpen();
+		}
 		
 
 		// Native events are forwarded here from OKBaseInitializer.  This makes
@@ -350,6 +355,10 @@ namespace OpenKit
 			nativeBridge.GetFacebookFriendsList(functionCall);
 		}
 
+		public bool _IsFBSessionOpen()
+		{
+			return nativeBridge.IsFBSessionOpen();
+		}
 
 		public void _SetAchievementsEnabled(bool enabled)
 		{

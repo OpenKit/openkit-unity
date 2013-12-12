@@ -9,8 +9,9 @@ public class OKDemoScene : MonoBehaviour {
 	private const int SampleLeaderboardID = 385;
 	private const String SampleLeaderboardGameCenterCategory = "level1";
 	private bool submitScoreNatively = true;
-	private const int SampleAchievementID = 188;
+	private const int SampleAchievementID = 189;
 	private const int SampleAchievementProgress = 10;
+	private const int SampleAchievementGamecenterID = "achievement2";
 	
 	
 	void Start()
@@ -137,6 +138,11 @@ public class OKDemoScene : MonoBehaviour {
 	void UnlockSampleAchievement()
 	{
 		OKAchievementScore achievementScore = new OKAchievementScore(SampleAchievementProgress, SampleAchievementID);
+
+		// On iOS, we can also support GameCenter achievements with this simple wrapper
+		achievementScore.GameCenterAchievementIdentifier = SampleAchievementGamecenterID;
+		achievementScore.GameCenterAchievementPercentComplete = 1.0;
+
 		achievementScore.submitAchievementScore((success, errorMessage) => {
 			if (success) {
 				OKLog.Info("Achievement score/progress submitted successfully!");
@@ -282,7 +288,7 @@ public class OKDemoScene : MonoBehaviour {
 
 		GUILayout.Label("OpenKit Demo Scene");
 
-		if(GUILayout.Button("Show Leaderboards & Achievements", h)) {
+		if(GUILayout.Button("Show Leaderboards", h)) {
 			ShowLeaderboards();
 		}
 

@@ -13,6 +13,10 @@ namespace OpenKit.Native
 		public void ShowLeaderboards() {}
 		public void ShowLeaderboard(int leaderboardID) {}
 		public void ShowLeaderboardLandscapeOnly(int leaderboardID) {}
+
+		public void ShowAchievements() {}
+		public void ShowAchievementsLandscapeOnly() {}
+
 		public void ShowLoginToOpenKit() {}
 		public void SubmitScoreComponent(OKScoreSubmitComponent score) {
 			score.scoreSubmissionFailed("Can't submit scores from Unity editor, native only");

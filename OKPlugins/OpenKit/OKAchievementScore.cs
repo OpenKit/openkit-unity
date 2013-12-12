@@ -16,7 +16,7 @@ namespace OpenKit
 		public int progress {get; set;}
 		public int OKAchievementID {get; set;}
 		public string GameCenterAchievementIdentifier {get; set;}
-		public float GameCenterAchievementProgress {get; set;}
+		public float GameCenterAchievementPercentComplete {get; set;}
 
 		private Action<bool,string> submitAchievementScoreCallback;
 		private string callbackGameObjectName;

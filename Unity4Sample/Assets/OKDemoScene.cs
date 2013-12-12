@@ -59,7 +59,10 @@ public class OKDemoScene : MonoBehaviour {
 		OKManager.ShowLeaderboards();
 	}
 
-
+	void ShowAchievements()
+	{
+		OKManager.ShowAchievements();
+	}
 	void ShowLoginUI()
 	{
 		OKLog.Info("Showing login UI");
@@ -281,6 +284,10 @@ public class OKDemoScene : MonoBehaviour {
 
 		if(GUILayout.Button("Show Leaderboards & Achievements", h)) {
 			ShowLeaderboards();
+		}
+
+		if(GUILayout.Button("Show Achievements", h)) {
+			ShowAchievements();
 		}
 
 		if(GUILayout.Button("Show Single Leaderboard", h)) {

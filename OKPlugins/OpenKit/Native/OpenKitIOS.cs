@@ -156,7 +156,7 @@ namespace OpenKit.Native
 		}
 		public void SubmitAchievementScore(OKAchievementScore achievementScore)
 		{
-			OKBridgeSubmitAchievementScore(achievementScore.OKAchievementID, achievementScore.progress, achievementScore.GameCenterAchievementIdentifier, achievementScore.GameCenterAchievementProgress, achievementScore.GetCallbackGameObjectName());
+			OKBridgeSubmitAchievementScore(achievementScore.OKAchievementID, achievementScore.progress, achievementScore.GameCenterAchievementIdentifier, achievementScore.GameCenterAchievementPercentComplete, achievementScore.GetCallbackGameObjectName());
 		}
 
 		public OKUser GetCurrentUser()

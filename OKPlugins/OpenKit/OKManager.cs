@@ -112,6 +112,16 @@ namespace OpenKit
 			OKManager.Instance._ShowLoginToOpenKit();
 		}
 
+		public static void ShowAchievements()
+		{
+			OKManager.Instance._ShowAchievements();
+		}
+
+		public static void ShowAchievementsLandscapeOnly()
+		{
+			OKManager.Instance._ShowAchievementsLandscapeOnly();
+		}
+
 		public static void ShowLoginToOpenKitWithDismissCallback(Action callback)
 		{
 			OKLoginRequest.ShowLoginUIWithCallback(callback);
@@ -383,6 +393,16 @@ namespace OpenKit
 		public void _SetGoogleLoginEnabled(bool enabled)
 		{
 			nativeBridge.SetGoogleLoginEnabled(enabled);
+		}
+
+		public void _ShowAchievements()
+		{
+			nativeBridge.ShowAchievements();
+		}
+
+		public void _ShowAchievementsLandscapeOnly()
+		{
+			nativeBridge.ShowAchievementsLandscapeOnly();
 		}
 
 

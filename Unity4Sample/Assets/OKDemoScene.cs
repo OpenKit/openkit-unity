@@ -11,7 +11,7 @@ public class OKDemoScene : MonoBehaviour {
 	private bool submitScoreNatively = true;
 	private const int SampleAchievementID = 189;
 	private const int SampleAchievementProgress = 10;
-	private const int SampleAchievementGamecenterID = "achievement2";
+	private const string SampleAchievementGamecenterID = "achievement2";
 	
 	
 	void Start()
@@ -141,7 +141,7 @@ public class OKDemoScene : MonoBehaviour {
 
 		// On iOS, we can also support GameCenter achievements with this simple wrapper
 		achievementScore.GameCenterAchievementIdentifier = SampleAchievementGamecenterID;
-		achievementScore.GameCenterAchievementPercentComplete = 1.0;
+		achievementScore.GameCenterAchievementPercentComplete = 1.0f;
 
 		achievementScore.submitAchievementScore((success, errorMessage) => {
 			if (success) {

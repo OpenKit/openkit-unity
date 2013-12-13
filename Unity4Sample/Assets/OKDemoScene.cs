@@ -9,9 +9,6 @@ public class OKDemoScene : MonoBehaviour {
 	private const int SampleLeaderboardID = 385;
 	private const String SampleLeaderboardGameCenterCategory = "level1";
 	private bool submitScoreNatively = true;
-	private const int SampleAchievementID = 189;
-	private const int SampleAchievementProgress = 10;
-	private const string SampleAchievementGamecenterID = "achievement2";
 	
 	
 	void Start()
@@ -137,11 +134,15 @@ public class OKDemoScene : MonoBehaviour {
 
 	void UnlockSampleAchievement()
 	{
+		int SampleAchievementID = 189;
+		int SampleAchievementProgress = 10;
+		string SampleAchievementGamecenterID = "achievement2";
+
 		OKAchievementScore achievementScore = new OKAchievementScore(SampleAchievementProgress, SampleAchievementID);
 
 		// On iOS, we can also support GameCenter achievements with this simple wrapper
 		achievementScore.GameCenterAchievementIdentifier = SampleAchievementGamecenterID;
-		achievementScore.GameCenterAchievementPercentComplete = 1.0f;
+		achievementScore.GameCenterAchievementPercentComplete = 100.0f;
 
 		achievementScore.submitAchievementScore((success, errorMessage) => {
 			if (success) {
@@ -152,6 +153,19 @@ public class OKDemoScene : MonoBehaviour {
 		});
 	}
 
+	void UnlockSampleGamecenterAchievementOnly()
+	{
+		OKAchievementScore score = new OKAchievementScore();
+		score.GameCenterAchievementIdentifier = "achievement2";
+		score.GameCenterAchievementPercentComplete = 100f;
+		score.submitAchievementScore((success, errorMessage) => {
+			if (success) {
+				OKLog.Info("GC achievement score/progress submitted successfully!");
+			} else {
+				OKLog.Info("GC achievement score/progress did not submit. Error: " + errorMessage);
+			}
+		});
+	}
 
 	// Get the list of leaderboards in C# (native unity)
 	void GetLeaderboards()
@@ -334,7 +348,9 @@ public class OKDemoScene : MonoBehaviour {
 			GetScoresWithMetadata();
 		}
 
-
+		if(GUILayout.Button("Unlock GC Achievement Only", h)) {
+			UnlockSampleGamecenterAchievementOnly();
+		}
 
 		GUILayout.EndArea();
 	}

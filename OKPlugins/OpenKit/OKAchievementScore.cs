@@ -13,6 +13,8 @@ namespace OpenKit
 			OKAchievementID = achievementID;
 		}
 
+		public OKAchievementScore() {}
+
 		public int progress {get; set;}
 		public int OKAchievementID {get; set;}
 		public string GameCenterAchievementIdentifier {get; set;}
@@ -42,6 +44,8 @@ namespace OpenKit
 			achievementScoreComponent.progress = progress;
 			achievementScoreComponent.OKAchievementID = OKAchievementID;
 			achievementScoreComponent.callbackGameObjectName = gameObjectName;
+			achievementScoreComponent.GameCenterAchievementIdentifier = GameCenterAchievementIdentifier;
+			achievementScoreComponent.GameCenterAchievementPercentComplete = GameCenterAchievementPercentComplete;
 
 			OKManager.SubmitAchievementScore(achievementScoreComponent);
 #endif

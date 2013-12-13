@@ -8,7 +8,7 @@ namespace OpenKit
 {
 	public class OKManager
 	{
-		public const string OPENKIT_SDK_VERSION = "1.0.4";
+		public const string OPENKIT_SDK_VERSION = "1.0.5";
 		private const string DEFAULT_ENDPOINT = "http://api.openkit.io";
 
 		private string _LeaderboardListTag = null;
@@ -112,6 +112,16 @@ namespace OpenKit
 			OKManager.Instance._ShowLoginToOpenKit();
 		}
 
+		public static void ShowAchievements()
+		{
+			OKManager.Instance._ShowAchievements();
+		}
+
+		public static void ShowAchievementsLandscapeOnly()
+		{
+			OKManager.Instance._ShowAchievementsLandscapeOnly();
+		}
+
 		public static void ShowLoginToOpenKitWithDismissCallback(Action callback)
 		{
 			OKLoginRequest.ShowLoginUIWithCallback(callback);
@@ -183,6 +193,11 @@ namespace OpenKit
 		public static void SetGoogleLoginEnabled(bool enabled)
 		{
 			OKManager.instance._SetGoogleLoginEnabled(enabled);
+		}
+
+		public static bool IsFBSessionOpen()
+		{
+			return OKManager.instance._IsFBSessionOpen();
 		}
 		
 
@@ -350,6 +365,10 @@ namespace OpenKit
 			nativeBridge.GetFacebookFriendsList(functionCall);
 		}
 
+		public bool _IsFBSessionOpen()
+		{
+			return nativeBridge.IsFBSessionOpen();
+		}
 
 		public void _SetAchievementsEnabled(bool enabled)
 		{
@@ -374,6 +393,16 @@ namespace OpenKit
 		public void _SetGoogleLoginEnabled(bool enabled)
 		{
 			nativeBridge.SetGoogleLoginEnabled(enabled);
+		}
+
+		public void _ShowAchievements()
+		{
+			nativeBridge.ShowAchievements();
+		}
+
+		public void _ShowAchievementsLandscapeOnly()
+		{
+			nativeBridge.ShowAchievementsLandscapeOnly();
 		}
 
 

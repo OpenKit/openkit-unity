@@ -13,6 +13,10 @@ namespace OpenKit.Native
 		public void ShowLeaderboards() {}
 		public void ShowLeaderboard(int leaderboardID) {}
 		public void ShowLeaderboardLandscapeOnly(int leaderboardID) {}
+
+		public void ShowAchievements() {}
+		public void ShowAchievementsLandscapeOnly() {}
+
 		public void ShowLoginToOpenKit() {}
 		public void SubmitScoreComponent(OKScoreSubmitComponent score) {
 			score.scoreSubmissionFailed("Can't submit scores from Unity editor, native only");
@@ -27,6 +31,7 @@ namespace OpenKit.Native
 		public void SetLeaderboardListTag(String tag) {}
 		public void SetGoogleLoginEnabled(bool enabled) {}
 		public bool IsCurrentUserAuthenticated() { OKLog.Error("Can't check for OKUser in unity, must use iOS or Android"); return false;}
+		public bool IsFBSessionOpen() {return false;}
 	}
 }
 

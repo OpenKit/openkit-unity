@@ -61,6 +61,15 @@ namespace OpenKit.Native
 			OKAndroidPlugin.CallStatic("showLoginUIWithCallback",functionCall.GetCallbackGameObjectName());
 		}
 
+		public void ShowAchievements() 
+		{
+			OKAndroidPlugin.CallStatic("showAchievements");
+		}
+		public void ShowAchievementsLandscapeOnly() 
+		{
+			OKAndroidPlugin.CallStatic("showAchievements");
+			Debug.Log("ShowAchievementsLandscapeOnly on Android simply displays achievements. To restrict them to landscape only you need to modify AndroidManifest.xml");
+		}
 
 		public void SubmitScoreComponent(OKScoreSubmitComponent score)
 		{
@@ -131,6 +140,11 @@ namespace OpenKit.Native
 		public void SetGoogleLoginEnabled(bool enabled) 
 		{
 			OKAndroidPlugin.CallStatic("setGoogleLoginEnabled",enabled);
+		}
+
+		public bool IsFBSessionOpen()
+		{
+			return OKAndroidPlugin.CallStatic<bool>("isFBSessionOpen");
 		}
 	}
 }

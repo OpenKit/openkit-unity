@@ -9,8 +9,6 @@ public class OKDemoScene : MonoBehaviour {
 	private const int SampleLeaderboardID = 385;
 	private const String SampleLeaderboardGameCenterCategory = "level1";
 	private bool submitScoreNatively = true;
-	private const int SampleAchievementID = 188;
-	private const int SampleAchievementProgress = 10;
 	
 	
 	void Start()
@@ -59,13 +57,18 @@ public class OKDemoScene : MonoBehaviour {
 		OKManager.ShowLeaderboards();
 	}
 
-
+	void ShowAchievements()
+	{
+		OKManager.ShowAchievements();
+	}
 	void ShowLoginUI()
 	{
 		OKLog.Info("Showing login UI");
 		OKManager.ShowLoginToOpenKitWithDismissCallback(() => {
 			OKLog.Info("Finished showing OpenKit login window, in the callback");
 		});
+
+		OKLog.Info("Is fb session Open: " + OKManager.IsFBSessionOpen());
 	}
 
 
@@ -131,7 +134,16 @@ public class OKDemoScene : MonoBehaviour {
 
 	void UnlockSampleAchievement()
 	{
+		int SampleAchievementID = 189;
+		int SampleAchievementProgress = 10;
+		string SampleAchievementGamecenterID = "achievement2";
+
 		OKAchievementScore achievementScore = new OKAchievementScore(SampleAchievementProgress, SampleAchievementID);
+
+		// On iOS, we can also support GameCenter achievements with this simple wrapper
+		achievementScore.GameCenterAchievementIdentifier = SampleAchievementGamecenterID;
+		achievementScore.GameCenterAchievementPercentComplete = 100.0f;
+
 		achievementScore.submitAchievementScore((success, errorMessage) => {
 			if (success) {
 				OKLog.Info("Achievement score/progress submitted successfully!");
@@ -141,6 +153,19 @@ public class OKDemoScene : MonoBehaviour {
 		});
 	}
 
+	void UnlockSampleGamecenterAchievementOnly()
+	{
+		OKAchievementScore score = new OKAchievementScore();
+		score.GameCenterAchievementIdentifier = "achievement2";
+		score.GameCenterAchievementPercentComplete = 100f;
+		score.submitAchievementScore((success, errorMessage) => {
+			if (success) {
+				OKLog.Info("GC achievement score/progress submitted successfully!");
+			} else {
+				OKLog.Info("GC achievement score/progress did not submit. Error: " + errorMessage);
+			}
+		});
+	}
 
 	// Get the list of leaderboards in C# (native unity)
 	void GetLeaderboards()
@@ -277,8 +302,12 @@ public class OKDemoScene : MonoBehaviour {
 
 		GUILayout.Label("OpenKit Demo Scene");
 
-		if(GUILayout.Button("Show Leaderboards & Achievements", h)) {
+		if(GUILayout.Button("Show Leaderboards", h)) {
 			ShowLeaderboards();
+		}
+
+		if(GUILayout.Button("Show Achievements", h)) {
+			ShowAchievements();
 		}
 
 		if(GUILayout.Button("Show Single Leaderboard", h)) {
@@ -318,8 +347,6 @@ public class OKDemoScene : MonoBehaviour {
 		if(GUILayout.Button("Get scores with metadata", h)) {
 			GetScoresWithMetadata();
 		}
-
-
 
 		GUILayout.EndArea();
 	}

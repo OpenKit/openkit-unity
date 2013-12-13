@@ -17,6 +17,9 @@ namespace OpenKit.Native
 		void ShowLoginToOpenKit();
 		void ShowLoginToOpenKit(OKNativeAsyncCall functionCall);
 		void ShowLeaderboardLandscapeOnly(int leaderboardID);
+		void ShowAchievements();
+		void ShowAchievementsLandscapeOnly();
+
 		
 		/* Native score submission related methods */
 		void SubmitScoreComponent(OKScoreSubmitComponent score);
@@ -27,6 +30,7 @@ namespace OpenKit.Native
 		void LogoutCurrentUserFromOpenKit();
 		OKUser GetCurrentUser();
 		bool IsCurrentUserAuthenticated();
+		bool IsFBSessionOpen();
 	}
 }
 

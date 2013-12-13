@@ -64,7 +64,18 @@ namespace OpenKit.Native
 		
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern bool OKBridgeIsCurrentUserAuthenticated();
+
+		[DllImport (OK_IPHONE_DLL)]
+		public static extern bool OKBridgeIsFBSessionOpen();
 		
+		[DllImport (OK_IPHONE_DLL)]
+		public static extern void OKBridgeSubmitAchievementScore(int achievementID, int progress, string GKAchievementID, float GKpercentComplete, string gameObjectName);
+
+		[DllImport (OK_IPHONE_DLL)]
+		public static extern void OKBridgeShowAchievements();
+
+		[DllImport (OK_IPHONE_DLL)]
+		public static extern void OKBridgeShowAchievementsLandscapeOnly();
 
 		public OpenKitIOS() {}
 		
@@ -97,8 +108,17 @@ namespace OpenKit.Native
 		{
 			OKBridgeShowLoginUI();
 		}
+
 		
-		
+		public void ShowAchievements() 
+		{
+			OKBridgeShowAchievements();
+		}
+		public void ShowAchievementsLandscapeOnly() 
+		{
+			OKBridgeShowAchievementsLandscapeOnly();
+		}
+
 		public bool IsPlayerAuthenticatedWithGameCenter()
 		{
 			return OKBridgeIsPlayerAuthenticatedWithGameCenter();
@@ -107,6 +127,11 @@ namespace OpenKit.Native
 		public bool IsCurrentUserAuthenticated()
 		{
 			return OKBridgeIsCurrentUserAuthenticated();
+		}
+
+		public bool IsFBSessionOpen()
+		{
+			return OKBridgeIsFBSessionOpen();
 		}
 
 		public void AuthenticateLocalPlayerToGC()
@@ -131,7 +156,7 @@ namespace OpenKit.Native
 		}
 		public void SubmitAchievementScore(OKAchievementScore achievementScore)
 		{
-			OpenKit.OKLog.Error("Submit achievement score is not yet implemented on iOS");
+			OKBridgeSubmitAchievementScore(achievementScore.OKAchievementID, achievementScore.progress, achievementScore.GameCenterAchievementIdentifier, achievementScore.GameCenterAchievementPercentComplete, achievementScore.GetCallbackGameObjectName());
 		}
 
 		public OKUser GetCurrentUser()
@@ -171,7 +196,7 @@ namespace OpenKit.Native
 		
 		public void SetAchievementsEnabled(bool enabled)
 		{
-			Debug.Log("OpenKit achievements not yet implemented on iOS, so SetAchievementsEnabled is also NYI");
+			Debug.Log("OpenKit achievements on iOS have separate UI components from leaderboards, so this method doesn't do anything on iOS");
 		}
 		
 		public void SetLeaderboardListTag(String tag) 

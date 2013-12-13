@@ -348,10 +348,6 @@ public class OKDemoScene : MonoBehaviour {
 			GetScoresWithMetadata();
 		}
 
-		if(GUILayout.Button("Unlock GC Achievement Only", h)) {
-			UnlockSampleGamecenterAchievementOnly();
-		}
-
 		GUILayout.EndArea();
 	}
 }

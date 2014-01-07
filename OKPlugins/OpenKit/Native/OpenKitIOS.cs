@@ -78,7 +78,7 @@ namespace OpenKit.Native
 		public static extern void OKBridgeShowAchievementsLandscapeOnly();
 		
 		[DllImport (OK_IPHONE_DLL)]
-		public static extern void InitRemoteNotifications();
+		public static extern void OKBridgeInitRemoteNotifications();
 
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeShowLeaderboardsAndAchievements();
@@ -88,7 +88,7 @@ namespace OpenKit.Native
 		public void Configure(string appKey, string secretKey, string endpoint) 
 		{
 			OKBridgeConfigureOpenKit(appKey, secretKey, endpoint);
-			InitRemoteNotifications();
+			OKBridgeInitRemoteNotifications();
 		}
 
 		public void ShowLeaderboards()

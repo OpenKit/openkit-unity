@@ -19,6 +19,7 @@ namespace OpenKit.Native
 		void ShowLeaderboardLandscapeOnly(int leaderboardID);
 		void ShowAchievements();
 		void ShowAchievementsLandscapeOnly();
+		void ShowLeaderboardsAndAchievements();
 
 		
 		/* Native score submission related methods */

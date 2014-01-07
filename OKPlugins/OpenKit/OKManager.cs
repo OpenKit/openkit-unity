@@ -107,6 +107,11 @@ namespace OpenKit
 			OKManager.instance._ShowLeaderboardLandscapeOnly(aLeaderboardID);
 		}
 
+		public static void ShowLeaderboardsAndAchivements()
+		{
+			OKManager.instance._ShowLeaderboardsAndAchievements();
+		}
+
 		public static void ShowLoginToOpenKit()
 		{
 			OKManager.Instance._ShowLoginToOpenKit();
@@ -378,6 +383,11 @@ namespace OpenKit
 		public void _ShowLeaderboard(int aLeaderboardID)
 		{
 			nativeBridge.ShowLeaderboard(aLeaderboardID);
+		}
+
+		public void _ShowLeaderboardsAndAchievements()
+		{
+			nativeBridge.ShowLeaderboardsAndAchievements();
 		}
 
 		public void _ShowLeaderboardLandscapeOnly(int aLeaderboardID)

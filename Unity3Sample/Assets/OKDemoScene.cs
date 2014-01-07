@@ -6,9 +6,16 @@ using System;
 
 public class OKDemoScene : MonoBehaviour {
 
-	private static int SampleLeaderboardID = 26;
-
-
+	private const int SampleLeaderboardID = 385;
+	private const String SampleLeaderboardGameCenterCategory = "level1";
+	private bool submitScoreNatively = true;
+	
+	
+	void Start()
+	{
+		Setup();
+	}
+	
 	void Setup()
 	{
 		// Authenticate the local player with GameCenter (iOS only).
@@ -19,22 +26,29 @@ public class OKDemoScene : MonoBehaviour {
 		OKManager.ViewDidAppear     += ViewDidAppear;
 		OKManager.ViewWillDisappear += ViewWillDisappear;
 		OKManager.ViewDidDisappear  += ViewDidDisappear;
+
+		if(OKManager.IsCurrentUserAuthenticated()) {
+			OKLog.Info("Found OpenKit user");
+		} else {
+			ShowLoginUI();
+			OKLog.Info("Did not find OpenKit user");
+		}
 	}
 
 	static void ViewWillAppear(object sender, EventArgs e) {
-		Debug.Log("OK ViewWillAppear");
+		OKLog.Info("OK ViewWillAppear");
 	}
 
 	static void ViewWillDisappear(object sender, EventArgs e) {
-		Debug.Log("OK ViewWillDisappear");
+		OKLog.Info("OK ViewWillDisappear");
 	}
 
 	static void ViewDidAppear(object sender, EventArgs e) {
-		Debug.Log("OK ViewDidAppear");
+		OKLog.Info("OK ViewDidAppear");
 	}
 
 	static void ViewDidDisappear(object sender, EventArgs e) {
-		Debug.Log("OK ViewDidDisappear");
+		OKLog.Info("OK ViewDidDisappear");
 	}
 
 
@@ -43,21 +57,25 @@ public class OKDemoScene : MonoBehaviour {
 		OKManager.ShowLeaderboards();
 	}
 
-
+	void ShowAchievements()
+	{
+		OKManager.ShowAchievements();
+	}
 	void ShowLoginUI()
 	{
-		Action loginCallback = () => {
-			Debug.Log("Finished showing OpenKit login UI");
-		};
-		
-		OKManager.ShowLoginToOpenKitWithDismissCallback(loginCallback);
+		OKLog.Info("Showing login UI");
+		OKManager.ShowLoginToOpenKitWithDismissCallback(() => {
+			OKLog.Info("Finished showing OpenKit login window, in the callback");
+		});
+
+		OKLog.Info("Is fb session Open: " + OKManager.IsFBSessionOpen());
 	}
 
 
 	// Notes about posting a score:
 	//
-	// If the user is not logged in, the score will not be submitted successfully. 
-	// 
+	// If the user is not logged in, the score will not be submitted successfully.
+	//
 	// When submitting a score natively, if the score submission fails, the score is cached locally on the device and resubmitted
 	// when the user logs in or next time the app loads, whichever comes first.
 	//
@@ -81,29 +99,33 @@ public class OKDemoScene : MonoBehaviour {
 		string scoreString = "" + hour.ToString("00") + ":" + min.ToString("00") + ":" + sec.ToString("00") + "." + hun.ToString("00");
 
 		OKScore score = new OKScore(lapTime, SampleLeaderboardID);
-		score.gameCenterLeaderboardCategory = "openkitlevel3";
-		score.displayString = scoreString + " seconds";
+		score.displayString = scoreString;
+		score.gameCenterLeaderboardCategory = SampleLeaderboardGameCenterCategory;
+		
+		// OKScore can be submitted to OpenKit in C# native unity, or platform native code (e.g. iOS and Android native cdoe).
+		// When possible you should use the platform native versions of OKScore.SubmitScore because both iOS and Android SDKs
+		// have local caching built in, as well as features like submit to GameCenter (iOS).
 
 		Action<bool, string> nativeHandle = (success, errorMessage) => {
 			if (success) {
-				Debug.Log("Score submitted successfully!");
+				OKLog.Info("Score submitted successfully!");
 			} else {
-				Debug.Log("Score did not submit. Error: " + errorMessage);
+				OKLog.Info("Score did not submit. Error: " + errorMessage);
 			}
 		};
 
 		Action<OKScore, OKException> defaultHandle = (retScore, err) => {
 			if (err == null) {
-				Debug.Log("Score submitted successfully: " + retScore.ToString());
+				OKLog.Info("Score submitted successfully: " + retScore.ToString());
 			} else {
-				Debug.Log("Score post failed: " + err.Message);
+				OKLog.Info("Score post failed: " + err.Message);
 			}
 		};
 
-		bool dropToNative = true;
-		if (dropToNative) {
+		if(submitScoreNatively) {
 			score.SubmitScoreNatively(nativeHandle);
-		} else {
+		}
+		else {
 			score.MetadataBuffer = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x80 };
 			score.SubmitScore(defaultHandle);
 		}
@@ -112,136 +134,125 @@ public class OKDemoScene : MonoBehaviour {
 
 	void UnlockSampleAchievement()
 	{
-		var achievementProgress = 5;
-		var achievementID = 3;
-		OKAchievementScore achievementScore = new OKAchievementScore(achievementProgress, achievementID);
+		int SampleAchievementID = 189;
+		int SampleAchievementProgress = 10;
+		string SampleAchievementGamecenterID = "achievement2";
+
+		OKAchievementScore achievementScore = new OKAchievementScore(SampleAchievementProgress, SampleAchievementID);
+
+		// On iOS, we can also support GameCenter achievements with this simple wrapper
+		achievementScore.GameCenterAchievementIdentifier = SampleAchievementGamecenterID;
+		achievementScore.GameCenterAchievementPercentComplete = 100.0f;
+
 		achievementScore.submitAchievementScore((success, errorMessage) => {
 			if (success) {
-				Debug.Log("Achievement score/progress submitted successfully!");
+				OKLog.Info("Achievement score/progress submitted successfully!");
 			} else {
-				Debug.Log("Achievement score/progress did not submit. Error: " + errorMessage);
+				OKLog.Info("Achievement score/progress did not submit. Error: " + errorMessage);
 			}
 		});
 	}
 
-
-	void StoreSampleDictionary()
+	void UnlockSampleGamecenterAchievementOnly()
 	{
-		Dictionary<string, object> x = new Dictionary<string, object>();
-		x.Add("prop1", "Foo!");
-		x.Add("prop2", 99);
-
-		ArrayList arr = new ArrayList();
-		arr.Add("Hello");
-		arr.Add(-99);
-		x.Add("prop3", arr);
-
-		OKCloud.Set(x, "keyDict", (OKCloudException err) =>	{
-			if (err == null) {
-				OKLog.Info("Stored Dictionary!");
+		OKAchievementScore score = new OKAchievementScore();
+		score.GameCenterAchievementIdentifier = "achievement2";
+		score.GameCenterAchievementPercentComplete = 100f;
+		score.submitAchievementScore((success, errorMessage) => {
+			if (success) {
+				OKLog.Info("GC achievement score/progress submitted successfully!");
 			} else {
-				OKLog.Info("Error storing dictionary: " + err);
+				OKLog.Info("GC achievement score/progress did not submit. Error: " + errorMessage);
 			}
 		});
 	}
 
-
-	void RetrieveSampleDictionary()
+	// Get the list of leaderboards in C# (native unity)
+	void GetLeaderboards()
 	{
-		OKCloud.Get("keyDict", (object obj, OKCloudException err) =>
-		{
-			OKLog.Info("In get dictionary handler! Obj is of class: " + obj.GetType().Name);
-			Dictionary<string,object> dict = (Dictionary<string,object>)obj;
-			if (err == null) {
-				OKLog.Info("Object for property1:\nclass: " + dict["prop1"].GetType().Name + "\nvalue: " + dict["prop1"]);
-				OKLog.Info("Object for property2:\nclass: " + dict["prop2"].GetType().Name + "\nvalue: " + dict["prop2"]);
-				OKLog.Info("Object for property3:\nclass: " + dict["prop3"].GetType().Name);
-				ArrayList arr = (ArrayList)dict["prop3"];
-				OKLog.Info("Elements of array:");
-				OKLog.Info("Element 0, class: " + arr[0].GetType().Name + " value: " + arr[0]);
-				OKLog.Info("Element 1, class: " + arr[1].GetType().Name + " value: " + arr[1]);
-			} else {
-				OKLog.Info("Error fetching dictionary: " + err);
-			}
-		});
-	}
+		OKLeaderboard.GetLeaderboards((List<OKLeaderboard> leaderboards, OKException exception) => {
 
-	// OKScore with meta document API (this stuff will make it into SDK in time):
-	protected class OKGhostScoreLoader
-	{
-		private List<OKScore> _scores;
-		public List<OKScore> Scores		{ get { return _scores; } }
-		public delegate void GhostScoresDidLoadHandler(OKGhostScoreLoader sender);
+				if(leaderboards != null){
+					OKLog.Info("Received " + leaderboards.Count + " leaderboards ");
 
-		private GhostScoresDidLoadHandler _handler;
-		private int LeaderboardID { get; set; }
-		private List<OKScore> _pending;
+					OKLeaderboard leaderboard = (OKLeaderboard)leaderboards[0];
 
-		public OKGhostScoreLoader(int leaderboardID)
-		{
-			this.LeaderboardID = leaderboardID;
-			_pending = new List<OKScore>();
-		}
-
-		// TODO: This should return a reference to an obj that can cancel all requests.
-		public void ExecuteAsync(GhostScoresDidLoadHandler handler)
-		{
-			_handler = handler;
-			OKLeaderboard leaderboard = new OKLeaderboard();
-			leaderboard.LeaderboardID = this.LeaderboardID;
-
-			// Kick off the chain...
-			leaderboard.GetFacebookFriendsScores(FacebookFriendsScoresDidLoad);
-		}
-
-		private void ScoreDidLoadMetadata(OKScore score)
-		{
-			_pending.Remove(score);
-			if(_pending.Count == 0)
-				_handler(this);
-		}
-
-		private void FacebookFriendsScoresDidLoad(List<OKScore> scoresList, OKException e)
-		{
-			if(e == null) {
-				_scores = scoresList;
-				foreach (OKScore score in _scores) {
-					if (score.MetadataBuffer == null && score.MetadataLocation != null) {
-						_pending.Add(score);
-						score.LoadMetadataBuffer(this.ScoreDidLoadMetadata);
-					}
+					OKLog.Info("Getting scores for leaderboard ID: " + leaderboard.LeaderboardID + " named: " + leaderboard.Name);
+					leaderboard.GetGlobalScores(1,(List<OKScore> scores, OKException exception2) => {
+						if(exception2 == null)
+						{
+							OKLog.Info("Got global scores in the callback");
+						}
+					});
+				} else {
+					OKLog.Info("Error getting leaderboards");
 				}
-				Debug.Log("Number of social scores: " + _scores.Count);
-				Debug.Log("Number we need to pull metadata of: " + _pending.Count);
-				if (_pending.Count == 0) {
-					_handler(this);
+			});
+	}
+	
+		void GetSocialScores()
+		{
+	
+			OKLeaderboard leaderboard = new OKLeaderboard(SampleLeaderboardID);
+
+			OKLog.Info("Getting scores for leaderboard ID: " + leaderboard.LeaderboardID + " named: " + leaderboard.Name);
+			leaderboard.GetFacebookFriendsScores((List<OKScore> scores, OKException exception2) => {
+				if(exception2 == null) {
+					OKLog.Info("Got facebook friends scores scores in the callback");
+				} else {
+					OKLog.Info("Error getting facebook friends scores: " + exception2);
 				}
-			} else {
-				Debug.Log("Failed to get social scores: " + e.Message);
-			}
+			});
+					
 		}
+
+
+	public void CancelGhostRequest(object state)
+	{
+		GhostScoresRequest request = (GhostScoresRequest)state;
+		request.Cancel();
 	}
 
-
-	void GetSocialScores()
+	void GetScoresWithMetadata()
 	{
-		OKGhostScoreLoader loader = new OKGhostScoreLoader(SampleLeaderboardID);
-		loader.ExecuteAsync((sender) => {
+		var leaderboard = new OKLeaderboard(SampleLeaderboardID);
+		var request = new GhostScoresRequest(leaderboard);
 
-			// Do stuff with sender.Scores here.
-			//
-			// At this point, all scores in sender.Scores are guaranteed to
-			// have the metadataBuffer loaded on them.
-
-			foreach (OKScore score in sender.Scores) {
-				UnityEngine.Debug.Log("Writing first five bytes of metadataBuffer for score: " + score.ScoreID);
-				String s;
-				for (int i = 0; i < 5; i++) {
-					s = String.Format("Byte {0} - Hex: {1:X}", i, score.MetadataBuffer[i]);
-					UnityEngine.Debug.Log("Got back: " + s);
-				}
+		request.Get(response => {
+			switch (response.Status) {
+				case OKIOStatus.Cancelled:
+					OKLog.Info("Cancelled the ghost scores request.");
+					break;
+				case OKIOStatus.FailedWithError:
+					OKLog.Info("Ghost scores request failed with error: " + response.Err.Message);
+					break;
+				case OKIOStatus.Succeeded:
+					OKLog.Info("Ghost ghost scores!");
+					WriteMetadata(response.scores);
+					break;
 			}
 		});
+
+		// Cancel the request anytime with:
+		// request.Cancel();
+
+		// new System.Threading.Timer(CancelGhostRequest, request, 150, -1);
+	}
+
+	private void WriteMetadata(List<OKScore> scores)
+	{
+		foreach (OKScore score in scores) {
+			if (score.MetadataBuffer == null) {
+				OKLog.Info("Score does not have a metadata buffer: " +  score.ScoreID);
+				continue;
+			}
+			OKLog.Info("Writing first five bytes of metadataBuffer for score: " + score.ScoreID);
+			String s;
+			for (int i = 0; i < 5; i++) {
+				s = String.Format("Byte {0} - Hex: {1:X}", i, score.MetadataBuffer[i]);
+				OKLog.Info("Got back: " + s);
+			}
+		}
 	}
 
 	void GetMyBestScore()
@@ -251,12 +262,12 @@ public class OKDemoScene : MonoBehaviour {
 		leaderboard.GetUsersTopScore((score, err) => {
 			if (err == null) {
 				if (score == null) {
-					UnityEngine.Debug.Log("User does not have a score for this leaderboard.");
+					OKLog.Info("User does not have a score for this leaderboard.");
 				} else {
-					UnityEngine.Debug.Log("Got user's best score: " + score);
+					OKLog.Info("Got user's best score: " + score);
 				}
 			} else {
-				UnityEngine.Debug.Log("Error getting best score: " + err.Message);
+				OKLog.Info("Error getting best score: " + err.Message);
 			}
 		});
 	}
@@ -289,22 +300,26 @@ public class OKDemoScene : MonoBehaviour {
 		GUILayout.BeginArea(area);
 		GUILayoutOption h = GUILayout.Height(35);
 
-		GUILayout.Label("Testing OpenKit...");
+		GUILayout.Label("OpenKit Demo Scene");
 
-		if(GUILayout.Button("Show Leaderboards & Achievements", h)) {
+		if(GUILayout.Button("Show Leaderboards", h)) {
 			ShowLeaderboards();
 		}
 
-		if(GUILayout.Button("Show Leaderboards Landscape Only (iOS)", h)) {
-			// For Android, to show Leaderboards landscape only you simply need to modify the AndroidManifest.xml file
-			OKManager.ShowLeaderboardsLandscapeOnly();
+		if(GUILayout.Button("Show Achievements", h)) {
+			ShowAchievements();
+		}
+
+		if(GUILayout.Button("Show Single Leaderboard", h)) {
+			// Instead of showing a list of leaderboards, show a single specified leaderboard ID
+			OKManager.ShowLeaderboard(SampleLeaderboardID);;
 		}
 
 		if(GUILayout.Button("Show Login UI", h)) {
 			ShowLoginUI();
 		}
 
-		if(GUILayout.Button("Submit Score to Level 2 Leaderboard", h)) {
+		if(GUILayout.Button("Submit Score to Level 1 Leaderboard", h)) {
 			SubmitSampleScore();
 		}
 
@@ -312,47 +327,25 @@ public class OKDemoScene : MonoBehaviour {
 			UnlockSampleAchievement();
 		}
 
-		if(GUILayout.Button("Store dictionary", h)) {
-			StoreSampleDictionary();
-		}
-
-		if(GUILayout.Button("Retrieve Dictionary", h)) {
-			RetrieveSampleDictionary();
-		}
-
-
 		if(GUILayout.Button("Logout from OpenKit", h)) {
 			OKManager.LogoutCurrentUserFromOpenKit();
 			OKLog.Info("logout of OpenKit");
 		}
 
-		if(GUILayout.Button("Get Leaderboards", h)) {
-			OKLeaderboard.GetLeaderboards((List<OKLeaderboard> leaderboards, OKException exception) => {
-
-				if(leaderboards != null){
-					Debug.Log("Received " + leaderboards.Count + " leaderboards ");
-
-					OKLeaderboard leaderboard = (OKLeaderboard)leaderboards[0];
-
-					Debug.Log("Getting scores for leaderboard ID: " + leaderboard.LeaderboardID + " named: " + leaderboard.Name);
-					leaderboard.GetGlobalScores(1,(List<OKScore> scores, OKException exception2) => {
-						if(exception2 == null)
-						{
-							Debug.Log("Got global scores in the callback");
-						}
-					});
-				} else {
-					Debug.Log("Error getting leaderboards");
-				}
-			});
+		if(GUILayout.Button("Get Leaderboards and global scores in C#", h)) {
+			GetLeaderboards();
 		}
-
-		if(GUILayout.Button("Get social scores Friends", h)) {
+		
+		if(GUILayout.Button("Get my best score (in C#)", h)) {
+			GetMyBestScore();
+		}
+		
+		if(GUILayout.Button("Get friends scores in C#",h)) {
 			GetSocialScores();
 		}
 
-		if(GUILayout.Button("Get my best score!", h)) {
-			GetMyBestScore();
+		if(GUILayout.Button("Get scores with metadata", h)) {
+			GetScoresWithMetadata();
 		}
 
 		GUILayout.EndArea();

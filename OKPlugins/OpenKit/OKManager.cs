@@ -8,7 +8,7 @@ namespace OpenKit
 {
 	public class OKManager
 	{
-		public const string OPENKIT_SDK_VERSION = "1.0.5";
+		public const string OPENKIT_SDK_VERSION = "1.0.6";
 		private const string DEFAULT_ENDPOINT = "http://api.openkit.io";
 
 		private string _LeaderboardListTag = null;
@@ -105,6 +105,11 @@ namespace OpenKit
 		public static void ShowLeaderboardLandscapeOnly(int aLeaderboardID)
 		{
 			OKManager.instance._ShowLeaderboardLandscapeOnly(aLeaderboardID);
+		}
+
+		public static void ShowLeaderboardsAndAchivements()
+		{
+			OKManager.instance._ShowLeaderboardsAndAchievements();
 		}
 
 		public static void ShowLoginToOpenKit()
@@ -378,6 +383,11 @@ namespace OpenKit
 		public void _ShowLeaderboard(int aLeaderboardID)
 		{
 			nativeBridge.ShowLeaderboard(aLeaderboardID);
+		}
+
+		public void _ShowLeaderboardsAndAchievements()
+		{
+			nativeBridge.ShowLeaderboardsAndAchievements();
 		}
 
 		public void _ShowLeaderboardLandscapeOnly(int aLeaderboardID)

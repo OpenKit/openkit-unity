@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OpenKitSettingsWindow : EditorWindow
 {
-	[MenuItem("OpenKit/Config")]
+	[MenuItem("Window/OpenKit/Config")]
 	public static void ShowWindow()
 	{
 		EditorWindow.GetWindow<OpenKitSettingsWindow>("OpenKit Config");

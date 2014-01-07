@@ -13,6 +13,7 @@ namespace OpenKit.Native
 		public void ShowLeaderboards() {}
 		public void ShowLeaderboard(int leaderboardID) {}
 		public void ShowLeaderboardLandscapeOnly(int leaderboardID) {}
+		public void ShowLeaderboardsAndAchievements() {}
 
 		public void ShowAchievements() {}
 		public void ShowAchievementsLandscapeOnly() {}

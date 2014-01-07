@@ -315,6 +315,10 @@ public class OKDemoScene : MonoBehaviour {
 			OKManager.ShowLeaderboard(SampleLeaderboardID);;
 		}
 
+		if(GUILayout.Button("Show Leaderboards & Achievements", h)) {
+			OKManager.ShowLeaderboardsAndAchivements();
+		}
+
 		if(GUILayout.Button("Show Login UI", h)) {
 			ShowLoginUI();
 		}

@@ -33,6 +33,11 @@ namespace OpenKit.Native
 		{
 			OKAndroidPlugin.CallStatic("showLeaderboards");
 		}
+
+		public void ShowLeaderboardsAndAchievements()
+		{
+			ShowLeaderboards();
+		}
 		
 		public void ShowLeaderboard(int leaderboardID)
 		{

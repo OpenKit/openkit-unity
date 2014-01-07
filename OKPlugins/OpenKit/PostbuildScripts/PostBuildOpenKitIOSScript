@@ -90,7 +90,6 @@ foreach (@FILES) {
 				if($didFinish == 1){
 					$didFinish = -1;
 					print SOURCEFILE "\t[OKManager sharedManager];\n";
-					print SOURCEFILE "\t[[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];\n"
 				} elsif ($handle1 == 1) {
 					$handle1 = -1;
 					print SOURCEFILE "\t[OKManager handleOpenURL:url];\n";

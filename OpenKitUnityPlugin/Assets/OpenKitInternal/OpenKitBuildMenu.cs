@@ -22,9 +22,9 @@ public class OpenKitBuildMenu : EditorWindow {
 
 		string SDKVersion = OKManager.OPENKIT_SDK_VERSION;
 
-		string PackageName = "OpenKitUnityPlugin." + SDKVersion + ".unitypackage";
+		string PackageName = "SDKPackages/OpenKitUnityPlugin." + SDKVersion + ".unitypackage";
 
-		AssetDatabase.ExportPackage(OpenKitAssetPaths,PackageName,ExportPackageOptions.Recurse);
+		AssetDatabase.ExportPackage(OpenKitAssetPaths,PackageName,ExportPackageOptions.Recurse | ExportPackageOptions.Interactive);
 
 		Debug.Log ("Exported OpenKit Package");
 	}

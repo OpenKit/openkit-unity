@@ -1,9 +1,3 @@
-# If you are using this .gitignore in your own project, do not do this!
-# Ignores hardlinks setup to share OKPlugins and OKEditor between our
-# Unity3 and Unity4 samples.
-Assets/Plugins
-Assets/Editor
-
 # Ignore the generated Xcode project.  Be sure to name it “xcodebuild” when building.
 xcodebuild/*
 

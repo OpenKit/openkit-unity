@@ -18,5 +18,13 @@
     <activity android:name="io.openkit.user.OKUserProfileActivity">
     </activity>
     <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="\ 450333868362300" />
+    <activity android:name="io.openkit.OKLoginActivity" android:theme="@style/Theme.Transparent">
+    </activity>
   </application>
+  <uses-permission android:name="android.permission.INTERNET">
+  </uses-permission>
+  <uses-permission android:name="android.permission.GET_ACCOUNTS">
+  </uses-permission>
+  <uses-permission android:name="android.permission.USE_CREDENTIALS">
+  </uses-permission>
 </manifest>

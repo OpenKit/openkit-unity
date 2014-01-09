@@ -11,6 +11,12 @@ public class OpenKitSettingsWindow : EditorWindow
 		EditorWindow.GetWindow<OpenKitSettingsWindow>("OpenKit Config");
 	}
 
+	[MenuItem("Window/OpenKit/Update Android Manifest")]
+	public static void UpdateManifest()
+	{
+		UnityEditor.OpenKitEditor.OpenKitManifestMod.GenerateManifest();
+	}
+
 	private void OnEnable()
 	{
 		OKSettings.Load();

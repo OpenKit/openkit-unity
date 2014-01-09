@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.IO;
 using System.Xml;
 using System.Text;
@@ -8,15 +7,25 @@ using System.Linq;
 // Adopted from the Facebook Unity SDK
 // https://developers.facebook.com/docs/unity/
 
+#if UNITY_EDITOR
+using UnityEditor;
+
 namespace UnityEditor.OpenKitEditor
 {
 	public class OpenKitManifestMod
 	{
-		public const string OKLoginActivity = "";
+		// OpenKit Activity names
+		public const string OKLoginActivity = "io.openkit.OKLoginActivity";
 		public const string OKLoginTheme = "@style/Theme.Transparent";
 		public const string OKLeaderboardActivity = "io.openkit.leaderboards.OKLeaderboardsActivity";
 		public const string OKScoresActivity = "io.openkit.leaderboards.OKScoresActivity";
 		public const string OKUserProfileActivity = "io.openkit.user.OKUserProfileActivity";
+
+		// OpenKit permission names
+		public const string OKPermissionInternet = "android.permission.INTERNET";
+		public const string OKPermissionGetAccounts = "android.permission.GET_ACCOUNTS";
+		public const string OKPermissionUseCreds = "android.permission.USE_CREDENTIALS";
+
 
 
 		public static void GenerateManifest()
@@ -73,7 +82,9 @@ namespace UnityEditor.OpenKitEditor
 			}
 			return null;
 		}
-		
+
+
+
 		
 		public static void UpdateManifest(string fullPath)
 		{
@@ -81,7 +92,7 @@ namespace UnityEditor.OpenKitEditor
 
 
 			if(string.IsNullOrEmpty(fbAppId)) {
-				Debug.LogError("You didn't specify a Facebook app ID.  Please add one using the OpenKit config settings in the Window menu in the Unity editor.");
+				Debug.LogError("You didn't specify a Facebook app ID.  Please add one using the OpenKit config settings in the Window menu in the Unity editor and then click Apply");
 				return;
 			}
 			
@@ -102,39 +113,34 @@ namespace UnityEditor.OpenKitEditor
 				Debug.LogError("Error parsing " + fullPath);
 				return;
 			}
-			
+
+
 			string ns = dict.GetNamespaceOfPrefix("android");
 
-			
-			//add the Facebook login activity -- The facebook SDK will also add this but just including it here
-			//<activity android:name="com.facebook.LoginActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation">
-			//</activity>
-			XmlElement loginElement = FindElementWithAndroidName("activity", "name", ns, "com.facebook.LoginActivity", dict);
-			if (loginElement == null)
-			{
-				loginElement = doc.CreateElement("activity");
-				loginElement.SetAttribute("name", ns, "com.facebook.LoginActivity");
-				loginElement.SetAttribute("screenOrientation", ns, "portrait");
-				loginElement.SetAttribute("configChanges", ns, "keyboardHidden|orientation");
-				loginElement.InnerText = "\n    ";  //be extremely anal to make diff tools happy
-				dict.AppendChild(loginElement);
-			}
+			// Add the required permissions for OpenKit
+			AddPermissionWithName(OKPermissionInternet,manNode,doc,ns);
+			AddPermissionWithName(OKPermissionGetAccounts,manNode,doc,ns);
+			AddPermissionWithName(OKPermissionUseCreds,manNode,doc,ns);
+
 
 			//Add the OpenKit Login Activity
-			XmlElement okLoginElement = FindElementWithAndroidName("activity", "name", ns, OKLoginActivity, dict);
-			if (loginElement == null)
+			XmlElement OKLoginElement = FindElementWithAndroidName("activity", "name", ns, OKLoginActivity, dict);
+			if (OKLoginElement == null)
 			{
-				okLoginElement = doc.CreateElement("activity");
-				okLoginElement.SetAttribute("name", ns, OKLoginActivity);
-				okLoginElement.SetAttribute("theme", ns, OKLoginTheme);
-				okLoginElement.InnerText = "\n    ";  //be extremely anal to make diff tools happy
-				dict.AppendChild(okLoginElement);
+				OKLoginElement = doc.CreateElement("activity");
+				OKLoginElement.SetAttribute("name", ns, OKLoginActivity);
+				OKLoginElement.SetAttribute("theme", ns, OKLoginTheme);
+				OKLoginElement.InnerText = "\n    ";  //be extremely anal to make diff tools happy
+				dict.AppendChild(OKLoginElement);
 			}
 
 			// Add the other OpenKit activities
 			AddActivityToManifestWithName(OKLeaderboardActivity,doc,ns,dict);
 			AddActivityToManifestWithName(OKScoresActivity,doc,ns,dict);
 			AddActivityToManifestWithName(OKUserProfileActivity,doc,ns,dict);
+
+
+			AddFacebookLoginActivityToManifest(ns,dict,doc);
 
 			// Add the Facebook App ID
 			//<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="\ 409682555812308" />
@@ -151,6 +157,23 @@ namespace UnityEditor.OpenKitEditor
 			doc.Save(fullPath);
 		}
 
+		private static void AddFacebookLoginActivityToManifest(string ns, XmlNode node, XmlDocument doc)
+		{
+			//add the Facebook login activity -- The facebook SDK will also add this but just including it here
+			//<activity android:name="com.facebook.LoginActivity" android:screenOrientation="portrait" android:configChanges="keyboardHidden|orientation">
+			//</activity>
+			XmlElement loginElement = FindElementWithAndroidName("activity", "name", ns, "com.facebook.LoginActivity", node);
+			if (loginElement == null)
+			{
+				loginElement = doc.CreateElement("activity");
+				loginElement.SetAttribute("name", ns, "com.facebook.LoginActivity");
+				loginElement.SetAttribute("screenOrientation", ns, "portrait");
+				loginElement.SetAttribute("configChanges", ns, "keyboardHidden|orientation");
+				loginElement.InnerText = "\n    ";  //be extremely anal to make diff tools happy
+				node.AppendChild(loginElement);
+			}
+		}
+
 		private static void AddActivityToManifestWithName(string activityName, XmlDocument doc, string ns, XmlNode dict)
 		{
 			XmlElement activityElement = FindElementWithAndroidName("activity", "name", ns, activityName, dict);
@@ -163,5 +186,19 @@ namespace UnityEditor.OpenKitEditor
 			}
 		}
 
+		public static void AddPermissionWithName(string permissionName, XmlNode manNode, XmlDocument doc, string ns)
+		{
+			XmlElement permissionElement = FindElementWithAndroidName("uses-permission","name",ns,permissionName,manNode);
+			if(permissionElement == null)
+			{
+				permissionElement = doc.CreateElement("uses-permission");
+				permissionElement.SetAttribute("name",ns,permissionName);
+				permissionElement.InnerText = "\n    ";  //be extremely anal to make diff tools happy
+				manNode.AppendChild(permissionElement);
+			}
+		}
+
 	}
 }
+
+#endif

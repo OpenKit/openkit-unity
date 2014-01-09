@@ -13,8 +13,8 @@ public class OpenKitBuildMenu : EditorWindow {
 			"Assets/Editor/OpenKitSettingsWindow.cs",
 			"Assets/Examples/OKDemoScene.cs",
 			"Assets/Examples/OKDemoScene.unity",
-			"Assets/Plugins/Android",
-			"Assets/Plugins/iOS",
+			"Assets/Plugins/Android/OpenKitSDK",
+			"Assets/Plugins/iOS/",
 			"Assets/Plugins/OpenKit",
 			"Assets/Plugins/RestSharp.dll",
 			"Assets/Prefabs/OpenKitPrefab.prefab"

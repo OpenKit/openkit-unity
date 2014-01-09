@@ -68,8 +68,9 @@ blue "cleaning OpenKitUnity - Android"
 ant clean -f $ANDROID_UNITY_BUILD_FILE
 check_error
 
+#no longer building a jar out of OpenKitSDK, just need to build the SDK project and copy it over
 blue "Building OpenKitSDK  $CONFIG"
-ant release -f $ANDROID_SDK_BUILD_FILE
+ant $CONFIG -f $ANDROID_SDK_BUILD_FILE
 check_error
 
 blue "Building openkit-unity-plugin jar $CONFIG"
@@ -83,11 +84,12 @@ check_error
 
 blue "Deleting OpenKitSDK folder and copying over OpenKitSDK folder"
 rm -rf $UNITY_PLUGINS_ANDROID_FOLDER/OpenKitSDK
+check_error
 cp -r -v $ANDROID_SDK_FOLDER $UNITY_PLUGINS_ANDROID_FOLDER
 check_error
 
 blue "Copying OpenKitUnity JAR"
-cp -v ../openkit-android/OpenKitUnity/bin/jars/openkit-unity-plugin.jar $UNITY_PLUGINS_ANDROID_FOLDER
+cp -v ../openkit-android/OpenKitUnity/bin/jars/openkit-unity-plugin.jar $UNITY_PLUGINS_ANDROID_FOLDER/OpenKitSDK/libs
 check_error
 
 blue "Deleting and Copying Facebook Android SDK"
@@ -122,6 +124,7 @@ check_error
 
 blue "Deleting include and resources folders"
 rm -rf OpenKitUnityPlugin/Assets/Plugins/iOS/OpenKitResources/Resources
+check_error
 rm -rf OpenKitUnityPlugin/Assets/Plugins/iOS/OpenKitResources/include
 check_error
 

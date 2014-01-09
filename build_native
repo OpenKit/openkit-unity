@@ -60,6 +60,14 @@ function check_error
 
 blue "Building $CONFIG"
 
+blue "cleaning OpenKitSDK"
+ant clean -f $ANDROID_SDK_BUILD_FILE
+check_error
+
+blue "cleaning OpenKitUnity - Android"
+ant clean -f $ANDROID_UNITY_BUILD_FILE
+check_error
+
 blue "Building OpenKitSDK  $CONFIG"
 ant release -f $ANDROID_SDK_BUILD_FILE
 check_error
@@ -79,7 +87,7 @@ cp -r -v $ANDROID_SDK_FOLDER $UNITY_PLUGINS_ANDROID_FOLDER
 check_error
 
 blue "Copying OpenKitUnity JAR"
-cp -v ../openkit-android/OpenKitSDK/bin/jars/openkit-unity-plugin.jar $UNITY_PLUGINS_ANDROID_FOLDER
+cp -v ../openkit-android/OpenKitUnity/bin/jars/openkit-unity-plugin.jar $UNITY_PLUGINS_ANDROID_FOLDER
 check_error
 
 blue "Deleting and Copying Facebook Android SDK"

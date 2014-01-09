@@ -1,0 +1,12 @@
+# view res/layout/com_facebook_usersettingsfragment.xml #generated:48
+-keep class com.facebook.widget.LoginButton { <init>(...); }
+
+# view res/layout/io_openkit_fragment_updatenick.xml #generated:35
+# view res/layout/io_openkit_fragment_userprofile.xml #generated:35
+# view res/layout/io_openkit_listitem_okscore.xml #generated:34
+-keep class com.facebook.widget.ProfilePictureView { <init>(...); }
+
+# view res/layout/io_openkit_row_okachievement.xml #generated:25
+# view res/layout/okleaderboardrow.xml #generated:28
+-keep class io.openkit.smartimageview.SmartImageView { <init>(...); }
+

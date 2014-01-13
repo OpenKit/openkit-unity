@@ -348,8 +348,14 @@ public class OKDemoScene : MonoBehaviour {
 		if(GUILayout.Button("Get friends scores in C#",h)) {
 			GetSocialScores();
 		}
-
+		/*
 		if(GUILayout.Button("FB SDK Test",h)) {
+
+			if(FB.IsLoggedIn) {
+				GetFBInfo();
+				return;
+			}
+
 			FB.Init(() => { 
 				OKLog.Info("FB Init called");
 
@@ -365,6 +371,7 @@ public class OKDemoScene : MonoBehaviour {
 
 			});
 		}
+		*/
 
 		if(GUILayout.Button("Get scores with metadata", h)) {
 			GetScoresWithMetadata();
@@ -378,5 +385,6 @@ public class OKDemoScene : MonoBehaviour {
 		FB.API("/me?fields=id,first_name,friends.limit(100).fields(first_name,id)", Facebook.HttpMethod.GET, (FBResult result) => {
 			OKLog.Info ("Unity Result from FB is: " + result.Text);
 		}); 
+
 	}
 }

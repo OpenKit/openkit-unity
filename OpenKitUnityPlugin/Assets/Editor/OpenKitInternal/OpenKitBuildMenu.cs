@@ -14,12 +14,13 @@ public class OpenKitBuildMenu : EditorWindow {
 			"Assets/Examples/OKDemoScene.cs",
 			"Assets/Examples/OKDemoScene.unity",
 			"Assets/Plugins/Android/OpenKitSDK",
-			"Assets/Plugins/iOS/",
+			"Assets/Plugins/iOS/libOpenKit.a",
+			"Assets/Plugins/iOS/libOpenKitUnity.a",
+			"Assets/Plugins/iOS/OpenKit_Vendor",
+			"Assets/Plugins/iOS/OpenKitResources",
 			"Assets/Plugins/OpenKit",
 			"Assets/Plugins/RestSharp.dll",
 			"Assets/Prefabs/OpenKitPrefab.prefab"
-
-			// FIX exports for iOS
 		};
 
 		string SDKVersion = OKManager.OPENKIT_SDK_VERSION;

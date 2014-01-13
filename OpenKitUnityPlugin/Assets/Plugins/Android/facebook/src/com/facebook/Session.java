@@ -1018,7 +1018,6 @@ public class Session implements Serializable {
             }
 
             newPermissionsRequest.setValidateSameFbidAsToken(getAccessToken());
-            addCallback(newPermissionsRequest.getCallback());
             authorize(newPermissionsRequest);
         }
     }
@@ -2012,8 +2011,7 @@ public class Session implements Serializable {
         }
 
         /**
-         * Sets the StatusCallback for the NewPermissionsRequest. Note that once the request is made, this callback
-         * will be added to the session, and will receive all future state changes on the session.
+         * Sets the StatusCallback for the NewPermissionsRequest.
          *
          * @param statusCallback The {@link StatusCallback SessionStatusCallback} to
          *                       notify regarding Session state changes.

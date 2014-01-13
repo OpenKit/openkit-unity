@@ -18,6 +18,8 @@ public class OpenKitBuildMenu : EditorWindow {
 			"Assets/Plugins/OpenKit",
 			"Assets/Plugins/RestSharp.dll",
 			"Assets/Prefabs/OpenKitPrefab.prefab"
+
+			// FIX exports for iOS
 		};
 
 		string SDKVersion = OKManager.OPENKIT_SDK_VERSION;

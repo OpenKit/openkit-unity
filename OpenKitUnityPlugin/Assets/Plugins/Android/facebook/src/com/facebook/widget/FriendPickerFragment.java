@@ -22,15 +22,15 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import com.facebook.AppEventsLogger;
-import com.facebook.FacebookException;
-import com.facebook.Request;
-import com.facebook.Session;
+import com.facebook.*;
 import com.facebook.android.R;
 import com.facebook.internal.AnalyticsEvents;
 import com.facebook.model.GraphUser;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Provides a Fragment that displays a list of a user's friends and allows one or more of the
@@ -54,8 +54,6 @@ public class FriendPickerFragment extends PickerFragment<GraphUser> {
     private String userId;
 
     private boolean multiSelect = true;
-
-    private List<String> preSelectedFriendIds = new ArrayList<String>();
 
     /**
      * Default constructor. Creates a Fragment with all default properties.
@@ -110,42 +108,6 @@ public class FriendPickerFragment extends PickerFragment<GraphUser> {
             this.multiSelect = multiSelect;
             setSelectionStrategy(createSelectionStrategy());
         }
-    }
-
-    /**
-     * Sets the list of friends for pre selection. These friends will be selected by default.
-     * @param userIds list of friends as ids
-     */
-    public void setSelectionByIds(List<String> userIds) {
-        preSelectedFriendIds.addAll(userIds);
-    }
-
-    /**
-     * Sets the list of friends for pre selection. These friends will be selected by default.
-     * @param userIds list of friends as ids
-     */
-    public void setSelectionByIds(String... userIds) {
-        setSelectionByIds(Arrays.asList(userIds));
-    }
-
-    /**
-     * Sets the list of friends for pre selection. These friends will be selected by default.
-     * @param graphUsers list of friends as GraphUsers
-     */
-    public void setSelection(GraphUser... graphUsers) {
-        setSelection(Arrays.asList(graphUsers));
-    }
-
-    /**
-     * Sets the list of friends for pre selection. These friends will be selected by default.
-     * @param graphUsers list of friends as GraphUsers
-     */
-    public void setSelection(List<GraphUser> graphUsers) {
-        List<String> userIds = new ArrayList<String>();
-        for(GraphUser graphUser: graphUsers) {
-            userIds.add(graphUser.getId());
-        }
-        setSelectionByIds(userIds);
     }
 
     /**
@@ -241,12 +203,6 @@ public class FriendPickerFragment extends PickerFragment<GraphUser> {
         parameters.putInt("num_friends_picked", getSelection().size());
 
         logger.logSdkEvent(AnalyticsEvents.EVENT_FRIEND_PICKER_USAGE, null, parameters);
-    }
-
-    @Override
-    public void loadData(boolean forceReload) {
-        super.loadData(forceReload);
-        setSelectedGraphObjects(preSelectedFriendIds);
     }
 
     private Request createRequest(String userID, Set<String> extraFields, Session session) {

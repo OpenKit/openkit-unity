@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using OpenKit;
 using System;
+using Facebook;
 
 public class OKDemoScene : MonoBehaviour {
 
@@ -348,10 +349,34 @@ public class OKDemoScene : MonoBehaviour {
 			GetSocialScores();
 		}
 
+		if(GUILayout.Button("FB SDK Test",h)) {
+			FB.Init(() => { 
+				OKLog.Info("FB Init called");
+
+				if(FB.IsLoggedIn) {
+					OKLog.Info("logged into FB in Unity");
+					GetFBInfo();
+				} else {
+					OKLog.Info("not logged into FB unity");
+					FB.Login("email",(FBResult result) => {
+						OKLog.Info("Result of calling fb login: " + result.Text);
+					});
+				}
+
+			});
+		}
+
 		if(GUILayout.Button("Get scores with metadata", h)) {
 			GetScoresWithMetadata();
 		}
 
 		GUILayout.EndArea();
+	}
+
+	void GetFBInfo()
+	{
+		FB.API("/me?fields=id,first_name,friends.limit(100).fields(first_name,id)", Facebook.HttpMethod.GET, (FBResult result) => {
+			OKLog.Info ("Unity Result from FB is: " + result.Text);
+		}); 
 	}
 }

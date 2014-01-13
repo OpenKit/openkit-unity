@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+
+	Copyright 2012 OpenKit
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+ -->
+ 
+<resources>
+
+    <string name="io_openkit_sdk_app_name">OpenKitSDK</string>
+    
+    <string name="io_openkit_login_text_include">Include friends from</string>
+    <string name="io_openkit_login_text">Sign in to play with friends.</string>
+    <string name="io_openkit_login_subtext">Leaderboards, achievements, and more!</string>
+    <string name="io_openkit_google_signin">Sign in with Google</string>
+    <string name="io_openkit_facebook_signin">Sign in with Facebook</string>
+    <string name="io_openkit_fb_signin">Sign in with Facebook</string>
+    <string name="io_openkit_fb">Facebook</string>
+    <string name="io_openkit_twitter_signin">Sign in with Twitter</string>
+	<string name="io_openkit_guest_signin">Guest Account</string>
+	<string name="io_openkit_dont_sign_in">No Thanks</string>
+    
+	<string name="io_openkit_loggedIn">Signed in as</string>
+	<string name="io_openkit_createNickName">Create a nickname for this account</string>
+    <string name="io_openkit_nickExplanation">This is how you\'ll appear in leaderboards</string>
+	<string name="io_openkit_continue">Continue</string>
+	
+	<string name="io_openkit_fbprompt_title">More friends, more fun! </string>
+	<string name="io_openkit_fbprompt_subtext">Leaderboards are more fun when you play against friends! </string>
+	<string name="io_openkit_fbprompt_include_friends">Include Facebook Friends</string>
+	
+	<string name="io_openkit_inviteFriends">Invite Friends</string>
+	
+    
+    <string name="io_openkit_title_leaderboards">Leaderboards</string>
+    <string name="io_openkit_title_achievements">Achievements</string>
+    <string name="io_openkit_leaderboards_alltime">ALL TIME</string>
+    <string name="io_openkit_leaderboards_thisWeek">THIS WEEK</string>
+    <string name="io_openkit_leaderboards_today">TODAY</string>
+    <string name="io_openkit_profile">Settings</string>
+    <string name="io_openkit_logout">Logout</string>
+    <string name="io_openkit_userprofle">Settings</string>
+    <string name="io_openkit_changeNick">Change Nickname</string>
+    
+    <string name="io_openkit_googlePlayServicesError">Unfortunately, your device does not have or does not support the required version of Google Play. Please try logging with a different type of account.</string>
+    <string name="io_openkit_googleLoginError">Sorry, but there was an error logging in with Google. Please try again later or try a different account type.</string>
+    <string name="io_openkit_googleNoAccts">You don\'t have any Google accounts stored on your device. Go to your device settings, and choose "Accounts" and add a Google account.</string>
+    <string name="io_openkit_OKLoginError">Sorry, but there was an error reaching the OpenKit servers. Please try again later or try using a different account type.</string>
+    
+    
+
+</resources>

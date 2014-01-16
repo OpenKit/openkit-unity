@@ -27,7 +27,7 @@ public class OpenKitSettingsWindow : EditorWindow
 		OKSettings.AppKey = EditorGUILayout.TextField("OpenKit App Key", OKSettings.AppKey);
 		OKSettings.AppSecretKey = EditorGUILayout.TextField("OpenKit Secret Key", OKSettings.AppSecretKey);
 		OKSettings.FacebookAppId = EditorGUILayout.TextField("Facebook App Id", OKSettings.FacebookAppId);
-		if (GUILayout.Button("Apply and Update Android Manifest")) {
+		if (GUILayout.Button("Apply")) {
 			OKSettings.Save();
 			OpenKitManifestMod.GenerateManifest();
 		}

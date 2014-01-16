@@ -1,0 +1,490 @@
+TOpenKitUnity
+v6
+r1
+cCheck dependencies
+cProcessPCH /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-bxvbnbmmokmdmhcutiagytxcctfj/UnityPlugin-Prefix.pch.pch UnityPlugin/UnityPlugin-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cProcessPCH /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-btfahtbvldkkljegebpdqqydguds/UnityPlugin-Prefix.pch.pch UnityPlugin/UnityPlugin-Prefix.pch normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridgeUIHelper.o /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridge.o /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKUnityHelper.o /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridgeUIHelper.o /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridge.o /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKUnityHelper.o /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cLibtool /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/libOpenKitUnity.a normal armv7
+cLibtool /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/libOpenKitUnity.a normal armv7s
+cCreateUniversalBinary /Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos/libOpenKitUnity.a normal armv7\ armv7s
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk
+c00000000521BCCE10000000000000110
+t1377553633
+s272
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/SDKSettings.plist
+c0000000052365543000000000000036B
+t1379292483
+s875
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/CoreServices/SystemVersion.plist
+c0000000052365547000000000000019E
+t1379292487
+s414
+
+N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c00000000523655510000000000A8EAD0
+t1379292497
+s11070160
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.m
+c0000000052CC87320000000000002FC0
+t1389135666
+s12224
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.m
+c0000000052CC87320000000000001A0C
+t1389135666
+s6668
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.m
+c00000000513FB5DB00000000000001ED
+t1363129819
+s493
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/UnityPlugin-Prefix.pch
+c00000000513A3C3500000000000000A3
+t1362770997
+s163
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/libmono.0.dylib
+c00000000513A3C35000000000058A728
+t1362770997
+s5809960
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridge.o
+t1389838842
+s79748
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridgeUIHelper.o
+t1389838842
+s81572
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKUnityHelper.o
+t1389838842
+s2760
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OpenKitUnity.LinkFileList
+c0000000052D741F900000000000001A5
+t1389838841
+s421
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/libOpenKitUnity.a
+t1389838842
+s167112
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridge.o
+t1389838842
+s79652
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridgeUIHelper.o
+t1389838842
+s81576
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKUnityHelper.o
+t1389838842
+s2760
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OpenKitUnity.LinkFileList
+c0000000052D741F900000000000001A8
+t1389838841
+s424
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/libOpenKitUnity.a
+t1389838842
+s167016
+
+N/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos/libOpenKitUnity.a
+t2
+s0
+
+N/var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-btfahtbvldkkljegebpdqqydguds/UnityPlugin-Prefix.pch.pch
+t1389838842
+s3141916
+
+N/var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-bxvbnbmmokmdmhcutiagytxcctfj/UnityPlugin-Prefix.pch.pch
+t1389838842
+s3141788
+
+CCheck dependencies
+r0
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependenciesb51ade797987b841^1556ee797987b841^---0#1#1#--18"Check dependencies36"35AB5B3A-5B44-4AAD-B5F8-CA36F17DF3FB-
+
+CCompileC build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridge.o /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s411531642.279081
+e411531642.813325
+r1
+xCompileC
+xbuild/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridge.o
+x/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.m
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKManager.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OpenKit.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/AFNetworking/AFJSONRequestOperation.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/AFNetworking/AFHTTPRequestOperation.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/AFNetworking/AFURLConnectionOperation.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKScore.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKScoreProtocol.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKUser.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKLeaderboard.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKGKScoreWrapper.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKGUI.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKLeaderboardsViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKUserProfileImageView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FacebookSDK.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBSession.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBRequest.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBRequestConnection.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphObject.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBOpenGraphObject.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBOpenGraphAction.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBError.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/NSError+FBError.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBSettings.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAppEvents.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAppCall.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBDialogsData.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAccessTokenData.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAppLinkData.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBErrorUtility.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBSessionTokenCachingStrategy.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphUser.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphPlace.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphLocation.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBLoginView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBProfilePictureView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBUserSettingsViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBPlacePickerViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBCacheDescriptor.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBFriendPickerViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBNativeDialogs.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBShareDialogParams.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBDialogsParams.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBOpenGraphActionShareDialogParams.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBDialogs.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBWebDialogs.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBFrictionlessRecipientCache.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBInsights.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKLoginView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKAchievementsViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKAchievement.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKAchievementScore.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKGameCenterUtilities.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKFacebookUtilities.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKMacros.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKHelper.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection78"Compile /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.m204"[1mCompileC[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridge.o [1mUnityPlugin/OKBridge.m[0m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compileree97477a7987b841^b936d07a7987b841^---0#0#1#-19%DVTDocumentLocation2@77"file:///Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.m0000000000000000^3830"[1mCompileC[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridge.o [1mUnityPlugin/OKBridge.m[0m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/suneets/OpenKit/public_repos/openkit-ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/suneets/workspace/android/sdk/platform-tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/workspace/android/sdk/tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@rails313/bin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@global/bin:/Users/suneets/.rvm/rubies/ruby-1.9.3-p0/bin:/Users/suneets/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7 -fmessage-length=156 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wdeprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -miphoneos-version-min=5.1 -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-generated-files.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-own-target-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-all-target-headers.hmap -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-project-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources/armv7 -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources -F/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos -F/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor -include /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-bxvbnbmmokmdmhcutiagytxcctfj/UnityPlugin-Prefix.pch -MMD -MT dependencies -MF /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridge.d --serialize-diagnostics /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridge.dia -c /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.m -o /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridge.o36"CAE9D4FB-95A0-4E2F-B248-AA8B0DDD46EC-
+bDC993168-9E71-4B09-A73E-84D42AE9DE7D
+
+CCompileC build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridgeUIHelper.o /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s411531642.277619
+e411531642.684623
+r1
+xCompileC
+xbuild/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridgeUIHelper.o
+x/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.m
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKManager.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKGUI.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKLeaderboardsViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKUserProfileImageView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKUser.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FacebookSDK.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBSession.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBRequest.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBRequestConnection.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphObject.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBOpenGraphObject.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBOpenGraphAction.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBError.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/NSError+FBError.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBSettings.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAppEvents.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAppCall.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBDialogsData.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAccessTokenData.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAppLinkData.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBErrorUtility.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBSessionTokenCachingStrategy.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphUser.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphPlace.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphLocation.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBLoginView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBProfilePictureView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBUserSettingsViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBPlacePickerViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBCacheDescriptor.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBFriendPickerViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBNativeDialogs.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBShareDialogParams.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBDialogsParams.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBOpenGraphActionShareDialogParams.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBDialogs.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBWebDialogs.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBFrictionlessRecipientCache.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBInsights.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKScoreProtocol.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKLoginView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKAchievementsViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKMacros.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKGameCenterUtilities.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection86"Compile /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.m220"[1mCompileC[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridgeUIHelper.o [1mUnityPlugin/OKBridgeUIHelper.m[0m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler473a477a7987b841^3047af7a7987b841^---0#0#1#-19%DVTDocumentLocation2@85"file:///Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.m0000000000000000^3878"[1mCompileC[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridgeUIHelper.o [1mUnityPlugin/OKBridgeUIHelper.m[0m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/suneets/OpenKit/public_repos/openkit-ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/suneets/workspace/android/sdk/platform-tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/workspace/android/sdk/tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@rails313/bin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@global/bin:/Users/suneets/.rvm/rubies/ruby-1.9.3-p0/bin:/Users/suneets/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7 -fmessage-length=156 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wdeprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -miphoneos-version-min=5.1 -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-generated-files.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-own-target-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-all-target-headers.hmap -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-project-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources/armv7 -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources -F/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos -F/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor -include /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-bxvbnbmmokmdmhcutiagytxcctfj/UnityPlugin-Prefix.pch -MMD -MT dependencies -MF /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridgeUIHelper.d --serialize-diagnostics /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridgeUIHelper.dia -c /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.m -o /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKBridgeUIHelper.o36"B8E62AD4-6B6D-4E88-BD97-82A11BE9523F-
+bDC993168-9E71-4B09-A73E-84D42AE9DE7D
+
+CCompileC build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKUnityHelper.o /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s411531642.280697
+e411531642.313099
+r1
+xCompileC
+xbuild/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKUnityHelper.o
+x/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.m
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection83"Compile /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.m214"[1mCompileC[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKUnityHelper.o [1mUnityPlugin/OKUnityHelper.m[0m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compilerde03487a7987b841^30f4507a7987b841^---0#0#1#-19%DVTDocumentLocation2@82"file:///Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.m0000000000000000^3860"[1mCompileC[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKUnityHelper.o [1mUnityPlugin/OKUnityHelper.m[0m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/suneets/OpenKit/public_repos/openkit-ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/suneets/workspace/android/sdk/platform-tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/workspace/android/sdk/tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@rails313/bin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@global/bin:/Users/suneets/.rvm/rubies/ruby-1.9.3-p0/bin:/Users/suneets/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7 -fmessage-length=156 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wdeprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -miphoneos-version-min=5.1 -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-generated-files.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-own-target-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-all-target-headers.hmap -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-project-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources/armv7 -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources -F/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos -F/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor -include /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-bxvbnbmmokmdmhcutiagytxcctfj/UnityPlugin-Prefix.pch -MMD -MT dependencies -MF /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKUnityHelper.d --serialize-diagnostics /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKUnityHelper.dia -c /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.m -o /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OKUnityHelper.o36"F61EF827-4B5A-487F-98B2-0D87B56A9639-
+bDC993168-9E71-4B09-A73E-84D42AE9DE7D
+
+CCompileC build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridge.o /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s411531642.314581
+e411531642.810337
+r1
+xCompileC
+xbuild/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridge.o
+x/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.m
+xnormal
+xarmv7s
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.m
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKManager.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OpenKit.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/AFNetworking/AFJSONRequestOperation.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/AFNetworking/AFHTTPRequestOperation.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/AFNetworking/AFURLConnectionOperation.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKScore.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKScoreProtocol.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKUser.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKLeaderboard.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKGKScoreWrapper.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKGUI.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKLeaderboardsViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKUserProfileImageView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FacebookSDK.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBSession.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBRequest.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBRequestConnection.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphObject.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBOpenGraphObject.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBOpenGraphAction.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBError.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/NSError+FBError.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBSettings.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAppEvents.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAppCall.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBDialogsData.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAccessTokenData.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAppLinkData.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBErrorUtility.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBSessionTokenCachingStrategy.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphUser.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphPlace.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphLocation.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBLoginView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBProfilePictureView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBUserSettingsViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBPlacePickerViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBCacheDescriptor.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBFriendPickerViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBNativeDialogs.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBShareDialogParams.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBDialogsParams.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBOpenGraphActionShareDialogParams.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBDialogs.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBWebDialogs.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBFrictionlessRecipientCache.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBInsights.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKLoginView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKAchievementsViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKAchievement.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKAchievementScore.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKGameCenterUtilities.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKFacebookUtilities.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKMacros.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKHelper.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection78"Compile /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.m206"[1mCompileC[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridge.o [1mUnityPlugin/OKBridge.m[0m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compilera5be507a7987b841^9f73cf7a7987b841^---0#0#1#-19%DVTDocumentLocation2@77"file:///Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.m0000000000000000^3837"[1mCompileC[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridge.o [1mUnityPlugin/OKBridge.m[0m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/suneets/OpenKit/public_repos/openkit-ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/suneets/workspace/android/sdk/platform-tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/workspace/android/sdk/tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@rails313/bin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@global/bin:/Users/suneets/.rvm/rubies/ruby-1.9.3-p0/bin:/Users/suneets/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7s -fmessage-length=156 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wdeprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -miphoneos-version-min=5.1 -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-generated-files.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-own-target-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-all-target-headers.hmap -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-project-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources/armv7s -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources -F/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos -F/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor -include /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-btfahtbvldkkljegebpdqqydguds/UnityPlugin-Prefix.pch -MMD -MT dependencies -MF /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridge.d --serialize-diagnostics /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridge.dia -c /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridge.m -o /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridge.o36"8B49FC5F-8E72-4462-8C78-1BBB60A38DE9-
+bDC993168-9E71-4B09-A73E-84D42AE9DE7D
+
+CCompileC build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridgeUIHelper.o /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s411531642.282855
+e411531642.721571
+r1
+xCompileC
+xbuild/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridgeUIHelper.o
+x/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.m
+xnormal
+xarmv7s
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.m
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKManager.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKGUI.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKLeaderboardsViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKUserProfileImageView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKUser.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FacebookSDK.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBSession.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBRequest.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBRequestConnection.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphObject.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBOpenGraphObject.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBOpenGraphAction.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBError.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/NSError+FBError.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBSettings.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAppEvents.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAppCall.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBDialogsData.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAccessTokenData.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBAppLinkData.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBErrorUtility.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBSessionTokenCachingStrategy.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphUser.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphPlace.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBGraphLocation.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBLoginView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBProfilePictureView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBUserSettingsViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBPlacePickerViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBCacheDescriptor.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBFriendPickerViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBNativeDialogs.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBShareDialogParams.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBDialogsParams.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBOpenGraphActionShareDialogParams.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBDialogs.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBWebDialogs.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBFrictionlessRecipientCache.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor/FacebookSDK.framework/Headers/FBInsights.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKScoreProtocol.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKLoginView.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKAchievementsViewController.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKMacros.h
+d/Users/suneets/OpenKit/public_repos/openkit-ios/OpenKit/OKGameCenterUtilities.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection86"Compile /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.m222"[1mCompileC[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridgeUIHelper.o [1mUnityPlugin/OKBridgeUIHelper.m[0m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler1496487a7987b841^57d0b87a7987b841^---0#0#1#-19%DVTDocumentLocation2@85"file:///Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.m0000000000000000^3885"[1mCompileC[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridgeUIHelper.o [1mUnityPlugin/OKBridgeUIHelper.m[0m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/suneets/OpenKit/public_repos/openkit-ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/suneets/workspace/android/sdk/platform-tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/workspace/android/sdk/tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@rails313/bin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@global/bin:/Users/suneets/.rvm/rubies/ruby-1.9.3-p0/bin:/Users/suneets/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7s -fmessage-length=156 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wdeprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -miphoneos-version-min=5.1 -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-generated-files.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-own-target-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-all-target-headers.hmap -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-project-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources/armv7s -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources -F/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos -F/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor -include /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-btfahtbvldkkljegebpdqqydguds/UnityPlugin-Prefix.pch -MMD -MT dependencies -MF /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridgeUIHelper.d --serialize-diagnostics /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridgeUIHelper.dia -c /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKBridgeUIHelper.m -o /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKBridgeUIHelper.o36"27728F33-A841-4A86-9B55-EFA1CDF11EBF-
+bDC993168-9E71-4B09-A73E-84D42AE9DE7D
+
+CCompileC build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKUnityHelper.o /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s411531642.686022
+e411531642.715676
+r1
+xCompileC
+xbuild/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKUnityHelper.o
+x/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.m
+xnormal
+xarmv7s
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.m
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.h
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection83"Compile /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.m216"[1mCompileC[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKUnityHelper.o [1mUnityPlugin/OKUnityHelper.m[0m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compilere1d0af7a7987b841^f33db77a7987b841^---0#0#1#-19%DVTDocumentLocation2@82"file:///Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.m0000000000000000^3867"[1mCompileC[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKUnityHelper.o [1mUnityPlugin/OKUnityHelper.m[0m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/suneets/OpenKit/public_repos/openkit-ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/suneets/workspace/android/sdk/platform-tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/workspace/android/sdk/tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@rails313/bin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@global/bin:/Users/suneets/.rvm/rubies/ruby-1.9.3-p0/bin:/Users/suneets/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7s -fmessage-length=156 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wdeprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -miphoneos-version-min=5.1 -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-generated-files.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-own-target-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-all-target-headers.hmap -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-project-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources/armv7s -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources -F/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos -F/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor -include /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-btfahtbvldkkljegebpdqqydguds/UnityPlugin-Prefix.pch -MMD -MT dependencies -MF /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKUnityHelper.d --serialize-diagnostics /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKUnityHelper.dia -c /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/OKUnityHelper.m -o /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OKUnityHelper.o36"BC2609AB-4C67-43DD-BA78-84D6DA937D74-
+bDC993168-9E71-4B09-A73E-84D42AE9DE7D
+
+CCreateUniversalBinary /Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos/libOpenKitUnity.a normal armv7\ armv7s
+s411531642.828032
+e411531642.839648
+r1
+xCreateUniversalBinary
+x/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos/libOpenKitUnity.a
+xnormal
+xarmv7 armv7s
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection112"Create universal binary /Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos/libOpenKitUnity.a99"[1mCreateUniversalBinary[0m [1mbuild/Release-iphoneos/libOpenKitUnity.a[0m normal armv7\ armv7s151ad47a7987b841^f5f3d67a7987b841^---0#0#1#-19%DVTDocumentLocation2@95"file:///Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos/libOpenKitUnity.a003440f3ddffdf42^1101"[1mCreateUniversalBinary[0m [1mbuild/Release-iphoneos/libOpenKitUnity.a[0m normal armv7\ armv7s    cd /Users/suneets/OpenKit/public_repos/openkit-ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/suneets/workspace/android/sdk/platform-tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/workspace/android/sdk/tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@rails313/bin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@global/bin:/Users/suneets/.rvm/rubies/ruby-1.9.3-p0/bin:/Users/suneets/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"    libtool -static /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/libOpenKitUnity.a /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/libOpenKitUnity.a -o /Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos/libOpenKitUnity.a36"790E6199-702A-484F-91AD-B07A91AAFC2A-
+bDC993168-9E71-4B09-A73E-84D42AE9DE7D
+
+CLibtool /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/libOpenKitUnity.a normal armv7
+s411531642.815614
+e411531642.824993
+r1
+xLibtool
+x/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/libOpenKitUnity.a
+xnormal
+xarmv7
+o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC 
+o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: file: /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/libmono.0.dylib is a dynamic library, not added to the static library
+o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: file: /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/libmono.0.dylib is a dynamic library, not added to the static library
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection123"[1mLibtool[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/libOpenKitUnity.a normal armv7123"[1mLibtool[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/libOpenKitUnity.a normal armv7e5edd07a7987b841^ce36d37a7987b841^-623"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: file: /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/libmono.0.dylib is a dynamic library, not added to the static library/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: file: /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/libmono.0.dylib is a dynamic library, not added to the static library-0#0#1#--1552"[1mLibtool[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/libOpenKitUnity.a normal armv7    cd /Users/suneets/OpenKit/public_repos/openkit-ios    setenv IPHONEOS_DEPLOYMENT_TARGET 5.1    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/suneets/workspace/android/sdk/platform-tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/workspace/android/sdk/tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@rails313/bin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@global/bin:/Users/suneets/.rvm/rubies/ruby-1.9.3-p0/bin:/Users/suneets/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -arch_only armv7 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk -L/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos -L/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin -filelist /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/OpenKitUnity.LinkFileList -ObjC -framework Foundation /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/libmono.0.dylib -o /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7/libOpenKitUnity.a36"A7DAEE9A-6E6C-4B3E-B79C-9352A0DD9442-
+bDC993168-9E71-4B09-A73E-84D42AE9DE7D
+
+CLibtool /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/libOpenKitUnity.a normal armv7s
+s411531642.817009
+e411531642.826147
+r1
+xLibtool
+x/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/libOpenKitUnity.a
+xnormal
+xarmv7s
+o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC 
+o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: file: /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/libmono.0.dylib is a dynamic library, not added to the static library
+o/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: file: /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/libmono.0.dylib is a dynamic library, not added to the static library
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection125"[1mLibtool[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/libOpenKitUnity.a normal armv7s125"[1mLibtool[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/libOpenKitUnity.a normal armv7s0b46d17a7987b841^fca7d37a7987b841^-623"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: file: /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/libmono.0.dylib is a dynamic library, not added to the static library/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: file: /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/libmono.0.dylib is a dynamic library, not added to the static library-0#0#1#--1557"[1mLibtool[0m build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/libOpenKitUnity.a normal armv7s    cd /Users/suneets/OpenKit/public_repos/openkit-ios    setenv IPHONEOS_DEPLOYMENT_TARGET 5.1    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/suneets/workspace/android/sdk/platform-tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/workspace/android/sdk/tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@rails313/bin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@global/bin:/Users/suneets/.rvm/rubies/ruby-1.9.3-p0/bin:/Users/suneets/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -arch_only armv7s -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk -L/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos -L/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin -filelist /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/OpenKitUnity.LinkFileList -ObjC -framework Foundation /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/libmono.0.dylib -o /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/Objects-normal/armv7s/libOpenKitUnity.a36"31062AA6-045E-48DA-BCD1-E9FE9FA99985-
+bDC993168-9E71-4B09-A73E-84D42AE9DE7D
+
+CProcessPCH /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-btfahtbvldkkljegebpdqqydguds/UnityPlugin-Prefix.pch.pch UnityPlugin/UnityPlugin-Prefix.pch normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s411531641.935082
+e411531642.270559
+r1
+xProcessPCH
+x/var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-btfahtbvldkkljegebpdqqydguds/UnityPlugin-Prefix.pch.pch
+xUnityPlugin/UnityPlugin-Prefix.pch
+xnormal
+xarmv7s
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/UnityPlugin-Prefix.pch
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection45"Precompile UnityPlugin/UnityPlugin-Prefix.pch314"[1mProcessPCH[0m /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-btfahtbvldkkljegebpdqqydguds/UnityPlugin-Prefix.pch.pch UnityPlugin/UnityPlugin-Prefix.pch normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler878cef797987b841^9948457a7987b841^---0#0#1#-19%DVTDocumentLocation2@89"file:///Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/UnityPlugin-Prefix.pch0000000000000000^3926"[1mProcessPCH[0m /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-btfahtbvldkkljegebpdqqydguds/UnityPlugin-Prefix.pch.pch UnityPlugin/UnityPlugin-Prefix.pch normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/suneets/OpenKit/public_repos/openkit-ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/suneets/workspace/android/sdk/platform-tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/workspace/android/sdk/tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@rails313/bin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@global/bin:/Users/suneets/.rvm/rubies/ruby-1.9.3-p0/bin:/Users/suneets/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch armv7s -fmessage-length=156 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wdeprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -miphoneos-version-min=5.1 -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-generated-files.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-own-target-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-all-target-headers.hmap -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-project-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources/armv7s -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources -F/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos -F/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor --serialize-diagnostics /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-btfahtbvldkkljegebpdqqydguds/UnityPlugin-Prefix.pch.dia -MMD -MT dependencies -MF /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-btfahtbvldkkljegebpdqqydguds/UnityPlugin-Prefix.pch.d -c /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/UnityPlugin-Prefix.pch -o /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-btfahtbvldkkljegebpdqqydguds/UnityPlugin-Prefix.pch.pch36"D0760B1C-C041-4B51-9561-B1466F03BF7C-
+bDC993168-9E71-4B09-A73E-84D42AE9DE7D
+
+CProcessPCH /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-bxvbnbmmokmdmhcutiagytxcctfj/UnityPlugin-Prefix.pch.pch UnityPlugin/UnityPlugin-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s411531641.934780
+e411531642.276393
+r1
+xProcessPCH
+x/var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-bxvbnbmmokmdmhcutiagytxcctfj/UnityPlugin-Prefix.pch.pch
+xUnityPlugin/UnityPlugin-Prefix.pch
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+d/Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/UnityPlugin-Prefix.pch
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection45"Precompile UnityPlugin/UnityPlugin-Prefix.pch313"[1mProcessPCH[0m /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-bxvbnbmmokmdmhcutiagytxcctfj/UnityPlugin-Prefix.pch.pch UnityPlugin/UnityPlugin-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler82e6ef797987b841^6bd5467a7987b841^---0#0#1#-19%DVTDocumentLocation2@89"file:///Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/UnityPlugin-Prefix.pch0000000000000000^3923"[1mProcessPCH[0m /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-bxvbnbmmokmdmhcutiagytxcctfj/UnityPlugin-Prefix.pch.pch UnityPlugin/UnityPlugin-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/suneets/OpenKit/public_repos/openkit-ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/suneets/workspace/android/sdk/platform-tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/workspace/android/sdk/tools:/opt/local/bin:/opt/local/sbin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@rails313/bin:/Users/suneets/.rvm/gems/ruby-1.9.3-p0@global/bin:/Users/suneets/.rvm/rubies/ruby-1.9.3-p0/bin:/Users/suneets/.rvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch armv7 -fmessage-length=156 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -fcolor-diagnostics -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wno-arc-repeated-use-of-weak -Wduplicate-method-match -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wempty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wdeprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -miphoneos-version-min=5.1 -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-generated-files.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-own-target-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-all-target-headers.hmap -iquote /Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/OpenKitUnity-project-headers.hmap -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources/armv7 -I/Users/suneets/OpenKit/public_repos/openkit-ios/build/OpenKit.build/Release-iphoneos/OpenKitUnity.build/DerivedSources -F/Users/suneets/OpenKit/public_repos/openkit-ios/build/Release-iphoneos -F/Users/suneets/OpenKit/public_repos/openkit-ios/Vendor --serialize-diagnostics /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-bxvbnbmmokmdmhcutiagytxcctfj/UnityPlugin-Prefix.pch.dia -MMD -MT dependencies -MF /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-bxvbnbmmokmdmhcutiagytxcctfj/UnityPlugin-Prefix.pch.d -c /Users/suneets/OpenKit/public_repos/openkit-ios/UnityPlugin/UnityPlugin-Prefix.pch -o /var/folders/yb/mx7hfgj11r9b6ptdk5_d2y6w0000gn/C/com.apple.DeveloperTools/5.0-5A1413/Xcode/SharedPrecompiledHeaders/UnityPlugin-Prefix-bxvbnbmmokmdmhcutiagytxcctfj/UnityPlugin-Prefix.pch.pch36"50716C12-8D84-4ACF-8685-476D1F7DA57C-
+bDC993168-9E71-4B09-A73E-84D42AE9DE7D
+

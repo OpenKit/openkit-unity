@@ -141,6 +141,10 @@ check_error
 
 blue "Finished building $CONFIG"
 
+blue "Deleting build folder"
+rm -rf build
+check_error
+
 #Check for any errors
 if [ $ERROR != 0 ]
 then

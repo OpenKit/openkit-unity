@@ -94,11 +94,12 @@ blue "Copying OpenKitUnity JAR"
 cp -v ../openkit-android/OpenKitUnity/bin/jars/openkit-unity-plugin.jar $UNITY_PLUGINS_ANDROID_FOLDER/OpenKitSDK/libs
 check_error
 
-blue "Deleting and Copying Facebook Android SDK"
-rm -rf $UNITY_PLUGINS_ANDROID_FOLDER/facebook
-check_error
-cp -r -v ../openkit-android/Vendor/facebook $UNITY_PLUGINS_ANDROID_FOLDER
-check_error
+# We don't copy over the facebook android SDK anymore-- it comes in unity
+#blue "Deleting and Copying Facebook Android SDK"
+#rm -rf $UNITY_PLUGINS_ANDROID_FOLDER/facebook
+#check_error
+#cp -r -v ../openkit-android/Vendor/facebook $UNITY_PLUGINS_ANDROID_FOLDER
+#check_error
  
 blue "Finished building and copying for Android $CONFIG"
 

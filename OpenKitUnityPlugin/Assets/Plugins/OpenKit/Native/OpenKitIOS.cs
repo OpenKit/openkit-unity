@@ -83,6 +83,9 @@ namespace OpenKit.Native
 		[DllImport (OK_IPHONE_DLL)]
 		public static extern void OKBridgeShowLeaderboardsAndAchievements();
 
+		[DllImport (OK_IPHONE_DLL)]
+		public static extern void OKBridgeLogoutFacebook();
+
 		public OpenKitIOS() {}
 		
 		public void Configure(string appKey, string secretKey, string endpoint) 
@@ -143,6 +146,11 @@ namespace OpenKit.Native
 		public bool IsFBSessionOpen()
 		{
 			return OKBridgeIsFBSessionOpen();
+		}
+
+		public void LogoutNativeFacebook()
+		{
+			OKBridgeLogoutFacebook();
 		}
 
 		public void AuthenticateLocalPlayerToGC()

@@ -128,6 +128,11 @@ namespace OpenKit.Native
 			OKAndroidPlugin.CallStatic("logoutOfOpenKit");
 		}
 
+		public void LogoutNativeFacebook()
+		{
+			OKAndroidPlugin.CallStatic("logoutFacebook");
+		}
+
 		public void GetFacebookFriendsList(OKNativeAsyncCall functionCall)
 		{
 			OKAndroidPlugin.CallStatic("getFacebookFriendsList", functionCall.GetCallbackGameObjectName());

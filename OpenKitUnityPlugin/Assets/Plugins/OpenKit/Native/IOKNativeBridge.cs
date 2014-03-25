@@ -32,6 +32,7 @@ namespace OpenKit.Native
 		OKUser GetCurrentUser();
 		bool IsCurrentUserAuthenticated();
 		bool IsFBSessionOpen();
+		void LogoutNativeFacebook();
 	}
 }
 

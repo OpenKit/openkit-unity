@@ -158,6 +158,11 @@ namespace OpenKit
 		{
 			OKManager.Instance._LogoutCurrentUserFromOpenKit();
 		}
+
+		public static void LogoutNativeFacebook()
+		{
+			OKManager.Instance._LogoutNativeFacebook();
+		}
 		
 		public static bool IsPlayerAuthenticatedWithGameCenter()
 		{
@@ -325,6 +330,11 @@ namespace OpenKit
 		public void _LogoutCurrentUserFromOpenKit()
 		{
 			nativeBridge.LogoutCurrentUserFromOpenKit();
+		}
+
+		public void _LogoutNativeFacebook()
+		{
+			nativeBridge.LogoutNativeFacebook();
 		}
 
 		public bool _IsEnabled()

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using OpenKit;
 using System;
-using Facebook;
+using Facebook.Unity;
 
 public class OKDemoScene : MonoBehaviour {
 
@@ -382,8 +382,8 @@ public class OKDemoScene : MonoBehaviour {
 
 	void GetFBInfo()
 	{
-		FB.API("/me?fields=id,first_name,friends.limit(100).fields(first_name,id)", Facebook.HttpMethod.GET, (FBResult result) => {
-			OKLog.Info ("Unity Result from FB is: " + result.Text);
+		FB.API("/me?fields=id,first_name,friends.limit(100).fields(first_name,id)", HttpMethod.GET, (IGraphResult result) => {
+			OKLog.Info ("Unity Result from FB is: " + result.RawResult);
 		}); 
 
 	}
